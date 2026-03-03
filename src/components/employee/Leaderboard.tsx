@@ -1,11 +1,11 @@
 import React from 'react'
-import { useStore } from '@/store/useStore'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Trophy, Medal, Star } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export const Leaderboard: React.FC = () => {
-    const { leaderboard } = useStore()
+    const leaderboard = useMicroMoveStore(state => state.leaderboardTop3)
 
     return (
         <div className="pb-10 font-sans">

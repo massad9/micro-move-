@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2, Zap, ShieldAlert } from 'lucide-react';
+import { useMicroMoveStore } from '@/store/microMoveStore';
+import { toast } from 'sonner';
 
 interface LoginFormProps {
     role: 'admin' | 'employee';
@@ -15,14 +17,21 @@ export const LoginForm: React.FC<LoginFormProps> = ({ role, onLogin, onBack }) =
 
     const isAdmin = role === 'admin';
 
+    const login = useMicroMoveStore(state => state.login);
+
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         // Simulate network request
         setTimeout(() => {
             setIsLoading(false);
-            onLogin();
-        }, 1200);
+            const success = login(email, role);
+            if (success) {
+                onLogin();
+            } else {
+                toast.error('Invalid credentials. Please use admin@micromove.sa for admin access.');
+            }
+        }, 1000);
     };
 
     return (

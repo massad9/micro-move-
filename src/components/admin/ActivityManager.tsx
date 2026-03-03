@@ -1,25 +1,44 @@
 import React, { useState } from 'react'
-import { useStore } from '@/store/useStore'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Badge from '@/components/ui/badge'
-import { Sparkles, Plus, Edit2, Zap, Pause, Trash2, Loader2 } from 'lucide-react'
+import { Sparkles, Plus, Edit2, Zap, Pause, Trash2, Loader2, Bot, AlertCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
+import { generateActivitiesFromAI } from '@/lib/gemini'
 
 export const ActivityManager: React.FC = () => {
-    const { activities, generateActivities } = useStore()
+    const activities = useMicroMoveStore(state => state.activities)
+    const addActivities = useMicroMoveStore(state => state.addActivities)
     const [isGenerating, setIsGenerating] = useState(false)
 
-    const handleGenerate = () => {
+    const handleGenerate = async () => {
         setIsGenerating(true)
-        setTimeout(() => {
-            generateActivities()
-            setIsGenerating(false)
-            toast.success('Activities Synthesized', {
-                description: 'Successfully updated the catalog with fresh AI suggestions.'
+        try {
+            const { activities: newActivities, source } = await generateActivitiesFromAI()
+            addActivities(newActivities)
+
+            if (source === 'ai') {
+                toast.success('AI Moves Generated! ✨', {
+                    description: `${newActivities.length} new activities created by Gemini AI.`,
+                    icon: <Bot className="w-4 h-4" />,
+                })
+            } else {
+                toast.info('Curated Moves Added 📋', {
+                    description: `${newActivities.length} pre-designed activities added. (AI quota reached — will retry next time)`,
+                })
+            }
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'Unknown error occurred.'
+            toast.error('Generation Failed', {
+                description: message,
+                icon: <AlertCircle className="w-4 h-4" />,
             })
-        }, 2000)
+            console.error('Generation error:', error)
+        } finally {
+            setIsGenerating(false)
+        }
     }
 
     return (
@@ -41,7 +60,7 @@ export const ActivityManager: React.FC = () => {
                         ) : (
                             <Sparkles className="w-4 h-4 mr-2 text-primary" />
                         )}
-                        {isGenerating ? 'Synthesizing...' : 'Generate New Moves'}
+                        {isGenerating ? 'AI is Thinking...' : 'Generate with AI'}
                     </Button>
                     <Button
                         onClick={() => toast.info('New Move Draft', { description: 'Opening the activity creation wizard...' })}
@@ -69,15 +88,30 @@ export const ActivityManager: React.FC = () => {
                                 {activities.map((activity, index) => (
                                     <motion.tr
                                         key={activity.id}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
+                                        initial={{ opacity: 0, y: -4 }}
+                                        animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, scale: 0.95 }}
                                         transition={{ delay: index * 0.05 }}
-                                        className="group hover:bg-slate-800/30 transition-colors"
+                                        className="group hover:bg-slate-50/80 transition-colors"
                                     >
                                         <td className="px-6 py-4">
-                                            <div className="font-semibold text-slate-900">{activity.title}</div>
-                                            <div className="text-sm text-slate-500 truncate max-w-[250px] mt-0.5">{activity.description}</div>
+                                            <div className="flex items-start gap-2">
+                                                <div>
+                                                    <div className="font-semibold text-slate-900 flex items-center gap-1.5">
+                                                        {activity.title}
+                                                        {activity.aiBadge && (
+                                                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold bg-violet-50 text-violet-600 border border-violet-100">
+                                                                <Bot className="w-2.5 h-2.5" />
+                                                                AI
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <div className="text-sm text-slate-500 truncate max-w-[250px] mt-0.5">{activity.description}</div>
+                                                    {activity.aiBadge && (
+                                                        <div className="text-xs text-violet-500 mt-0.5 italic">"{activity.aiBadge}"</div>
+                                                    )}
+                                                </div>
+                                            </div>
                                         </td>
                                         <td className="px-6 py-4">
                                             <Badge variant="secondary" className="font-medium text-xs py-0.5 px-2.5 rounded-md bg-slate-100 text-slate-600 border-transparent shadow-none">
@@ -91,9 +125,12 @@ export const ActivityManager: React.FC = () => {
                                             </div>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <div className="flex items-center gap-2 text-xs font-medium text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full w-fit border border-emerald-100">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                                                Active
+                                            <div className={`flex items-center gap-2 text-xs font-medium px-2.5 py-1 rounded-full w-fit border ${activity.isDone
+                                                ? 'text-slate-500 bg-slate-50 border-slate-200'
+                                                : 'text-emerald-600 bg-emerald-50 border-emerald-100'
+                                                }`}>
+                                                <div className={`w-1.5 h-1.5 rounded-full ${activity.isDone ? 'bg-slate-400' : 'bg-emerald-500'}`} />
+                                                {activity.isDone ? 'Completed' : 'Active'}
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 text-right">

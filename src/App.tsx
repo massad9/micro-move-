@@ -4,6 +4,7 @@ import { ActivityFeed } from '@/components/employee/ActivityFeed'
 import { Leaderboard } from '@/components/employee/Leaderboard'
 import { Rewards } from '@/components/employee/Rewards'
 import { EmployeeLayout } from '@/components/employee/EmployeeLayout'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 
 // Admin Components
 import { AdminLayout } from '@/components/admin/AdminLayout'
@@ -26,25 +27,25 @@ import { Layout } from 'lucide-react'
 function App() {
   const [activeTab, setActiveTab] = useState('home')
   const [activeAdminTab, setActiveAdminTab] = useState('overview')
-  const [userRole, setUserRole] = useState<'admin' | 'employee' | null>(null)
+  const user = useMicroMoveStore(state => state.user)
+  const logout = useMicroMoveStore(state => state.logout)
   const [loginRole, setLoginRole] = useState<'admin' | 'employee' | null>(null)
   const [isDashboardLoading, setIsDashboardLoading] = useState(false)
 
-  const handleLoginSuccess = (role: 'admin' | 'employee') => {
-    setUserRole(role)
+  const handleLoginSuccess = () => {
     setIsDashboardLoading(true)
     setTimeout(() => {
       setIsDashboardLoading(false)
-    }, 1500) // Simulate a network fetch for dashboard data
+    }, 1500)
   }
 
   const handleLogout = () => {
-    setUserRole(null)
+    logout()
     setLoginRole(null)
   }
 
   // --- AUTH VIEWS ---
-  if (!userRole) {
+  if (!user) {
     if (loginRole) {
       return (
         <AnimatePresence mode="wait">
@@ -57,7 +58,7 @@ function App() {
           >
             <LoginForm
               role={loginRole}
-              onLogin={() => handleLoginSuccess(loginRole)}
+              onLogin={handleLoginSuccess}
               onBack={() => setLoginRole(null)}
             />
           </motion.div>
@@ -81,7 +82,7 @@ function App() {
   }
 
   // --- HR ADMIN VIEW ---
-  if (userRole === 'admin') {
+  if (user.email === 'admin@micromove.sa') {
     return (
       <AdminLayout activeAdminTab={activeAdminTab} setActiveAdminTab={setActiveAdminTab} onLogout={handleLogout}>
         <AnimatePresence mode="wait">

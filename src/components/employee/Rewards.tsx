@@ -3,11 +3,12 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { Gift, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useStore } from '@/store/useStore'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 import { toast } from 'sonner'
 
 export const Rewards: React.FC = () => {
-    const { user } = useStore()
+    const user = useMicroMoveStore(state => state.user)
+    if (!user) return null
 
     const rewards = [
         { id: '1', title: 'Extra 1 Hour Off', cost: 5000, description: 'Redeem for an early finish on Thursday.', color: 'bg-blue-500' },

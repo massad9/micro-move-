@@ -1,5 +1,5 @@
 import { Home, Zap, Trophy, Gift, Bell, Search, Menu, LogOut } from 'lucide-react'
-import { useStore } from '@/store/useStore'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { BottomNav } from '@/components/employee/BottomNav'
@@ -12,7 +12,8 @@ interface EmployeeLayoutProps {
 }
 
 export const EmployeeLayout: React.FC<EmployeeLayoutProps> = ({ children, activeTab, setActiveTab, onLogout }) => {
-    const { user } = useStore()
+    const user = useMicroMoveStore(state => state.user)
+    if (!user) return null
 
     const navItems = [
         { id: 'home', icon: Home, label: 'Dashboard' },
@@ -114,15 +115,16 @@ export const EmployeeLayout: React.FC<EmployeeLayoutProps> = ({ children, active
                 </header>
 
                 {/* Dynamic View */}
-                <main className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-10 no-scrollbar bg-slate-50/50">
-                    <div className="max-w-7xl mx-auto">
+                <main className="flex-1 overflow-y-auto bg-slate-50/50 no-scrollbar relative w-full">
+                    {/* The max-w has been removed from here to allow the child (Dashboard) to manage the split layout */}
+                    <div className="h-full w-full">
                         {children}
                     </div>
                 </main>
             </div>
 
             {/* Mobile Bottom Nav */}
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50">
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 shadow-[0_-8px_30px_rgb(0,0,0,0.04)] bg-white/80 backdrop-blur-xl border-t border-slate-100">
                 <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
         </div>

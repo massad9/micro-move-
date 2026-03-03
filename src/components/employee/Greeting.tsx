@@ -1,10 +1,12 @@
 import React from 'react'
-import { useStore } from '@/store/useStore'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 import { motion } from 'framer-motion'
 
 export const Greeting: React.FC = () => {
-    const { user } = useStore()
-    const percentage = (user.completedToday / user.dailyGoal) * 100
+    const user = useMicroMoveStore(state => state.user)
+    if (!user) return null
+
+    const percentage = user.dailyGoal === 0 ? 0 : (user.completedToday / user.dailyGoal) * 100
 
     const getTimeGreeting = () => {
         const hour = new Date().getHours()
