@@ -12,10 +12,13 @@ import { StatCards } from '@/components/admin/StatCards'
 import { AnalyticsChart } from '@/components/admin/AnalyticsChart'
 import { ActivityManager } from '@/components/admin/ActivityManager'
 import { EmployeeList } from '@/components/admin/EmployeeList'
+import { RewardsManager } from '@/components/admin/RewardsManager'
+import { AdminSettings } from '@/components/admin/AdminSettings'
 
 // Auth Components
 import { WelcomePage } from '@/components/auth/WelcomePage'
 import { LoginForm } from '@/components/auth/LoginForm'
+import { HrOnboarding } from '@/components/auth/HrOnboarding'
 
 // Skeleton Components
 import { EmployeeDashboardSkeleton, AdminOverviewSkeleton } from '@/components/skeletons/DashboardSkeletons'
@@ -31,11 +34,16 @@ function App() {
   const logout = useMicroMoveStore(state => state.logout)
   const [loginRole, setLoginRole] = useState<'admin' | 'employee' | null>(null)
   const [isDashboardLoading, setIsDashboardLoading] = useState(false)
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState(true)
 
   const handleLoginSuccess = () => {
     setIsDashboardLoading(true)
     setTimeout(() => {
       setIsDashboardLoading(false)
+      // For demo, if admin logs in and onboarding isn't complete (this would be driven by a real db check usually)
+      if (loginRole === 'admin') {
+        setIsOnboardingComplete(false);
+      }
     }, 1500)
   }
 
@@ -82,7 +90,11 @@ function App() {
   }
 
   // --- HR ADMIN VIEW ---
-  if (user.email === 'admin@micromove.sa') {
+  if (user.role === 'admin') {
+    if (!isOnboardingComplete) {
+      return <HrOnboarding onComplete={() => setIsOnboardingComplete(true)} />
+    }
+
     return (
       <AdminLayout activeAdminTab={activeAdminTab} setActiveAdminTab={setActiveAdminTab} onLogout={handleLogout}>
         <AnimatePresence mode="wait">
@@ -99,8 +111,8 @@ function App() {
               ) : (
                 <>
                   <div className="mb-8">
-                    <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Engagement Overview</h1>
-                    <p className="text-slate-500 font-medium italic">"Your team is 15% more active than last month. Keep it up!" — Micro Move AI</p>
+                    <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Company Vibe</h1>
+                    <p className="text-slate-500 font-medium italic">"The Engineering team could use a nudge. Energy levels dipping at 2 PM." — Micro Move AI</p>
                   </div>
 
                   <StatCards />
@@ -150,8 +162,40 @@ function App() {
             </motion.div>
           )}
 
+          {activeAdminTab === 'rewards' && (
+            <motion.div
+              key="rewards"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="mb-8">
+                <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Rewards & Challenges</h1>
+                <p className="text-slate-500 font-medium">Manage the store and launch team challenges to drive engagement.</p>
+              </div>
+              <RewardsManager />
+            </motion.div>
+          )}
+
+          {activeAdminTab === 'settings' && (
+            <motion.div
+              key="settings"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="mb-8">
+                <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Platform Settings</h1>
+                <p className="text-slate-500 font-medium">Configure integrations, permissions, and billing.</p>
+              </div>
+              <AdminSettings />
+            </motion.div>
+          )}
+
           {/* Placeholder for other admin tabs */}
-          {['analytics', 'settings'].includes(activeAdminTab) && (
+          {['analytics'].includes(activeAdminTab) && (
             <motion.div
               key="placeholder"
               initial={{ opacity: 0 }}

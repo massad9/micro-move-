@@ -11,7 +11,7 @@ export type Activity = {
   isDone: boolean
 }
 
-type LeaderboardEntry = {
+export type LeaderboardEntry = {
   id: string
   name: string
   points: number
@@ -20,18 +20,46 @@ type LeaderboardEntry = {
   trend?: "up" | "down" | "flat"
 }
 
-type Reward = {
+export type Reward = {
+  id: string
   title: string
   cost: number
   description: string
 }
 
-type UserProfile = {
+export type UserProfile = {
   name: string
   email: string
   points: number
   dailyGoal: number
   completedToday: number
+  department?: string
+  role?: 'employee' | 'admin'
+}
+
+export type CompanyAdminState = {
+  companyName: string
+  companySize: string
+  companyLogo: string
+  departments: string[]
+  workingHours: { start: string; end: string }
+  integrations: {
+    calendar: boolean
+    slack: boolean
+    teams: boolean
+  }
+  vibeScore: number
+  heatmapData: any[]
+  burnoutRisk: { department: string; riskLevel: 'High' | 'Medium' | 'Low' }[]
+}
+
+export type Challenge = {
+  id: string
+  title: string
+  description: string
+  targetPoints: number
+  currentPoints: number
+  rewardTitle: string
 }
 
 type MicroMoveState = {
@@ -39,10 +67,19 @@ type MicroMoveState = {
   activities: Activity[]
   leaderboardTop3: LeaderboardEntry[]
   rewards: Reward[]
+  challenges: Challenge[]
+  companyAdmin: CompanyAdminState | null
+
   login: (email: string, role: string) => boolean
   logout: () => void
   markActivityDone: (activityId: string) => { awardedPoints: number } | null
   addActivities: (newActivities: Activity[]) => void
+
+  // Admin functions
+  updateCompanySettings: (settings: Partial<CompanyAdminState>) => void
+  addReward: (reward: Reward) => void
+  addChallenge: (challenge: Challenge) => void
+  redeemReward: (rewardId: string) => boolean
 }
 
 const getTimeOfDayLabel = () => {
@@ -97,9 +134,25 @@ const initialActivities: Activity[] = [
   },
 ]
 
+const defaultCompanyAdmin: CompanyAdminState = {
+  companyName: "Acme Corp",
+  companySize: "100-500",
+  companyLogo: "",
+  departments: ["Engineering", "Sales", "Marketing", "HR"],
+  workingHours: { start: "09:00", end: "17:00" },
+  integrations: { calendar: true, slack: true, teams: false },
+  vibeScore: 84,
+  heatmapData: [],
+  burnoutRisk: [
+    { department: "Sales", riskLevel: "High" },
+    { department: "Marketing", riskLevel: "Medium" }
+  ]
+};
+
 export const useMicroMoveStore = create<MicroMoveState>((set, get) => ({
   user: null,
   activities: initialActivities,
+  companyAdmin: defaultCompanyAdmin,
   leaderboardTop3: [
     { id: '1', name: "Team Riyadh", points: 3450, avatar: 'https://i.pravatar.cc/150?u=riyadh', rank: 1, trend: "up" },
     { id: '2', name: "Salman", points: 3120, avatar: 'https://i.pravatar.cc/150?u=salman', rank: 2, trend: "flat" },
@@ -107,29 +160,42 @@ export const useMicroMoveStore = create<MicroMoveState>((set, get) => ({
   ],
   rewards: [
     {
+      id: "r1",
       title: "Extra 1 Hour Off",
       cost: 500,
       description: "Redeem for a 1-hour early leave (manager approval).",
     },
     {
+      id: "r2",
       title: "Coffee Voucher",
       cost: 250,
       description: "Redeem for a coffee voucher at the office café.",
     },
     {
+      id: "r3",
       title: "Wellness Kit",
       cost: 900,
       description: "A curated stretch band + posture support kit.",
     },
   ],
+  challenges: [
+    {
+      id: "c1",
+      title: "Marketing Team Challenge",
+      description: "Complete 100 movement breaks this week.",
+      targetPoints: 100,
+      currentPoints: 84,
+      rewardTitle: "Team Lunch"
+    }
+  ],
   login: (email, role) => {
     // Basic hardcoded logic for demo safety
     if (role === 'admin' && email === 'admin@micromove.sa') {
-      set({ user: { name: "Admin", email, points: 0, dailyGoal: 0, completedToday: 0 } })
+      set({ user: { name: "Admin", email, points: 0, dailyGoal: 0, completedToday: 0, role: 'admin' } })
       return true
     }
     if (role === 'employee' && email.includes('@')) {
-      set({ user: { name: "Mashael", email, points: 260, dailyGoal: initialActivities.length, completedToday: 0 } })
+      set({ user: { name: "Mashael", email, points: 260, dailyGoal: initialActivities.length, completedToday: 0, department: "Engineering", role: 'employee' } })
       return true
     }
     return false
@@ -158,5 +224,27 @@ export const useMicroMoveStore = create<MicroMoveState>((set, get) => ({
   addActivities: (newActivities) => set((state) => ({
     activities: [...state.activities, ...newActivities]
   })),
-}))
 
+  updateCompanySettings: (settings: Partial<CompanyAdminState>) => set((state) => ({
+    companyAdmin: state.companyAdmin ? { ...state.companyAdmin, ...settings } : defaultCompanyAdmin
+  })),
+  addReward: (reward) => set((state) => ({
+    rewards: [...state.rewards, reward]
+  })),
+  addChallenge: (challenge) => set((state) => ({
+    challenges: [...state.challenges, challenge]
+  })),
+  redeemReward: (rewardId) => {
+    const { rewards, user } = get()
+    const reward = rewards.find(r => r.id === rewardId)
+    if (!reward || !user || user.points < reward.cost) return false
+
+    set(state => ({
+      user: state.user ? {
+        ...state.user,
+        points: state.user.points - reward.cost
+      } : null
+    }))
+    return true
+  }
+}))

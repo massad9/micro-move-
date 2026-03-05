@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard, Users, Zap, BarChart3, Settings, Search, Bell, Menu, LogOut } from 'lucide-react'
+import { LayoutDashboard, Users, Zap, Search, Bell, Menu, LogOut, Gift, Sliders } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 
@@ -16,25 +16,25 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
         { id: 'overview', icon: LayoutDashboard, label: 'Overview' },
         { id: 'employees', icon: Users, label: 'Employees' },
         { id: 'activities', icon: Zap, label: 'Micro Moves' },
-        { id: 'analytics', icon: BarChart3, label: 'Analytics' },
-        { id: 'settings', icon: Settings, label: 'Settings' },
+        { id: 'rewards', icon: Gift, label: 'Rewards Store' },
+        { id: 'settings', icon: Sliders, label: 'Settings' },
     ]
 
     return (
         <div className="flex h-screen bg-slate-50 overflow-hidden">
             {/* Sidebar */}
-            <aside className="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200 p-6 z-10">
+            <aside className="hidden lg:flex flex-col w-64 bg-[#050505] text-white border-r border-[#151515] p-6 z-10 font-sans">
                 <div className="flex items-center gap-3 mb-12 px-2">
-                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center transition-colors">
+                    <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center transition-colors border border-primary/30">
                         <div className="w-4 h-4 bg-primary rounded-[2px] rotate-45" />
                     </div>
                     <div>
-                        <span className="block font-bold text-xl tracking-tight text-slate-900 leading-none">Micro Move</span>
+                        <span className="block font-bold text-xl tracking-tight text-white leading-none">Micro Move</span>
                         <span className="block font-medium text-[10px] tracking-wider text-primary uppercase mt-1">Admin Portal</span>
                     </div>
                 </div>
 
-                <nav className="flex-1 space-y-1">
+                <nav className="flex-1 space-y-1.5">
                     {navItems.map((item) => {
                         const Icon = item.icon
                         const isActive = activeAdminTab === item.id
@@ -42,37 +42,37 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                             <button
                                 key={item.id}
                                 onClick={() => setActiveAdminTab(item.id)}
-                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm font-medium ${isActive
-                                    ? 'bg-primary/10 text-primary'
-                                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-sm font-medium ${isActive
+                                    ? 'bg-primary border border-primary/50 text-white shadow-lg shadow-primary/20'
+                                    : 'text-slate-400 hover:bg-white/5 hover:text-white border border-transparent'
                                     }`}
                             >
-                                <Icon className={`w-5 h-5 ${isActive ? 'text-primary' : 'text-slate-400'}`} />
+                                <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-500'}`} />
                                 <span>{item.label}</span>
                             </button>
                         )
                     })}
                 </nav>
 
-                <div className="mt-auto pt-6 space-y-4 border-t border-slate-200">
+                <div className="mt-auto pt-6 space-y-4 border-t border-white/10">
                     <button
                         onClick={onLogout}
-                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-destructive/10 hover:text-destructive transition-colors group"
+                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-colors group"
                     >
-                        <LogOut className="w-5 h-5 text-slate-400 group-hover:text-destructive transition-colors" />
+                        <LogOut className="w-5 h-5 text-slate-500 group-hover:text-red-400 transition-colors" />
                         <span className="font-medium text-sm">Log Out</span>
                     </button>
-                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <div className="p-3 bg-[#111] rounded-xl border border-white/10">
                         <div className="flex items-center gap-3">
-                            <Avatar className="w-10 h-10 border border-slate-200 rounded-lg">
+                            <Avatar className="w-10 h-10 border border-white/10 rounded-lg">
                                 <AvatarImage src="https://i.pravatar.cc/150?u=admin" />
-                                <AvatarFallback className="bg-primary/10 text-primary">AD</AvatarFallback>
+                                <AvatarFallback className="bg-primary/20 text-primary">AD</AvatarFallback>
                             </Avatar>
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-semibold text-slate-900 truncate">
+                                <p className="text-sm font-semibold text-white truncate">
                                     Admin Access
                                 </p>
-                                <p className="text-xs text-slate-500 truncate mt-0.5">HR Dept</p>
+                                <p className="text-xs text-slate-400 truncate mt-0.5">Acme Corp HQ</p>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
             </aside>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+            <div className="flex-1 flex flex-col min-w-0 overflow-hidden font-sans">
                 {/* Top Header */}
                 <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0 relative z-20">
                     <div className="flex items-center gap-4 flex-1">
@@ -88,11 +88,11 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                             <Menu className="w-5 h-5" />
                         </button>
                         <div className="relative max-w-md w-full hidden md:block group">
-                            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-slate-600 transition-colors" />
+                            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition-colors" />
                             <input
                                 type="text"
                                 placeholder="Search employees, activities..."
-                                className="w-full pl-10 pr-4 py-2 bg-slate-100/50 border border-transparent rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all"
+                                className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:border-primary/50 focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
                             />
                         </div>
                     </div>
@@ -100,13 +100,13 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                     <div className="flex items-center gap-6">
                         <Button variant="ghost" size="icon" className="relative text-slate-600 rounded-full hover:bg-slate-100 transition-colors h-9 w-9">
                             <Bell className="w-5 h-5" />
-                            <span className="absolute top-2 right-2.5 w-2 h-2 bg-destructive rounded-full border border-white" />
+                            <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white" />
                         </Button>
                         <div className="h-6 w-[1px] bg-slate-200 mx-2 hidden sm:block" />
                         <div className="flex items-center gap-3">
                             <div className="text-right hidden sm:block">
-                                <p className="text-sm font-semibold text-slate-900">Sara Al-Fahad</p>
-                                <p className="text-xs text-slate-500 font-medium mt-0.5">HR Director</p>
+                                <p className="text-sm font-bold text-slate-900 leading-none">Sara Al-Fahad</p>
+                                <p className="text-xs text-slate-500 font-medium mt-1">System Admin</p>
                             </div>
                             <Avatar className="w-9 h-9 cursor-pointer hover:opacity-80 transition-opacity">
                                 <AvatarImage src="https://i.pravatar.cc/150?u=sara-admin" />

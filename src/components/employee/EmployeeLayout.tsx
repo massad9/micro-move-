@@ -3,6 +3,7 @@ import { useMicroMoveStore } from '@/store/microMoveStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { BottomNav } from '@/components/employee/BottomNav'
+import { ContextNudgeModal } from '@/components/employee/ContextNudgeModal'
 
 interface EmployeeLayoutProps {
     children: React.ReactNode
@@ -119,6 +120,7 @@ export const EmployeeLayout: React.FC<EmployeeLayoutProps> = ({ children, active
                     {/* The max-w has been removed from here to allow the child (Dashboard) to manage the split layout */}
                     <div className="h-full w-full">
                         {children}
+                        <ContextNudgeModal />
                     </div>
                 </main>
             </div>
