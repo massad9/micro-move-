@@ -13,7 +13,7 @@ interface WelcomePageProps {
 
 export const WelcomePage: React.FC<WelcomePageProps> = ({ onSelectRole }) => {
     return (
-        <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col relative overflow-hidden font-sans selection:bg-primary/30">
+        <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col relative overflow-x-hidden font-sans selection:bg-primary/30">
             <div className="absolute inset-0 z-0">
                 <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/20 blur-[120px] rounded-full mix-blend-screen" />
                 <div className="absolute bottom-[-20%] left-[-10%] w-[60%] h-[60%] bg-orange-400/10 blur-[150px] rounded-full mix-blend-screen" />
