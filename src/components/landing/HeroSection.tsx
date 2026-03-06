@@ -38,9 +38,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole }) => {
                         className="flex flex-col gap-8"
                     >
                         <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60">
-                            صحة فريقك هي محرك<br />
+                            صحة فريقك هي محرك
+                            إنتاجيتك..{' '}
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#ffb938] to-primary bg-[length:200%_auto] animate-gradient">
-                                إنتاجيتك.. استثمر فيها كل يوم
+                                استثمر فيها كل يوم
                             </span>
                         </h1>
 
@@ -59,6 +60,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole }) => {
                                 <Building2 className="w-5 h-5 relative z-10" />
                                 <span className="relative z-10">إنشاء مساحة عمل الشركة</span>
                                 <Sparkles className="w-4 h-4 text-primary relative z-10" />
+                            </motion.button>
+
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
+                            >
+                                <span>تعرّف على الأسعار</span>
                             </motion.button>
                         </div>
                     </motion.div>

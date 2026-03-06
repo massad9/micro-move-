@@ -62,10 +62,10 @@ export const BenefitsSection: React.FC = () => {
                         المزايا والخصائص
                     </span>
                     <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
-                        كل ما يحتاجه فريقك
+                        مميزات صُممت لبيئة عملك
                     </h2>
                     <p className="text-lg text-slate-400 max-w-2xl mx-auto font-light">
-                        منصة متكاملة تجمع بين الذكاء الاصطناعي والتلعيب لتحويل بيئة العمل إلى مكان أكثر صحة وإنتاجية.
+                        نظام متكامل يجمع بين ذكاء التنبيهات ومتعة التحديات، ليجعل من بيئة العمل مساحة أكثر حيوية، صحة، وكفاءة.
                     </p>
                 </motion.div>
 
