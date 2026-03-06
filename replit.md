@@ -19,8 +19,16 @@ A wellness platform for corporate environments that encourages employees to enga
 src/
 ├── components/
 │   ├── admin/       # Admin dashboard and management tools
-│   ├── auth/        # Login, onboarding, and landing pages
+│   ├── auth/        # Login, onboarding, and landing pages (WelcomePage composes landing sections)
 │   ├── employee/    # Employee activity feeds and rewards
+│   ├── landing/     # Landing page section components
+│   │   ├── HeroSection.tsx
+│   │   ├── SocialProofSection.tsx
+│   │   ├── BenefitsSection.tsx
+│   │   ├── HowItWorksSection.tsx
+│   │   ├── PricingSection.tsx
+│   │   ├── FaqSection.tsx
+│   │   └── CtaSection.tsx
 │   ├── skeletons/   # Loading state UI components
 │   └── ui/          # Reusable UI primitives
 ├── lib/             # Utility functions and OpenRouter API integration
