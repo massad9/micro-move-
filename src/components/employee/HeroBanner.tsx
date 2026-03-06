@@ -32,8 +32,8 @@ export const HeroBanner: React.FC = () => {
                     <span className="text-sm font-semibold text-slate-300 mr-4 ml-4">زملاؤك يتحركون الآن</span>
                 </motion.div>
 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-[1.1] md:leading-[1.1] lg:leading-[1.1]">
-                    النشاطات<br />طاقة <span className="text-transparent bg-clip-text bg-gradient-to-l from-orange-400 to-amber-300">كبيرة</span>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight mb-6 leading-[1.2]">
+                    النشاطات طاقة <span className="text-transparent bg-clip-text bg-gradient-to-l from-orange-400 to-amber-300">كبيرة</span>
                 </h1>
 
                 <p className="text-lg md:text-xl text-slate-400 max-w-xl mx-auto mb-10 font-medium leading-relaxed">

@@ -64,6 +64,10 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 
     const handleStartActivity = () => {
         if (activity.isDone || isAnimating) return;
+        if (activity.category === 'social' || activity.category === 'hydration') {
+            setShowVibeCheck(true);
+            return;
+        }
         setIsActive(true);
     };
 
@@ -222,9 +226,9 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                 </p>
 
                                 {!activity.isDone && activity.aiBadge && (
-                                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/5 border border-primary/10 rounded-full w-fit max-w-full">
-                                        <Sparkles className="w-3.5 h-3.5 text-primary shrink-0" />
-                                        <span className="text-[11px] font-bold text-primary truncate">يُقترح بفضل {activity.aiBadge.toLowerCase()}</span>
+                                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-violet-500/10 border border-violet-300/30 rounded-full w-fit max-w-full shadow-[0_0_12px_rgba(139,92,246,0.15)]">
+                                        <span className="text-sm shrink-0">✨</span>
+                                        <span className="text-[11px] font-bold text-violet-600 truncate">يُقترح بفضل {activity.aiBadge.toLowerCase()}</span>
                                     </div>
                                 )}
                             </div>
@@ -244,6 +248,10 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                 {activity.isDone ? (
                                     <span className="flex items-center gap-2">
                                         <CheckCircle2 className="w-5 h-5" /> تم
+                                    </span>
+                                ) : activity.category === 'social' || activity.category === 'hydration' ? (
+                                    <span className="flex items-center gap-2">
+                                        سجّل نشاطك <CheckCircle2 className="w-4 h-4" />
                                     </span>
                                 ) : (
                                     <span className="flex items-center gap-2">

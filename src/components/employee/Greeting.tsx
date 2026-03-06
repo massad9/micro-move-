@@ -41,8 +41,8 @@ export const Greeting: React.FC<GreetingProps> = ({ onNavigateStore }) => {
                         >
                             تحليل الطاقة
                         </motion.span>
-                        <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-2 text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70">
-                            {greeting}،<br /> {user.name.split(' ')[0]}
+                        <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2 text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70">
+                            {greeting}، {user.name.split(' ')[0]}
                         </h1>
                         <p className="text-slate-400 font-medium text-lg mt-4 max-w-sm leading-relaxed">
                             {isGoalMet
@@ -76,7 +76,10 @@ export const Greeting: React.FC<GreetingProps> = ({ onNavigateStore }) => {
                                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">من {user.dailyGoal}</span>
                             </div>
                         </div>
-                        <h3 className="font-bold text-sm tracking-wide">الهدف اليومي</h3>
+                        <h3 className="font-bold text-sm tracking-wide mb-2">الهدف اليومي</h3>
+                        <p className="text-[11px] text-slate-400 font-medium leading-relaxed text-center max-w-[180px]">
+                            أكملت {user.completedToday} فاصل{user.completedToday > 1 ? 'ين' : ''} من أصل {user.dailyGoal} مقترحة اليوم
+                        </p>
                     </div>
                 </div>
             </motion.div>
@@ -101,8 +104,8 @@ export const Greeting: React.FC<GreetingProps> = ({ onNavigateStore }) => {
                 </div>
 
                 <div className="relative z-10 mt-8">
-                    <button onClick={onNavigateStore} className="flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-orange-600 transition-colors uppercase tracking-widest">
-                        عرض المتجر <ChevronLeft className="w-4 h-4 ml-1" />
+                    <button onClick={onNavigateStore} className="inline-flex items-center gap-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                        عرض المتجر <ChevronLeft className="w-4 h-4" />
                     </button>
                     <div className="h-1 w-full bg-slate-100 mt-3 rounded-full overflow-hidden">
                         <div className="h-full bg-orange-500 w-[65%]" />

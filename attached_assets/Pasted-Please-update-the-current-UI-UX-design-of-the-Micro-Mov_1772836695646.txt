@@ -1,0 +1,18 @@
+Please update the current UI/UX design of the "Micro Move" platform based on the following specific improvements. Keep the current Vibe Engineering style, modern aesthetics, and the dark/light contrast, but apply these fixes:
+
+1. Dashboard Screen (Main View):
+- Adjust the typography of the main large text ("النشاطات طاقة كبيرة") in the dark section. Reduce the font size slightly and make it fit neatly on one or two balanced lines to avoid overwhelming the screen.
+- In the "Daily Goal" circular progress card (showing "2 من 5"), add a small descriptive text below the number saying: "أكملت فاصلين من أصل 5 مقترحة اليوم" (Completed 2 out of 5 suggested breaks today) to fill the empty space and clarify the context.
+- Make the "عرض المتجر >" (View Store) text inside the white card look more clickable. Either turn it into a subtle secondary button or add a clean underline with a hover effect.
+
+2. Activities Screen (واصل الحركة):
+- Change the call-to-action (CTA) button logic on the activity cards. Keep the "ابدأ ▶" (Start) button with a play icon for physical/meditation tasks (like breathing or stretching). However, for Social and Hydration tasks (like "Coffee walk with a colleague" or "Drink water"), change the button text to "سجل نشاطك ✔" (Log Activity) without the play icon, as these are tasks to be marked as done, not timed videos.
+- Highlight the AI-recommendation badge ("يُقترح بفضل وضعية الجلوس"). Change its background or text color to a soft, glowing purple and add a sparkle icon (✨) to make it instantly clear that this is an AI-driven smart suggestion.
+
+3. Leaderboard Screen (أبطال الشركة):
+- CRITICAL FIX: Correct the mock data in the leaderboard list so the logic is mathematically sound. The users in 4th and 5th place must have more points than the current user in 12th place. (e.g., 1st: 3450, 4th: 2000, 5th: 1800, 12th (You): 840).
+- Replace the overly comical, non-professional avatar images (like the one with the fake mustache) with either professional corporate headshots or a unified set of modern, aesthetic, flat-design 2D avatars. It needs to maintain a fun "vibe" but remain suitable for a B2B corporate environment.
+- Keep the orange border that highlights the current user's row ("أنت"), as it's a great UX practice.
+
+General Notes:
+Ensure all text remains in Arabic. Maintain the smooth rounded corners, soft shadows, and the energetic brand colors (Orange/Navy Blue/White).
