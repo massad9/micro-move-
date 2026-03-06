@@ -12,10 +12,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole }) => {
         <section className="relative z-10 w-full">
             <header className="px-8 py-6 w-full flex justify-between items-center max-w-7xl mx-auto">
                 <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.5)]">
-                        <Activity className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="font-bold text-xl tracking-tight">مايكرو موف</span>
+                    <img src="/logo.png" alt="Micro Move" className="h-8 brightness-0 invert" />
                 </div>
                 <div className="flex gap-4 items-center">
                     <Button

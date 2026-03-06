@@ -26,13 +26,8 @@ export const EmployeeLayout: React.FC<EmployeeLayoutProps> = ({ children, active
             {/* Sidebar (Desktop) */}
             <aside className="hidden md:flex flex-col w-72 bg-white border-l border-slate-200 z-10 shrink-0">
                 <div className="h-24 flex items-center gap-3 px-8 border-b border-slate-100 shrink-0">
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-orange-400 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-                        <Activity className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                        <span className="block font-black text-xl tracking-tight text-slate-900 leading-none">مايكرو موف</span>
-                        <span className="block font-bold text-[10px] tracking-wider text-slate-400 uppercase mt-1">الموظف</span>
-                    </div>
+                    <img src="/logo.png" alt="Micro Move" className="h-8" />
+                    <span className="block font-bold text-[10px] tracking-wider text-slate-400 uppercase">الموظف</span>
                 </div>
 
                 <div className="p-8">

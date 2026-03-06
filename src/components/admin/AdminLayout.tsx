@@ -25,13 +25,8 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
             {/* Sidebar */}
             <aside className="hidden lg:flex flex-col w-64 bg-[#050505] text-white border-l border-[#151515] p-6 z-10 font-sans">
                 <div className="flex items-center gap-3 mb-12 px-2">
-                    <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center transition-colors border border-primary/30">
-                        <div className="w-4 h-4 bg-primary rounded-[2px] rotate-45" />
-                    </div>
-                    <div>
-                        <span className="block font-bold text-xl tracking-tight text-white leading-none">مايكرو موف</span>
-                        <span className="block font-medium text-[10px] tracking-wider text-primary uppercase mt-1">بوابة الإدارة</span>
-                    </div>
+                    <img src="/logo.png" alt="Micro Move" className="h-8 brightness-0 invert" />
+                    <span className="block font-medium text-[10px] tracking-wider text-primary uppercase">بوابة الإدارة</span>
                 </div>
 
                 <nav className="flex-1 space-y-1.5">
