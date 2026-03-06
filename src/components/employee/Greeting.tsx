@@ -3,7 +3,11 @@ import { motion } from 'framer-motion'
 import { Flame, Target, ChevronLeft } from 'lucide-react'
 import { useMicroMoveStore } from '@/store/microMoveStore'
 
-export const Greeting: React.FC = () => {
+interface GreetingProps {
+    onNavigateStore?: () => void
+}
+
+export const Greeting: React.FC<GreetingProps> = ({ onNavigateStore }) => {
     const user = useMicroMoveStore(state => state.user)
 
     const hour = new Date().getHours()
@@ -97,7 +101,7 @@ export const Greeting: React.FC = () => {
                 </div>
 
                 <div className="relative z-10 mt-8">
-                    <button className="flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-orange-600 transition-colors uppercase tracking-widest">
+                    <button onClick={onNavigateStore} className="flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-orange-600 transition-colors uppercase tracking-widest">
                         عرض المتجر <ChevronLeft className="w-4 h-4 ml-1" />
                     </button>
                     <div className="h-1 w-full bg-slate-100 mt-3 rounded-full overflow-hidden">
