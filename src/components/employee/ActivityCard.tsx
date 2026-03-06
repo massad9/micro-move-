@@ -52,6 +52,9 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
             colors: ['#F97316', '#14B8A6', '#3B82F6', '#8B5CF6']
         })
 
+        const toastId = `activity-done-${activity.id}`
+        toast.dismiss(toastId)
+
         setTimeout(() => {
             markActivityDone(activity.id)
             setIsAnimating(false)
@@ -67,7 +70,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                         </div>
                     </div>
                 </div>
-            ), { duration: 4000 })
+            ), { id: toastId, duration: 4000 })
         }, 500)
     }
 

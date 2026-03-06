@@ -109,6 +109,9 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
             })
         }, 300)
 
+        const toastId = `activity-done-${activity.id}`
+        toast.dismiss(toastId)
+
         markActivityDone(activity.id)
 
         toast.custom(() => (
@@ -134,7 +137,7 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                     </div>
                 </div>
             </div>
-        ), { duration: 4000 })
+        ), { id: toastId, duration: 4000 })
 
         setTimeout(() => onClose(), 600)
     }
