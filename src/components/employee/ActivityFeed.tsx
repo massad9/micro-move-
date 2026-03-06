@@ -1,58 +1,63 @@
 import React, { useState } from 'react'
-import { useMicroMoveStore } from '@/store/microMoveStore'
 import { ActivityCard } from './ActivityCard'
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 import { AnimatePresence } from 'framer-motion'
 import { HeroBanner } from './HeroBanner'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 
 export const ActivityFeed: React.FC = () => {
     const activities = useMicroMoveStore(state => state.activities)
-    const [filter, setFilter] = useState<'All' | 'physical' | 'social' | 'hydration' | 'mindfulness'>('All')
+    const [filter, setFilter] = useState<string>('all')
 
-    const filteredActivities = activities.filter(a => filter === 'All' || a.category === filter)
+    const tabs = [
+        { id: 'all', label: 'الكل' },
+        { id: 'physical', label: 'بدني' },
+        { id: 'mindfulness', label: 'تأمل' },
+        { id: 'social', label: 'اجتماعي' },
+        { id: 'hydration', label: 'ترطيب' }
+    ]
+
+    const filteredActivities = activities.filter(a => filter === 'all' || a.category === filter)
+    const activeTasks = filteredActivities.filter(a => !a.isDone)
+    const doneTasks = filteredActivities.filter(a => a.isDone)
 
     return (
-        <div className="pb-10 max-w-5xl"> {/* Constrain width for main content vs sidebar */}
+        <div className="pb-20 font-sans">
             <HeroBanner />
 
-            {/* Filter & Title Header */}
-            <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 mt-12">
-                <h3 className="text-2xl font-bold text-slate-900 tracking-tight">Continue Moving</h3>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 mt-12">
+                <h2 className="text-2xl font-black tracking-tight text-slate-900 leading-none">واصل الحركة</h2>
 
-                <div className="flex items-center gap-4">
-                    <Tabs defaultValue="All" className="w-full md:w-auto" onValueChange={(val) => setFilter(val as 'All' | 'physical' | 'social' | 'hydration' | 'mindfulness')}>
-                        <TabsList className="bg-transparent h-auto p-0 gap-3 text-transform: capitalize">
-                            {['All', 'physical', 'social', 'hydration', 'mindfulness'].map(cat => (
-                                <TabsTrigger
-                                    key={cat}
-                                    value={cat}
-                                    className="rounded-full px-5 py-2.5 font-bold text-sm data-[state=active]:bg-indigo-50 data-[state=active]:text-indigo-600 data-[state=active]:shadow-none transition-all text-slate-500 bg-white border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5"
-                                >
-                                    {cat}
-                                </TabsTrigger>
-                            ))}
-                        </TabsList>
-                    </Tabs>
-
-                    <div className="hidden md:flex items-center gap-2">
-                        <Button variant="outline" size="icon" className="rounded-full w-10 h-10 border-slate-200 text-slate-400 hover:text-indigo-600 hover:border-indigo-200">
-                            <ChevronLeft className="w-5 h-5" />
-                        </Button>
-                        <Button variant="default" size="icon" className="rounded-full w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-600/20">
-                            <ChevronRight className="w-5 h-5" />
-                        </Button>
-                    </div>
+                <div className="flex p-1 bg-white border border-slate-200 rounded-2xl shadow-sm overflow-x-auto no-scrollbar">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setFilter(tab.id)}
+                            className={`px-5 py-2.5 text-sm font-bold rounded-xl whitespace-nowrap transition-all ${filter === tab.id
+                                ? 'bg-slate-900 text-white shadow-md'
+                                : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+                                }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 <AnimatePresence mode="popLayout">
-                    {filteredActivities.map((activity) => (
+                    {activeTasks.map((activity) => (
+                        <ActivityCard key={activity.id} activity={activity} />
+                    ))}
+                    {doneTasks.map((activity) => (
                         <ActivityCard key={activity.id} activity={activity} />
                     ))}
                 </AnimatePresence>
+
+                {filteredActivities.length === 0 && (
+                    <div className="col-span-full py-16 text-center bg-white border border-dashed border-slate-300 rounded-[2rem]">
+                        <p className="text-slate-500 font-medium">لا توجد أنشطة في هذا التصنيف حالياً.</p>
+                    </div>
+                )}
             </div>
         </div>
     )

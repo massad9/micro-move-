@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard, Users, Zap, Search, Bell, Menu, LogOut, Gift, Sliders } from 'lucide-react'
+import { LayoutDashboard, Users, Zap, Gift, Sliders, LogOut, Menu, Search, Bell } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 
@@ -13,24 +13,24 @@ interface AdminLayoutProps {
 export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminTab, setActiveAdminTab, onLogout }) => {
 
     const navItems = [
-        { id: 'overview', icon: LayoutDashboard, label: 'Overview' },
-        { id: 'employees', icon: Users, label: 'Employees' },
-        { id: 'activities', icon: Zap, label: 'Micro Moves' },
-        { id: 'rewards', icon: Gift, label: 'Rewards Store' },
-        { id: 'settings', icon: Sliders, label: 'Settings' },
+        { id: 'overview', icon: LayoutDashboard, label: 'نظرة عامة' },
+        { id: 'employees', icon: Users, label: 'الموظفون' },
+        { id: 'activities', icon: Zap, label: 'النشاطات' },
+        { id: 'rewards', icon: Gift, label: 'متجر المكافآت' },
+        { id: 'settings', icon: Sliders, label: 'الإعدادات' },
     ]
 
     return (
         <div className="flex h-screen bg-slate-50 overflow-hidden">
             {/* Sidebar */}
-            <aside className="hidden lg:flex flex-col w-64 bg-[#050505] text-white border-r border-[#151515] p-6 z-10 font-sans">
+            <aside className="hidden lg:flex flex-col w-64 bg-[#050505] text-white border-l border-[#151515] p-6 z-10 font-sans">
                 <div className="flex items-center gap-3 mb-12 px-2">
                     <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center transition-colors border border-primary/30">
                         <div className="w-4 h-4 bg-primary rounded-[2px] rotate-45" />
                     </div>
                     <div>
-                        <span className="block font-bold text-xl tracking-tight text-white leading-none">Micro Move</span>
-                        <span className="block font-medium text-[10px] tracking-wider text-primary uppercase mt-1">Admin Portal</span>
+                        <span className="block font-bold text-xl tracking-tight text-white leading-none">مايكرو موف</span>
+                        <span className="block font-medium text-[10px] tracking-wider text-primary uppercase mt-1">بوابة الإدارة</span>
                     </div>
                 </div>
 
@@ -60,19 +60,15 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                         className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-colors group"
                     >
                         <LogOut className="w-5 h-5 text-slate-500 group-hover:text-red-400 transition-colors" />
-                        <span className="font-medium text-sm">Log Out</span>
+                        <span className="font-bold text-lg hidden md:block">تسجيل الخروج</span>
                     </button>
                     <div className="p-3 bg-[#111] rounded-xl border border-white/10">
                         <div className="flex items-center gap-3">
                             <Avatar className="w-10 h-10 border border-white/10 rounded-lg">
                                 <AvatarImage src="https://i.pravatar.cc/150?u=admin" />
-                                <AvatarFallback className="bg-primary/20 text-primary">AD</AvatarFallback>
+                                <AvatarFallback className="bg-primary/20 text-primary">مد</AvatarFallback>
                             </Avatar>
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-semibold text-white truncate">
-                                    Admin Access
-                                </p>
-                                <p className="text-xs text-slate-400 truncate mt-0.5">Acme Corp HQ</p>
                             </div>
                         </div>
                     </div>
@@ -88,11 +84,11 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                             <Menu className="w-5 h-5" />
                         </button>
                         <div className="relative max-w-md w-full hidden md:block group">
-                            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition-colors" />
+                            <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition-colors" />
                             <input
                                 type="text"
-                                placeholder="Search employees, activities..."
-                                className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:border-primary/50 focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
+                                placeholder="ابحث عن موظفين، أنشطة..."
+                                className="w-full pr-10 pl-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:border-primary/50 focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all text-right"
                             />
                         </div>
                     </div>
@@ -100,17 +96,17 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                     <div className="flex items-center gap-6">
                         <Button variant="ghost" size="icon" className="relative text-slate-600 rounded-full hover:bg-slate-100 transition-colors h-9 w-9">
                             <Bell className="w-5 h-5" />
-                            <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white" />
+                            <span className="absolute top-2 left-2.5 w-2 h-2 bg-red-500 rounded-full border border-white" />
                         </Button>
                         <div className="h-6 w-[1px] bg-slate-200 mx-2 hidden sm:block" />
                         <div className="flex items-center gap-3">
                             <div className="text-right hidden sm:block">
-                                <p className="text-sm font-bold text-slate-900 leading-none">Sara Al-Fahad</p>
-                                <p className="text-xs text-slate-500 font-medium mt-1">System Admin</p>
+                                <p className="text-sm font-bold text-slate-900 leading-none">سارة الفهد</p>
+                                <p className="text-xs text-slate-500 font-medium mt-1">مدير النظام</p>
                             </div>
                             <Avatar className="w-9 h-9 cursor-pointer hover:opacity-80 transition-opacity">
                                 <AvatarImage src="https://i.pravatar.cc/150?u=sara-admin" />
-                                <AvatarFallback className="bg-primary/10 text-primary font-medium text-sm">SF</AvatarFallback>
+                                <AvatarFallback className="bg-primary/10 text-primary font-medium text-sm">سف</AvatarFallback>
                             </Avatar>
                         </div>
                     </div>

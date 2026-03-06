@@ -7,39 +7,38 @@ import { useMicroMoveStore } from '@/store/microMoveStore'
 export const StatCards: React.FC = () => {
     const companyAdmin = useMicroMoveStore(state => state.companyAdmin)
 
-    // Fallback if not loaded
     const vibeScore = companyAdmin?.vibeScore || 84
-    const mainRisk = companyAdmin?.burnoutRisk[0]?.department || "Sales"
+    const mainRisk = companyAdmin?.burnoutRisk[0]?.department || "المبيعات"
 
     const stats = [
         {
-            label: 'Company Vibe Score',
-            value: `${vibeScore}/100`,
-            change: '+5.2%',
+            label: 'مؤشر أجواء العمل',
+            value: `${vibeScore}/١٠٠`,
+            change: '+٥.٢%',
             icon: Heart,
             color: 'text-primary',
             bg: 'bg-primary/10 border border-primary/20'
         },
         {
-            label: 'Highest Burnout Risk',
+            label: 'أعلى خطر إرهاق',
             value: mainRisk,
-            change: 'Critical',
+            change: 'حرج',
             icon: Flame,
             color: 'text-red-500',
             bg: 'bg-red-500/10 border border-red-500/20'
         },
         {
-            label: 'Avg Sitting Time',
-            value: '4h 12m',
-            change: '-18m',
+            label: 'متوسط وقت الجلوس',
+            value: '٤ س ١٢ د',
+            change: '-١٨ د',
             icon: Activity,
             color: 'text-amber-500',
             bg: 'bg-amber-500/10 border border-amber-500/20'
         },
         {
-            label: 'Nudge Completion',
-            value: '72%',
-            change: '+8%',
+            label: 'إتمام التنبيهات',
+            value: '٧٢%',
+            change: '+٨%',
             icon: TrendingUp,
             color: 'text-emerald-500',
             bg: 'bg-emerald-500/10 border border-emerald-500/20'
@@ -50,7 +49,7 @@ export const StatCards: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {stats.map((stat, index) => {
                 const Icon = stat.icon
-                const isBadChange = stat.change === 'Critical'
+                const isBadChange = stat.change === 'حرج'
                 return (
                     <motion.div
                         key={stat.label}

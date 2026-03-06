@@ -1,151 +1,85 @@
-import { motion } from "framer-motion"
-import { Activity as ActivityIcon, Award, Check, ChevronRight, Flame, Sparkles } from "lucide-react"
+import React, { useState } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Lock, Star, ChevronLeft } from 'lucide-react'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 
-import Badge from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import type { Activity } from "@/store/microMoveStore"
+export const PremiumActivityCard: React.FC = () => {
+    const user = useMicroMoveStore(state => state.user)
+    const activeChallenge = useMicroMoveStore(state => state.challenges[0])
+    const pointsNeeded = 500
+    const [, setIsHovered] = useState(false)
 
-const categoryMeta: Record<
-    string,
-    {
-        icon: React.ElementType,
-        label: string,
-        color: string,
-        bgLight: string,
-        bgDark: string,
-        border: string
-    }
-> = {
-    physical: {
-        icon: ActivityIcon,
-        label: "Stretch",
-        color: "text-emerald-600",
-        bgLight: "bg-emerald-500/10",
-        bgDark: "bg-emerald-500/20",
-        border: "border-emerald-200/50"
-    },
-    social: {
-        icon: ChevronRight,
-        label: "Social",
-        color: "text-violet-600",
-        bgLight: "bg-violet-500/10",
-        bgDark: "bg-violet-500/20",
-        border: "border-violet-200/50"
-    },
-    hydration: {
-        icon: Flame,
-        label: "Hydration",
-        color: "text-blue-600",
-        bgLight: "bg-blue-500/10",
-        bgDark: "bg-blue-500/20",
-        border: "border-blue-200/50"
-    },
-    mindfulness: {
-        icon: Sparkles,
-        label: "Mindfulness",
-        color: "text-rose-600",
-        bgLight: "bg-rose-500/10",
-        bgDark: "bg-rose-500/20",
-        border: "border-rose-200/50"
-    },
-}
-
-interface PremiumActivityCardProps {
-    activity: Activity
-    onDone: (id: string) => void
-}
-
-export function PremiumActivityCard({ activity, onDone }: PremiumActivityCardProps) {
-    const meta = categoryMeta[activity.category] || categoryMeta.physical
-    const Icon = meta.icon
+    if (!activeChallenge) return null
 
     return (
-        <motion.div
-            layout
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            whileHover={!activity.isDone ? { y: -4, scale: 1.01 } : {}}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className={cn(
-                "relative overflow-hidden rounded-2xl border p-5 shadow-sm backdrop-blur-xl transition-all",
-                activity.isDone
-                    ? "bg-slate-50/50 border-slate-200/50 opacity-75 grayscale-[0.3]"
-                    : cn("bg-white/70 shadow-lg shadow-slate-200/40", meta.border)
-            )}
+        <Card
+            className="bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all h-full flex flex-col group relative font-sans text-right"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
-            {/* Massive Background Icon for visual depth */}
-            <Icon
-                className={cn(
-                    "absolute -right-6 -bottom-6 h-40 w-40 -rotate-12 opacity-[0.03] transition-transform duration-700",
-                    !activity.isDone && "group-hover:rotate-0 group-hover:scale-110",
-                    meta.color
-                )}
-            />
+            {/* Hover Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            <div className="relative z-10">
-                <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="flex items-center gap-3">
-                        <div className={cn("grid h-12 w-12 place-items-center rounded-2xl", meta.bgLight, meta.color)}>
-                            <Icon className="h-6 w-6" />
+            <CardContent className="p-6 md:p-8 flex-1 flex flex-col relative z-10">
+                <div className="flex justify-between items-start mb-6">
+                    <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center border border-amber-100 shadow-sm text-amber-500 group-hover:bg-amber-100 transition-colors">
+                        <Star className="w-6 h-6 fill-current" />
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-black tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+                            <Lock className="w-3 h-3" />
+                            مكافأة مميزة
                         </div>
-                        <div>
-                            <h3 className="text-lg font-bold tracking-tight text-slate-900 leading-tight">
-                                {activity.title}
-                            </h3>
-                            <div className="flex items-center gap-2 mt-1 text-xs font-medium text-slate-500">
-                                <span className={cn("px-2 py-0.5 rounded-full", meta.bgLight, meta.color)}>
-                                    {meta.label}
+                    </div>
+                </div>
+
+                <div className="flex-1">
+                    <h3 className="text-xl font-black text-slate-900 mb-2 leading-tight tracking-tight">غداء مجاني للفريق</h3>
+                    <p className="text-sm text-slate-500 font-medium leading-relaxed mb-6">
+                        اجمع 500 نقطة عن طريق إكمال تحديات الفريق واستبدلها بوجبة غداء مدفوعة.
+                    </p>
+                </div>
+
+                <div className="mt-auto pt-6 border-t border-slate-100 space-y-4">
+                    <div className="flex justify-between items-end">
+                        <div className="flex flex-col">
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 block">تقدمك</span>
+                            <span className="text-2xl font-black text-slate-900 flex items-baseline gap-1">
+                                {user?.points || 0}
+                                <span className="text-sm text-slate-400 font-bold uppercase">/ {pointsNeeded}</span>
+                            </span>
+                        </div>
+                        <div className="text-left mb-1">
+                            {user && user.points < pointsNeeded ? (
+                                <span className="text-xs font-bold text-amber-600 block">
+                                    تحتاج {(pointsNeeded - user.points).toLocaleString()} إضافية
                                 </span>
-                                <span>•</span>
-                                <span>{activity.duration}</span>
-                                <span>•</span>
-                                <span className="flex items-center text-amber-600 bg-amber-500/10 px-2 py-0.5 rounded-full">
-                                    {activity.points} pts
+                            ) : (
+                                <span className="text-xs font-bold text-emerald-600 block">
+                                    أنت مستعد!
                                 </span>
-                            </div>
+                            )}
                         </div>
                     </div>
 
-                    {activity.aiBadge && (
-                        <Badge variant="secondary" className="shrink-0 gap-1 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border-indigo-100">
-                            <Sparkles className="h-3 w-3" /> {activity.aiBadge}
-                        </Badge>
-                    )}
+                    <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden shadow-inner relative">
+                        <div
+                            className="absolute top-0 right-0 h-full bg-gradient-to-l from-amber-400 to-orange-500 transition-all duration-1000 ease-out"
+                            style={{ width: `${Math.min(((user?.points || 0) / pointsNeeded) * 100, 100)}%` }}
+                        />
+                    </div>
+
+                    <button className={`w-full h-12 rounded-xl flex items-center justify-center gap-2 font-bold transition-all duration-300 text-sm tracking-wide ${user && user.points >= pointsNeeded
+                        ? 'bg-slate-900 text-white shadow-md hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 border-0'
+                        : 'bg-white border-2 border-slate-200 text-slate-400 cursor-not-allowed'
+                        }`}>
+                        {user && user.points >= pointsNeeded ? 'فتح المكافأة' : 'مقفلة حالياً'}
+                        {user && user.points >= pointsNeeded && (
+                            <ChevronLeft className="w-4 h-4 ml-1 transition-transform group-hover:-translate-x-1" />
+                        )}
+                    </button>
                 </div>
-
-                <p className="text-sm text-slate-600 leading-relaxed mb-5 pr-8">
-                    {activity.description}
-                </p>
-
-                <Button
-                    className={cn(
-                        "w-full gap-2 rounded-xl transition-all duration-300",
-                        activity.isDone
-                            ? "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 shadow-none"
-                            : "bg-slate-900 hover:bg-slate-800 text-white shadow-md hover:shadow-xl hover:shadow-slate-900/20"
-                    )}
-                    onClick={() => onDone(activity.id)}
-                    disabled={activity.isDone}
-                    variant={activity.isDone ? "outline" : "default"}
-                    size="lg"
-                >
-                    {activity.isDone ? (
-                        <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            className="flex items-center gap-2 font-semibold"
-                        >
-                            <Check className="h-5 w-5" /> Completed
-                        </motion.div>
-                    ) : (
-                        <div className="flex items-center gap-2 font-semibold">
-                            <Award className="h-5 w-5" /> Complete Move
-                        </div>
-                    )}
-                </Button>
-            </div>
-        </motion.div>
+            </CardContent>
+        </Card>
     )
 }

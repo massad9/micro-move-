@@ -17,8 +17,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['"Inter"', "sans-serif"],
-        body: ['"Inter"', "sans-serif"],
+        sans: ['"IBM Plex Sans Arabic"', "sans-serif"],
+        body: ['"IBM Plex Sans Arabic"', "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

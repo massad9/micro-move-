@@ -33,19 +33,19 @@ Each object must have exactly these fields:
 // Fallback activities when API is unavailable
 const FALLBACK_POOLS: Activity[][] = [
     [
-        { id: '', title: 'Standing Calf Raises', description: 'Stand behind your chair and do 15 calf raises, holding the chair for balance.', duration: '1 min', points: 45, category: 'physical', isDone: false, aiBadge: 'Leg Activator' },
-        { id: '', title: 'Gratitude Share', description: 'Send a quick message to a colleague thanking them for something specific they did this week.', duration: '2 min', points: 80, category: 'social', isDone: false, aiBadge: 'Positivity Boost' },
-        { id: '', title: '4-7-8 Breathing', description: 'Breathe in for 4 seconds, hold for 7 seconds, exhale slowly for 8 seconds. Repeat 3 times.', duration: '2 min', points: 55, category: 'mindfulness', isDone: false, aiBadge: 'Calm Reset' },
+        { id: '', title: 'Standing Calf Raises', description: 'Stand behind your chair and do 15 calf raises, holding the chair for balance.', duration: '1 min', points: 45, category: 'physical', isDone: false, aiBadge: 'Leg Activator', icon: 'Activity' },
+        { id: '', title: 'Gratitude Share', description: 'Send a quick message to a colleague thanking them for something specific they did this week.', duration: '2 min', points: 80, category: 'social', isDone: false, aiBadge: 'Positivity Boost', icon: 'Heart' },
+        { id: '', title: '4-7-8 Breathing', description: 'Breathe in for 4 seconds, hold for 7 seconds, exhale slowly for 8 seconds. Repeat 3 times.', duration: '2 min', points: 55, category: 'mindfulness', isDone: false, aiBadge: 'Calm Reset', icon: 'Sparkles' },
     ],
     [
-        { id: '', title: 'Seated Spinal Twist', description: 'Sit up straight and gently twist your torso to each side, holding for 10 seconds.', duration: '1 min', points: 40, category: 'physical', isDone: false, aiBadge: 'Back Relief' },
-        { id: '', title: 'Water Refill Walk', description: 'Walk to the farthest water station in the office and fill up your bottle.', duration: '3 min', points: 60, category: 'hydration', isDone: false, aiBadge: 'Hydration + Steps' },
-        { id: '', title: 'Desk Declutter', description: 'Spend 2 minutes organizing your desk: stack papers, clear wrappers, align your monitor.', duration: '2 min', points: 35, category: 'mindfulness', isDone: false, aiBadge: 'Clear Mind' },
+        { id: '', title: 'Seated Spinal Twist', description: 'Sit up straight and gently twist your torso to each side, holding for 10 seconds.', duration: '1 min', points: 40, category: 'physical', isDone: false, aiBadge: 'Back Relief', icon: 'Activity' },
+        { id: '', title: 'Water Refill Walk', description: 'Walk to the farthest water station in the office and fill up your bottle.', duration: '3 min', points: 60, category: 'hydration', isDone: false, aiBadge: 'Hydration + Steps', icon: 'Droplet' },
+        { id: '', title: 'Desk Declutter', description: 'Spend 2 minutes organizing your desk: stack papers, clear wrappers, align your monitor.', duration: '2 min', points: 35, category: 'mindfulness', isDone: false, aiBadge: 'Clear Mind', icon: 'Sparkles' },
     ],
     [
-        { id: '', title: 'Finger Stretch Fan', description: 'Spread your fingers wide, hold for 5 seconds, then make a fist. Repeat 10 times.', duration: '1 min', points: 30, category: 'physical', isDone: false, aiBadge: 'Typing Recovery' },
-        { id: '', title: 'Coffee Chat Invite', description: 'Invite a coworker you have not spoken to this week for a quick 3-minute coffee break.', duration: '3 min', points: 100, category: 'social', isDone: false, aiBadge: 'Connection Builder' },
-        { id: '', title: 'Lemon Water Mix', description: 'Add a slice of lemon to your water bottle for a refreshing vitamin C boost.', duration: '1 min', points: 25, category: 'hydration', isDone: false, aiBadge: 'Vitamin Boost' },
+        { id: '', title: 'Finger Stretch Fan', description: 'Spread your fingers wide, hold for 5 seconds, then make a fist. Repeat 10 times.', duration: '1 min', points: 30, category: 'physical', isDone: false, aiBadge: 'Typing Recovery', icon: 'Activity' },
+        { id: '', title: 'Coffee Chat Invite', description: 'Invite a coworker you have not spoken to this week for a quick 3-minute coffee break.', duration: '3 min', points: 100, category: 'social', isDone: false, aiBadge: 'Connection Builder', icon: 'Coffee' },
+        { id: '', title: 'Lemon Water Mix', description: 'Add a slice of lemon to your water bottle for a refreshing vitamin C boost.', duration: '1 min', points: 25, category: 'hydration', isDone: false, aiBadge: 'Vitamin Boost', icon: 'Droplet' },
     ],
 ]
 
@@ -151,6 +151,7 @@ export async function generateActivitiesFromAI(): Promise<{ activities: Activity
                         category,
                         isDone: false,
                         aiBadge: String(item.aiBadge || item.aiSuggestion || 'AI Generated'),
+                        icon: 'Activity'
                     }
                 })
 

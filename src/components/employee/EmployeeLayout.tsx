@@ -1,9 +1,8 @@
-import { Home, Zap, Trophy, Gift, Bell, Search, Menu, LogOut } from 'lucide-react'
-import { useMicroMoveStore } from '@/store/microMoveStore'
+import React from 'react'
+import { LayoutDashboard, Zap, Trophy, Gift, Search, Bell, LogOut, Activity } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { BottomNav } from '@/components/employee/BottomNav'
-import { ContextNudgeModal } from '@/components/employee/ContextNudgeModal'
+import { useMicroMoveStore } from '@/store/microMoveStore'
 
 interface EmployeeLayoutProps {
     children: React.ReactNode
@@ -14,120 +13,117 @@ interface EmployeeLayoutProps {
 
 export const EmployeeLayout: React.FC<EmployeeLayoutProps> = ({ children, activeTab, setActiveTab, onLogout }) => {
     const user = useMicroMoveStore(state => state.user)
-    if (!user) return null
 
     const navItems = [
-        { id: 'home', icon: Home, label: 'Dashboard' },
-        { id: 'activities', icon: Zap, label: 'My Moves' },
-        { id: 'leaderboard', icon: Trophy, label: 'Leaderboard' },
-        { id: 'rewards', icon: Gift, label: 'Rewards' },
+        { id: 'dashboard', icon: LayoutDashboard, label: 'الرئيسية' },
+        { id: 'moves', icon: Zap, label: 'نشاطاتي' },
+        { id: 'leaderboard', icon: Trophy, label: 'الترتيب' },
+        { id: 'rewards', icon: Gift, label: 'المكافآت' },
     ]
 
     return (
-        <div className="flex h-screen bg-slate-50 overflow-hidden">
-            {/* Sidebar */}
-            <aside className="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200 p-6">
-                <div className="flex items-center gap-3 mb-10 px-2 transition-transform hover:-translate-y-0.5 duration-300">
-                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-                        <Zap className="w-5 h-5 text-primary" fill="currentColor" />
+        <div className="flex h-screen bg-slate-50 overflow-hidden font-sans">
+            {/* Sidebar (Desktop) */}
+            <aside className="hidden md:flex flex-col w-72 bg-white border-l border-slate-200 z-10 shrink-0">
+                <div className="h-24 flex items-center gap-3 px-8 border-b border-slate-100 shrink-0">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-orange-400 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+                        <Activity className="w-5 h-5 text-white" />
                     </div>
-                    <span className="font-bold text-xl tracking-tight text-slate-900">Micro Move</span>
+                    <div>
+                        <span className="block font-black text-xl tracking-tight text-slate-900 leading-none">مايكرو موف</span>
+                        <span className="block font-bold text-[10px] tracking-wider text-slate-400 uppercase mt-1">الموظف</span>
+                    </div>
                 </div>
 
-                <nav className="flex-1 space-y-2">
-                    {navItems.map((item) => {
-                        const Icon = item.icon
-                        const isActive = activeTab === item.id
-                        return (
-                            <button
-                                key={item.id}
-                                onClick={() => setActiveTab(item.id)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium ${isActive
-                                    ? 'bg-primary/10 text-primary'
-                                    : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
-                                    }`}
-                            >
-                                <Icon className={`w-5 h-5 ${isActive ? 'text-primary' : 'text-slate-400'}`} />
-                                <span>{item.label}</span>
-                            </button>
-                        )
-                    })}
-                </nav>
-
-                <div className="mt-auto pt-6 space-y-2">
-                    <button
-                        onClick={onLogout}
-                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-destructive/10 hover:text-destructive transition-colors group text-sm font-medium"
-                    >
-                        <LogOut className="w-5 h-5 text-slate-400 group-hover:text-destructive transition-colors" />
-                        <span>Log Out</span>
-                    </button>
-
-                    <div className="pt-6 border-t border-slate-200">
-                        <div className="flex items-center gap-3 px-2">
-                            <Avatar className="w-10 h-10 ring-2 ring-primary/10">
-                                <AvatarImage src="https://i.pravatar.cc/150?u=ahmad" />
-                                <AvatarFallback>AZ</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1 min-w-0">
-                                <p className="text-sm font-bold text-slate-900 truncate">Ahmad bin Zaid</p>
-                                <p className="text-xs text-slate-500 truncate">{user.points} Points</p>
-                            </div>
+                <div className="p-8">
+                    <div className="flex items-center gap-4 mb-8">
+                        <Avatar className="w-12 h-12 shadow-sm border border-slate-100">
+                            <AvatarImage src={`https://i.pravatar.cc/150?u=${user?.email}`} />
+                            <AvatarFallback className="bg-primary/10 text-primary font-bold">{user?.name[0]}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                            <p className="text-sm font-bold text-slate-900">{user?.name}</p>
+                            <p className="text-xs font-semibold text-slate-500 mt-0.5">{user?.department}</p>
                         </div>
                     </div>
+
+                    <nav className="space-y-2 relative">
+                        {navItems.map((item) => {
+                            const Icon = item.icon
+                            const isActive = activeTab === item.id
+                            return (
+                                <button
+                                    key={item.id}
+                                    onClick={() => setActiveTab(item.id)}
+                                    className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all relative ${isActive
+                                        ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/10'
+                                        : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                                        }`}
+                                >
+                                    <Icon className={`w-5 h-5 relative z-10 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                                    <span className="font-bold text-sm relative z-10">{item.label}</span>
+                                </button>
+                            )
+                        })}
+                    </nav>
+                </div>
+
+                <div className="mt-auto p-8 border-t border-slate-100">
+                    <button
+                        onClick={onLogout}
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-500 hover:bg-red-50 hover:text-red-600 transition-colors font-bold text-sm"
+                    >
+                        <LogOut className="w-5 h-5" />
+                        <span>تسجيل الخروج</span>
+                    </button>
                 </div>
             </aside>
 
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-                <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0 relative z-20">
-                    <div className="flex items-center gap-4 flex-1">
-                        <button className="lg:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
-                            <Menu className="w-5 h-5" />
-                        </button>
-                        <div className="relative max-w-md w-full hidden md:block group">
-                            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-slate-600 transition-colors" />
+            {/* Main Content Area */}
+            <div className="flex-1 flex flex-col min-w-0 relative">
+
+                {/* Topbar */}
+                <header className="h-20 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 flex items-center justify-between px-6 md:px-10 shrink-0 sticky top-0 z-20">
+                    <div className="flex items-center gap-6">
+                        <div className="md:hidden flex items-center gap-2">
+                            <div className="w-8 h-8 bg-gradient-to-br from-primary to-orange-400 rounded-lg flex items-center justify-center shadow-md">
+                                <Activity className="w-4 h-4 text-white" />
+                            </div>
+                        </div>
+
+                        <div className="hidden md:flex relative group w-64 lg:w-96">
+                            <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition-colors z-10" />
                             <input
                                 type="text"
-                                placeholder="Search activities..."
-                                className="w-full pl-10 pr-4 py-2 bg-slate-100/50 border border-transparent rounded-lg text-sm focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder:text-slate-400"
+                                placeholder="ابحث عن زميل، مكافأة..."
+                                className="w-full pr-11 pl-4 py-2.5 bg-slate-100/50 hover:bg-slate-100 border border-transparent focus:bg-white focus:border-primary/20 focus:ring-4 focus:ring-primary/5 rounded-2xl text-sm text-slate-900 placeholder-slate-400 transition-all outline-none text-right"
                             />
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-5">
-                        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-primary/10 rounded-lg text-primary hover:bg-primary/15 transition-colors cursor-pointer">
-                            <Zap className="w-4 h-4" />
-                            <span className="text-sm font-semibold">{user.points} PTS</span>
-                        </div>
-
-                        <Button variant="ghost" size="icon" className="relative text-slate-600 rounded-full hover:bg-slate-100 transition-colors">
-                            <Bell className="w-5 h-5" />
-                            <span className="absolute top-2 right-2.5 w-2 h-2 bg-destructive rounded-full border border-white" />
+                    <div className="flex items-center gap-3 md:gap-4">
+                        <Button variant="outline" className="hidden sm:flex border-slate-200 shadow-sm rounded-xl font-bold hover:bg-slate-50 h-10 px-4 group">
+                            <Gift className="w-4 h-4 ml-2 text-primary group-hover:scale-110 transition-transform" />
+                            {user?.points.toLocaleString()} نقطة
                         </Button>
-
-                        <div className="h-6 w-px bg-slate-200 mx-1 hidden sm:block" />
-
-                        <Avatar className="w-9 h-9 cursor-pointer hover:opacity-80 transition-opacity">
-                            <AvatarImage src="https://i.pravatar.cc/150?u=ahmad" />
-                            <AvatarFallback className="bg-primary/10 text-primary font-medium text-sm">AZ</AvatarFallback>
+                        <Button variant="ghost" size="icon" className="relative text-slate-500 hover:bg-slate-100 rounded-full w-10 h-10 transition-colors">
+                            <Bell className="w-5 h-5" />
+                            <span className="absolute top-2.5 left-2.5 w-2 h-2 bg-primary rounded-full ring-2 ring-white" />
+                        </Button>
+                        <Avatar className="w-10 h-10 md:hidden border border-slate-200 shadow-sm">
+                            <AvatarImage src={`https://i.pravatar.cc/150?u=${user?.email}`} />
+                            <AvatarFallback className="bg-primary/10 text-primary font-bold">{user?.name[0]}</AvatarFallback>
                         </Avatar>
                     </div>
                 </header>
 
-                {/* Dynamic View */}
-                <main className="flex-1 overflow-y-auto bg-slate-50/50 no-scrollbar relative w-full">
-                    {/* The max-w has been removed from here to allow the child (Dashboard) to manage the split layout */}
-                    <div className="h-full w-full">
+                {/* Dashboard / Content Area */}
+                <main className="flex-1 overflow-y-auto no-scrollbar relative">
+                    <div className="absolute inset-0 bg-slate-50 -z-10" />
+                    <div className="max-w-7xl mx-auto px-4 md:px-10 py-8">
                         {children}
-                        <ContextNudgeModal />
                     </div>
                 </main>
-            </div>
-
-            {/* Mobile Bottom Nav */}
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 shadow-[0_-8px_30px_rgb(0,0,0,0.04)] bg-white/80 backdrop-blur-xl border-t border-slate-100">
-                <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
         </div>
     )
