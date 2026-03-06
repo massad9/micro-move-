@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowLeft, Building2, UserCircle } from 'lucide-react';
+import { Sparkles, Building2 } from 'lucide-react';
 
 interface CtaSectionProps {
   onSelectRole?: (role: 'admin' | 'employee') => void;
@@ -53,21 +53,21 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onSelectRole }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => onSelectRole?.('admin')}
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-amber-500 text-white font-bold rounded-full overflow-hidden transition-all shadow-[0_4px_30px_rgba(249,115,22,0.4)] hover:shadow-[0_4px_50px_rgba(249,115,22,0.6)]"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
               >
-                <Building2 className="w-5 h-5" />
-                <span>إنشاء مساحة عمل مجانية</span>
-                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white via-white to-slate-200 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Building2 className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">إنشاء مساحة عمل الشركة</span>
+                <Sparkles className="w-4 h-4 text-primary relative z-10" />
               </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => onSelectRole?.('employee')}
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
+                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
               >
-                <UserCircle className="w-5 h-5" />
-                <span>دخول كموظف</span>
+                <span>تعرّف على الأسعار</span>
               </motion.button>
             </div>
 

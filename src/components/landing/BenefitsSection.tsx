@@ -12,7 +12,7 @@ const benefits = [
     },
     {
         icon: Gamepad2,
-        title: 'تلعيب وتحفيز',
+        title: 'تحديات تفاعلية ومكافآت',
         description: 'نظام نقاط ومكافآت يحوّل الحركة إلى تجربة ممتعة ومحفّزة.',
         gradient: 'from-violet-500/20 to-purple-500/20',
         iconColor: 'text-violet-400',
