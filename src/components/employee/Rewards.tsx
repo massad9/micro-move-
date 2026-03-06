@@ -21,8 +21,18 @@ export const Rewards: React.FC = () => {
     const user = useMicroMoveStore(state => state.user)
     const [selectedReward, setSelectedReward] = useState<Reward | null>(null)
     const [isRedeeming, setIsRedeeming] = useState(false)
+    const [redeemedReward, setRedeemedReward] = useState<{ reward: Reward, coupon: string } | null>(null)
 
     if (!user) return null
+
+    const generateCoupon = () => {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+        let code = 'MM-'
+        for (let i = 0; i < 8; i++) {
+            code += chars[Math.floor(Math.random() * chars.length)]
+        }
+        return code
+    }
 
     const handleRedeem = (reward: Reward) => {
         if (user.points < reward.cost) return
@@ -32,6 +42,8 @@ export const Rewards: React.FC = () => {
             setIsRedeeming(false)
             setSelectedReward(null)
 
+            const coupon = generateCoupon()
+
             confetti({
                 particleCount: 200,
                 spread: 100,
@@ -39,10 +51,7 @@ export const Rewards: React.FC = () => {
                 colors: ['#F59E0B', '#10B981', '#3B82F6', '#8B5CF6']
             })
 
-            toast.success('تم استبدال المكافأة بنجاح!', {
-                description: `استمتع بـ ${reward.title}. لقد خصمنا ${reward.cost} نقطة.`,
-                icon: '🎉'
-            })
+            setRedeemedReward({ reward, coupon })
         }, 1500)
     }
 
@@ -218,6 +227,71 @@ export const Rewards: React.FC = () => {
                                         )}
                                     </Button>
                                 </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+                {redeemedReward && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
+                        onClick={() => setRedeemedReward(null)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.9, y: 20 }}
+                            className="bg-white rounded-[2.5rem] p-8 md:p-10 max-w-md w-full shadow-2xl relative overflow-hidden text-center"
+                            onClick={e => e.stopPropagation()}
+                        >
+                            <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-emerald-50 to-transparent" />
+                            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-60 h-60 bg-emerald-200/30 blur-3xl rounded-full" />
+
+                            <div className="relative z-10">
+                                <motion.div
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
+                                    className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner border-4 border-white"
+                                >
+                                    <span className="text-4xl">🎉</span>
+                                </motion.div>
+
+                                <h2 className="text-2xl font-black text-slate-900 mb-2">تم الاستبدال بنجاح!</h2>
+                                <p className="text-slate-500 text-sm mb-6 font-medium leading-relaxed">
+                                    استمتع بـ <strong className="text-slate-900">{redeemedReward.reward.title}</strong>
+                                    <br />تم خصم <strong className="text-amber-600">{redeemedReward.reward.cost}</strong> نقطة من رصيدك.
+                                </p>
+
+                                <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl p-5 mb-6">
+                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">كود القسيمة</span>
+                                    <div className="flex items-center justify-center gap-3">
+                                        <span className="text-2xl font-black text-slate-900 tracking-[0.15em] font-mono" style={{ direction: 'ltr' }}>
+                                            {redeemedReward.coupon}
+                                        </span>
+                                    </div>
+                                    <button
+                                        onClick={() => {
+                                            navigator.clipboard.writeText(redeemedReward.coupon)
+                                            toast.success('تم نسخ الكود!', { duration: 2000 })
+                                        }}
+                                        className="mt-3 text-xs font-bold text-primary hover:text-primary/80 transition-colors"
+                                    >
+                                        نسخ الكود
+                                    </button>
+                                </div>
+
+                                <Button
+                                    onClick={() => setRedeemedReward(null)}
+                                    className="w-full h-14 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-black shadow-lg border-0"
+                                >
+                                    حسنًا، شكرًا!
+                                </Button>
                             </div>
                         </motion.div>
                     </motion.div>
