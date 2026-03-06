@@ -3,6 +3,7 @@ import { Toaster } from 'sonner'
 import { WelcomePage } from '@/components/auth/WelcomePage'
 import { LoginForm } from '@/components/auth/LoginForm'
 import { HrOnboarding } from '@/components/auth/HrOnboarding'
+import { WorkspaceSetup } from '@/components/auth/WorkspaceSetup'
 import { AdminLayout } from '@/components/admin/AdminLayout'
 import { StatCards } from '@/components/admin/StatCards'
 import { AnalyticsChart } from '@/components/admin/AnalyticsChart'
@@ -46,7 +47,7 @@ function App() {
   }, [setUser, user])
 
   // Simple Router State
-  const [currentRoute, setCurrentRoute] = React.useState<'welcome' | 'login' | 'onboarding' | 'dashboard'>('welcome')
+  const [currentRoute, setCurrentRoute] = React.useState<'welcome' | 'login' | 'onboarding' | 'workspace-setup' | 'dashboard'>('welcome')
   const [activeAdminTab, setActiveAdminTab] = React.useState('overview') // Admin current tab
 
   // Handle auto-routing when user state changes
@@ -61,7 +62,11 @@ function App() {
   // Custom Navigation Handlers
   const handleSelectRole = (role: 'employee' | 'admin') => {
     setSelectedRole(role)
-    setCurrentRoute('login')
+    if (role === 'admin') {
+      setCurrentRoute('workspace-setup')
+    } else {
+      setCurrentRoute('login')
+    }
   }
 
   const handleLogin = () => {
@@ -102,6 +107,13 @@ function App() {
 
       {currentRoute === 'login' && (
         <LoginForm role={selectedRole} onLogin={handleLogin} onBack={() => setCurrentRoute('welcome')} />
+      )}
+
+      {currentRoute === 'workspace-setup' && (
+        <WorkspaceSetup
+          onComplete={() => setCurrentRoute('dashboard')}
+          onBack={() => setCurrentRoute('welcome')}
+        />
       )}
 
       {currentRoute === 'onboarding' && (

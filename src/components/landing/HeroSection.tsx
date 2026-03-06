@@ -17,9 +17,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole }) => {
                     </div>
                     <span className="font-bold text-xl tracking-tight">مايكرو موف</span>
                 </div>
-                <div className="flex gap-4">
-                    <Button variant="ghost" className="text-slate-300 hover:text-white hover:bg-white/5" onClick={() => onSelectRole('employee')}>
-                        تسجيل الدخول
+                <div className="flex gap-4 items-center">
+                    <Button
+                        variant="ghost"
+                        className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2"
+                        onClick={() => onSelectRole('employee')}
+                    >
+                        <UserCircle className="w-5 h-5" />
+                        دخول الموظفين
                     </Button>
                 </div>
             </header>
@@ -32,24 +37,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole }) => {
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="flex flex-col gap-8"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium w-fit">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                            </span>
-                            الجلوس الطويل خطر حقيقي
-                        </div>
-
                         <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60">
-                            استعد نشاطك و<br />
+                            صحة فريقك هي محرك<br />
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#ffb938] to-primary bg-[length:200%_auto] animate-gradient">
-                                تغلّب على الإرهاق
+                                إنتاجيتك.. استثمر فيها كل يوم
                             </span>
                         </h1>
 
                         <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-xl font-light">
-                            لا تدع الجلوس المطوّل يستنزف طاقة فريقك وإنتاجيته.
-                            مايكرو موف يستخدم الذكاء الاصطناعي لتقديم تنبيهات ذكية تعيد شحن طاقة فريقك طوال اليوم.
+                            نوفر منصة متكاملة للحد من أضرار الجلوس المكتبي. عبر فواصل قصيرة وممتعة، نضمن لك فريقاً أكثر نشاطاً، أقل توتراً، وبولاء وسعادة أكبر لشركتك.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -63,16 +59,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole }) => {
                                 <Building2 className="w-5 h-5 relative z-10" />
                                 <span className="relative z-10">إنشاء مساحة عمل الشركة</span>
                                 <Sparkles className="w-4 h-4 text-primary relative z-10" />
-                            </motion.button>
-
-                            <motion.button
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={() => onSelectRole('employee')}
-                                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
-                            >
-                                <UserCircle className="w-5 h-5" />
-                                <span>دخول الموظفين</span>
                             </motion.button>
                         </div>
                     </motion.div>
