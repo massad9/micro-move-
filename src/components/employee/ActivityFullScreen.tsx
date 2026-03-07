@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { X, Trophy, Pause, Play, RotateCcw } from 'lucide-react'
+import { X, Trophy, Pause, Play, RotateCcw, PersonStanding, Brain, Coffee, Droplets } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { Activity } from '@/store/microMoveStore'
 import { useMicroMoveStore } from '@/store/microMoveStore'
@@ -13,11 +13,11 @@ interface ActivityFullScreenProps {
     onClose: () => void
 }
 
-const categoryCharacters: Record<string, { emoji: string, bg: string, glow: string, accent: string }> = {
-    physical: { emoji: '🏃‍♂️', bg: 'from-emerald-950 via-emerald-900 to-slate-950', glow: 'rgba(16,185,129,0.3)', accent: '#10b981' },
-    mindfulness: { emoji: '🧘', bg: 'from-rose-950 via-purple-950 to-slate-950', glow: 'rgba(244,63,94,0.3)', accent: '#f43f5e' },
-    social: { emoji: '☕', bg: 'from-violet-950 via-indigo-950 to-slate-950', glow: 'rgba(139,92,246,0.3)', accent: '#8b5cf6' },
-    hydration: { emoji: '💧', bg: 'from-blue-950 via-cyan-950 to-slate-950', glow: 'rgba(59,130,246,0.3)', accent: '#3b82f6' },
+const categoryCharacters: Record<string, { icon: React.FC<{ className?: string }>, bg: string, glow: string, accent: string }> = {
+    physical: { icon: PersonStanding, bg: 'from-emerald-950 via-emerald-900 to-slate-950', glow: 'rgba(16,185,129,0.3)', accent: '#10b981' },
+    mindfulness: { icon: Brain, bg: 'from-rose-950 via-purple-950 to-slate-950', glow: 'rgba(244,63,94,0.3)', accent: '#f43f5e' },
+    social: { icon: Coffee, bg: 'from-violet-950 via-indigo-950 to-slate-950', glow: 'rgba(139,92,246,0.3)', accent: '#8b5cf6' },
+    hydration: { icon: Droplets, bg: 'from-blue-950 via-cyan-950 to-slate-950', glow: 'rgba(59,130,246,0.3)', accent: '#3b82f6' },
 }
 
 const encouragements = [
@@ -132,7 +132,7 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                                     className="h-full bg-gradient-to-l from-amber-400 to-orange-500 rounded-full"
                                 />
                             </div>
-                            <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider">مكتمل</span>
+                            <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">مكتمل</span>
                         </div>
                     </div>
                 </div>
@@ -263,7 +263,7 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                                                 boxShadow: `0 20px 60px ${charMeta.glow}, 0 0 120px ${charMeta.glow}, inset 0 1px 0 rgba(255,255,255,0.1)`,
                                             }}
                                         >
-                                            <motion.span
+                                            <motion.div
                                                 animate={{
                                                     scale: [1, 1.08, 1],
                                                     rotate: isComplete ? [0, 10, -10, 0] : [0, 3, -3, 0],
@@ -273,14 +273,15 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                                                     repeat: Infinity,
                                                     ease: 'easeInOut',
                                                 }}
-                                                className="text-7xl md:text-8xl select-none"
+                                                className="select-none"
                                                 style={{
                                                     filter: `drop-shadow(0 8px 20px ${charMeta.glow})`,
                                                     transform: 'translateZ(30px)',
+                                                    color: charMeta.accent,
                                                 }}
                                             >
-                                                {charMeta.emoji}
-                                            </motion.span>
+                                                <charMeta.icon className="w-20 h-20 md:w-24 md:h-24" />
+                                            </motion.div>
 
                                             <motion.div
                                                 animate={{

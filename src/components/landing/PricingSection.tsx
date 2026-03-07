@@ -81,7 +81,7 @@ export const PricingSection: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">
             خطة مناسبة لكل فريق
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             اختر الخطة التي تناسب حجم فريقك واحتياجاتك. يمكنك الترقية أو التغيير في أي وقت.
           </p>
         </motion.div>
@@ -111,7 +111,7 @@ export const PricingSection: React.FC = () => {
                 <h3 className="text-xl font-bold text-white">{plan.name}</h3>
               </div>
 
-              <p className="text-slate-400 text-sm mb-6">{plan.description}</p>
+              <p className="text-slate-300 text-sm mb-6">{plan.description}</p>
 
               <div className="flex items-baseline gap-1 mb-8">
                 <span className="text-4xl md:text-5xl font-black text-white">{plan.price}</span>
@@ -132,7 +132,7 @@ export const PricingSection: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-colors ${
+                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-colors cursor-pointer ${
                   plan.popular
                     ? 'bg-primary text-white hover:bg-primary/90 shadow-[0_4px_20px_rgba(249,115,22,0.3)]'
                     : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'

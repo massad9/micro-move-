@@ -33,7 +33,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, setActiveTab })
                         <button
                             key={item.id}
                             onClick={() => setActiveTab(item.id)}
-                            className="flex-1 flex flex-col items-center justify-center py-2 relative z-10 group"
+                            className="flex-1 flex flex-col items-center justify-center py-3 relative z-10 group cursor-pointer"
                         >
                             <motion.div
                                 animate={{ scale: isActive ? 1.1 : 1, y: isActive ? -2 : 0 }}

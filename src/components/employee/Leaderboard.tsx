@@ -157,7 +157,7 @@ export const Leaderboard: React.FC = () => {
                                 <div className="w-24 text-left">
                                     <div className="bg-white px-3 py-1.5 rounded-lg border border-primary/20 inline-block text-left shadow-sm">
                                         <span className="font-black text-slate-900 text-base sm:text-lg">840</span>
-                                        <span className="text-[10px] text-slate-400 uppercase font-bold ml-1">نقطة</span>
+                                        <span className="text-xs text-slate-400 uppercase font-bold ml-1">نقطة</span>
                                     </div>
                                 </div>
                             </div>

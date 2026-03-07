@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Toaster } from 'sonner'
 import { WelcomePage } from '@/components/auth/WelcomePage'
 import { LoginForm } from '@/components/auth/LoginForm'
@@ -12,6 +12,7 @@ import { EmployeeList } from '@/components/admin/EmployeeList'
 import { RewardsManager } from '@/components/admin/RewardsManager'
 import { AdminSettings } from '@/components/admin/AdminSettings'
 import { EmployeeDashboard } from '@/components/employee/EmployeeDashboard'
+import { AdminOverviewSkeleton } from '@/components/skeletons/DashboardSkeletons'
 import { useMicroMoveStore } from '@/store/microMoveStore'
 
 function App() {
@@ -58,6 +59,17 @@ function App() {
   }, [user])
 
   const [selectedRole, setSelectedRole] = React.useState<'employee' | 'admin'>('employee')
+  const [adminLoading, setAdminLoading] = useState(true)
+
+  useEffect(() => {
+    if (user && (user.role === 'admin' || user.role === 'hr')) {
+      setAdminLoading(true)
+      const timer = setTimeout(() => {
+        setAdminLoading(false)
+      }, 1200)
+      return () => clearTimeout(timer)
+    }
+  }, [user])
 
   // Custom Navigation Handlers
   const handleSelectRole = (role: 'employee' | 'admin') => {
@@ -121,14 +133,18 @@ function App() {
           {user.role === 'admin' || user.role === 'hr' ? (
             <AdminLayout activeAdminTab={activeAdminTab} setActiveAdminTab={setActiveAdminTab} onLogout={handleLogout}>
               {activeAdminTab === 'overview' && (
-                <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <div>
-                    <h2 className="text-2xl font-bold text-[#111827] tracking-tight">نظرة عامة على المنظمة</h2>
-                    <p className="text-[#6B7280] mt-1 text-sm leading-relaxed">قياس نبض المنظمة وإرهاق الموظفين اللحظي.</p>
+                adminLoading ? (
+                  <AdminOverviewSkeleton />
+                ) : (
+                  <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div>
+                      <h2 className="text-2xl font-bold text-[#111827] tracking-tight">نظرة عامة على المنظمة</h2>
+                      <p className="text-[#6B7280] mt-1 text-sm leading-relaxed">قياس نبض المنظمة وإرهاق الموظفين اللحظي.</p>
+                    </div>
+                    <StatCards />
+                    <AnalyticsChart />
                   </div>
-                  <StatCards />
-                  <AnalyticsChart />
-                </div>
+                )
               )}
               {activeAdminTab === 'activities' && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">

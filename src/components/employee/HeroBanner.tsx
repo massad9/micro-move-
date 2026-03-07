@@ -36,7 +36,7 @@ export const HeroBanner: React.FC = () => {
                     النشاطات طاقة <span className="text-transparent bg-clip-text bg-gradient-to-l from-orange-400 to-amber-300">كبيرة</span>
                 </h1>
 
-                <p className="text-lg md:text-xl text-slate-400 max-w-xl mx-auto mb-10 font-medium leading-relaxed">
+                <p className="text-lg md:text-xl text-slate-300 max-w-xl mx-auto mb-10 font-medium leading-relaxed">
                     عزز إنتاجيتك، وحسن صحتك، وتواصل مع فريقك من خلال أنشطة سريعة ممتعة.
                 </p>
 

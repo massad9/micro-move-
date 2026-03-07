@@ -5,6 +5,7 @@ import { ActivityFeed } from './ActivityFeed'
 import { Leaderboard } from './Leaderboard'
 import { Rewards } from './Rewards'
 import { ContextNudgeModal } from './ContextNudgeModal'
+import { EmployeeDashboardSkeleton } from '@/components/skeletons/DashboardSkeletons'
 import { toast } from 'sonner'
 
 interface EmployeeDashboardProps {
@@ -14,6 +15,14 @@ interface EmployeeDashboardProps {
 export const EmployeeDashboard: React.FC<EmployeeDashboardProps> = ({ onLogout }) => {
     const [currentView, setCurrentView] = useState<'home' | 'store'>('home')
     const [showNudge, setShowNudge] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1200)
+        return () => clearTimeout(timer)
+    }, [])
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -31,15 +40,21 @@ export const EmployeeDashboard: React.FC<EmployeeDashboardProps> = ({ onLogout }
 
     return (
         <EmployeeLayout onLogout={onLogout} currentView={currentView} onNavigate={setCurrentView}>
-            {currentView === 'home' && (
-                <div className="space-y-10">
-                    <Greeting onNavigateStore={() => setCurrentView('store')} />
-                    <ActivityFeed />
-                    <Leaderboard />
-                </div>
-            )}
-            {currentView === 'store' && (
-                <Rewards />
+            {isLoading ? (
+                <EmployeeDashboardSkeleton />
+            ) : (
+                <>
+                    {currentView === 'home' && (
+                        <div className="space-y-10">
+                            <Greeting onNavigateStore={() => setCurrentView('store')} />
+                            <ActivityFeed />
+                            <Leaderboard />
+                        </div>
+                    )}
+                    {currentView === 'store' && (
+                        <Rewards />
+                    )}
+                </>
             )}
 
             <ContextNudgeModal 

@@ -42,13 +42,13 @@ export const AnalyticsChart: React.FC = () => {
                 <div className="flex bg-[#F3F4F6] p-1 rounded-xl">
                     <button
                         onClick={() => setView('heatmap')}
-                        className={`px-4 py-2 text-xs font-semibold rounded-lg transition-colors duration-200 ${view === 'heatmap' ? 'bg-white text-[#111827] shadow-soft' : 'text-[#6B7280] hover:text-[#111827]'}`}
+                        className={`px-4 py-2 text-xs font-semibold rounded-lg transition-colors duration-200 cursor-pointer ${view === 'heatmap' ? 'bg-white text-[#111827] shadow-soft' : 'text-[#6B7280] hover:text-[#111827]'}`}
                     >
                         خريطة الطاقة
                     </button>
                     <button
                         onClick={() => setView('weekly')}
-                        className={`px-4 py-2 text-xs font-semibold rounded-lg transition-colors duration-200 ${view === 'weekly' ? 'bg-white text-[#111827] shadow-soft' : 'text-[#6B7280] hover:text-[#111827]'}`}
+                        className={`px-4 py-2 text-xs font-semibold rounded-lg transition-colors duration-200 cursor-pointer ${view === 'weekly' ? 'bg-white text-[#111827] shadow-soft' : 'text-[#6B7280] hover:text-[#111827]'}`}
                     >
                         الإنجازات
                     </button>
@@ -90,7 +90,7 @@ export const AnalyticsChart: React.FC = () => {
                                                         transition={{ delay: (dIdx * 0.05) + (hIdx * 0.02) }}
                                                         className={`flex-1 h-10 rounded ${getHeatmapColor(val)} hover:scale-105 transition-transform duration-200 cursor-pointer relative group`}
                                                     >
-                                                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#111827] text-white text-[10px] px-2.5 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-10 pointer-events-none shadow-soft-md">
+                                                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#111827] text-white text-xs px-2.5 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 whitespace-nowrap z-10 pointer-events-none shadow-soft-md">
                                                             {val === 2 ? 'منطقة خطر عالي' : val === 1 ? 'جلوس متوسط' : 'حركة جيدة'}
                                                         </div>
                                                     </motion.div>

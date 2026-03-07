@@ -26,7 +26,7 @@ export const PremiumActivityCard: React.FC = () => {
                         <Star className="w-6 h-6 fill-current" />
                     </div>
                     <div className="flex items-center gap-2">
-                        <div className="bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-black tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+                        <div className="bg-slate-50 border border-slate-200 text-slate-500 text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
                             <Lock className="w-3 h-3" />
                             مكافأة مميزة
                         </div>
@@ -43,10 +43,10 @@ export const PremiumActivityCard: React.FC = () => {
                 <div className="mt-auto pt-6 border-t border-slate-100 space-y-4">
                     <div className="flex justify-between items-end">
                         <div className="flex flex-col">
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 block">تقدمك</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1 block">تقدمك</span>
                             <span className="text-2xl font-black text-slate-900 flex items-baseline gap-1">
                                 {user?.points || 0}
-                                <span className="text-sm text-slate-400 font-bold uppercase">/ {pointsNeeded}</span>
+                                <span className="text-sm text-slate-500 font-bold uppercase">/ {pointsNeeded}</span>
                             </span>
                         </div>
                         <div className="text-left mb-1">
@@ -70,7 +70,7 @@ export const PremiumActivityCard: React.FC = () => {
                     </div>
 
                     <button className={`w-full h-12 rounded-xl flex items-center justify-center gap-2 font-bold transition-[color,background-color,box-shadow,transform] duration-300 text-sm tracking-wide ${user && user.points >= pointsNeeded
-                        ? 'bg-slate-900 text-white shadow-md hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 border-0'
+                        ? 'bg-slate-900 text-white shadow-md hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 border-0 cursor-pointer'
                         : 'bg-white border-2 border-slate-200 text-slate-400 cursor-not-allowed'
                         }`}>
                         {user && user.points >= pointsNeeded ? 'فتح المكافأة' : 'مقفلة حالياً'}

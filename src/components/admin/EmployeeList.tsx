@@ -36,8 +36,8 @@ export const EmployeeList: React.FC = () => {
                     <p className="text-sm text-[#6B7280] mt-1 leading-relaxed">الموظفون الأكثر نشاطاً هذا الأسبوع</p>
                 </div>
                 <div className="flex gap-1 bg-[#F3F4F6] p-1 rounded-xl">
-                    <button onClick={() => setSort('points')} className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-200 ${sort === 'points' ? 'bg-white shadow-soft text-[#111827]' : 'text-[#6B7280]'}`}>النقاط</button>
-                    <button onClick={() => setSort('name')} className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-200 ${sort === 'name' ? 'bg-white shadow-soft text-[#111827]' : 'text-[#6B7280]'}`}>الاسم</button>
+                    <button onClick={() => setSort('points')} className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-200 cursor-pointer ${sort === 'points' ? 'bg-white shadow-soft text-[#111827]' : 'text-[#6B7280]'}`}>النقاط</button>
+                    <button onClick={() => setSort('name')} className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-200 cursor-pointer ${sort === 'name' ? 'bg-white shadow-soft text-[#111827]' : 'text-[#6B7280]'}`}>الاسم</button>
                 </div>
             </div>
 
@@ -63,7 +63,7 @@ export const EmployeeList: React.FC = () => {
                                     <div className="flex items-center gap-2 mt-1">
                                         <span className="text-xs text-[#6B7280]">{emp.department}</span>
                                         <span className="w-1 h-1 rounded-full bg-[#D1D5DB]"></span>
-                                        <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-md border ${getStatusColor(emp.status as string)}`}>
+                                        <span className={`text-xs font-semibold px-1.5 py-0.5 rounded-md border ${getStatusColor(emp.status as string)}`}>
                                             {getStatusLabel(emp.status as string)}
                                         </span>
                                     </div>
@@ -78,7 +78,7 @@ export const EmployeeList: React.FC = () => {
                                 </div>
                                 <div className="text-right bg-[#F9FAFB] px-3 py-2 rounded-xl border border-[#E5E7EB]">
                                     <p className="font-bold text-[#111827] tabular-nums text-sm">{emp.points}</p>
-                                    <p className="text-[10px] font-medium text-[#9CA3AF] uppercase tracking-wider">نقاط</p>
+                                    <p className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">نقاط</p>
                                 </div>
                             </div>
                         </div>

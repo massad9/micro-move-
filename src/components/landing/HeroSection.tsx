@@ -18,7 +18,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole, onSetupW
                 <div className="flex gap-3 items-center">
                     <Button
                         variant="ghost"
-                        className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2"
+                        className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2 cursor-pointer"
                         onClick={() => onSelectRole('admin')}
                     >
                         <Building2 className="w-5 h-5" />
@@ -26,7 +26,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole, onSetupW
                     </Button>
                     <Button
                         variant="ghost"
-                        className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2"
+                        className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2 cursor-pointer"
                         onClick={() => onSelectRole('employee')}
                     >
                         <UserCircle className="w-5 h-5" />
@@ -60,7 +60,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole, onSetupW
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => onSetupWorkspace?.()}
-                                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-shadow hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+                                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-shadow hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] cursor-pointer"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white to-slate-200 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <Building2 className="w-5 h-5 relative z-10" />
@@ -72,7 +72,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole, onSetupW
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
+                                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-colors cursor-pointer"
                             >
                                 <span>تعرّف على الأسعار</span>
                             </motion.button>
@@ -126,10 +126,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole, onSetupW
                                     </p>
 
                                     <div className="flex items-center gap-3 pt-4">
-                                        <button className="flex-1 bg-primary text-white font-semibold py-3 px-4 rounded-xl flex justify-center items-center gap-2 hover:bg-primary/90 transition-colors">
+                                        <button className="flex-1 bg-primary text-white font-semibold py-3 px-4 rounded-xl flex justify-center items-center gap-2 hover:bg-primary/90 transition-colors cursor-pointer">
                                             <Play className="w-4 h-4 fill-current" /> قبول (+٢٠ نقطة)
                                         </button>
-                                        <button className="py-3 px-4 bg-white/5 text-slate-400 font-medium rounded-xl hover:bg-white/10 hover:text-white transition-colors">
+                                        <button className="py-3 px-4 bg-white/5 text-slate-400 font-medium rounded-xl hover:bg-white/10 hover:text-white transition-colors cursor-pointer">
                                             تخطي
                                         </button>
                                     </div>

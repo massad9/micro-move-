@@ -25,7 +25,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
             <aside className="hidden lg:flex flex-col w-64 bg-white border-l-[1.5px] border-[#E5E7EB] p-6 z-10 font-sans">
                 <div className="flex items-center gap-3 mb-10 px-2">
                     <img src="/logo.png" alt="Micro Move" className="h-8" />
-                    <span className="block font-semibold text-[10px] tracking-wider text-primary uppercase">بوابة الإدارة</span>
+                    <span className="block font-semibold text-xs tracking-wider text-primary uppercase">بوابة الإدارة</span>
                 </div>
 
                 <nav className="flex-1 space-y-1">
@@ -36,7 +36,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                             <button
                                 key={item.id}
                                 onClick={() => setActiveAdminTab(item.id)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-200 text-sm font-semibold ${isActive
+                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-200 text-sm font-semibold cursor-pointer ${isActive
                                     ? 'bg-[#FFF7ED] text-primary border-r-[3px] border-primary'
                                     : 'text-[#6B7280] hover:bg-[#F9FAFB] hover:text-[#111827] border-r-[3px] border-transparent'
                                     }`}
@@ -51,7 +51,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                 <div className="mt-auto pt-6 space-y-4 border-t border-[#E5E7EB]">
                     <button
                         onClick={onLogout}
-                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B7280] hover:bg-red-50 hover:text-red-500 transition-colors duration-200 group"
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B7280] hover:bg-red-50 hover:text-red-500 transition-colors duration-200 group cursor-pointer"
                     >
                         <LogOut className="w-[18px] h-[18px] group-hover:text-red-500 transition-colors" strokeWidth={1.5} />
                         <span className="font-semibold text-sm">تسجيل الخروج</span>
@@ -74,7 +74,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
             <div className="flex-1 flex flex-col min-w-0 overflow-hidden font-sans">
                 <header className="h-16 bg-white border-b border-[#E5E7EB] flex items-center justify-between px-8 shrink-0 relative z-20">
                     <div className="flex items-center gap-4 flex-1">
-                        <button aria-label="فتح القائمة" className="lg:hidden p-2 text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-colors duration-200">
+                        <button aria-label="فتح القائمة" className="lg:hidden p-2 text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-colors duration-200 cursor-pointer">
                             <Menu className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" />
                         </button>
                         <div className="relative max-w-md w-full hidden md:block group">

@@ -121,7 +121,7 @@ export const RewardsManager: React.FC = () => {
                                     <div key={c.id} className="bg-white border border-[#E5E7EB] p-5 rounded-2xl shadow-soft group hover:shadow-soft-md hover:border-primary/20 transition-colors duration-200">
                                         <div className="flex justify-between items-start mb-4">
                                             <div className="w-10 h-10 bg-[#FFF7ED] text-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200"><Target className="w-5 h-5" strokeWidth={1.5} /></div>
-                                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#9CA3AF] bg-[#F9FAFB] px-2 py-1 rounded-lg border border-[#E5E7EB]">ينتهي في ٣ أيام</span>
+                                            <span className="text-xs font-semibold uppercase tracking-wider text-[#9CA3AF] bg-[#F9FAFB] px-2 py-1 rounded-lg border border-[#E5E7EB]">ينتهي في ٣ أيام</span>
                                         </div>
                                         <h4 className="font-semibold text-[#111827] leading-tight mb-1">{c.title}</h4>
                                         <p className="text-xs text-[#6B7280] mb-4 line-clamp-2 leading-relaxed">{c.description}</p>
@@ -134,7 +134,7 @@ export const RewardsManager: React.FC = () => {
                                                 <div className="bg-primary h-full rounded-full transition-[width] duration-1000" style={{ width: `${progress}%` }} />
                                             </div>
                                             <div className="mt-3 pt-3 border-t border-[#F3F4F6] flex items-center justify-between">
-                                                <span className="text-[10px] font-medium text-[#9CA3AF] uppercase tracking-wider">الجائزة</span>
+                                                <span className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">الجائزة</span>
                                                 <span className="text-sm font-semibold text-[#111827] flex items-center gap-1.5"><Gift className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} /> {c.rewardTitle}</span>
                                             </div>
                                         </div>
@@ -163,7 +163,7 @@ export const RewardsManager: React.FC = () => {
                                         </div>
                                         <h4 className="font-semibold text-[#111827] text-base leading-tight mb-2 flex-1">{r.title}</h4>
                                         <div className="flex items-center justify-between pt-4 border-t border-[#F3F4F6] mt-auto">
-                                            <span className="text-[10px] font-medium text-[#9CA3AF] uppercase tracking-wider">التكلفة</span>
+                                            <span className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">التكلفة</span>
                                             <span className="font-bold text-amber-500">{r.cost} نقطه</span>
                                         </div>
                                     </div>

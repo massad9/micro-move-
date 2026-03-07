@@ -114,7 +114,7 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                             <p className="text-sm text-slate-500 mb-6">اربط أدواتك لتمكين الإعداد السلس والتنبيهات الذكية.</p>
 
                             <div className="space-y-4">
-                                <div className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${calendarSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setCalendarSync(!calendarSync)}>
+                                <div role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCalendarSync(!calendarSync); } }} className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${calendarSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setCalendarSync(!calendarSync)}>
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"><Calendar /></div>
                                         <div>
@@ -125,7 +125,7 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                                     {calendarSync && <CheckCircle2 className="text-primary" />}
                                 </div>
 
-                                <div className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${slackSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setSlackSync(!slackSync)}>
+                                <div role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSlackSync(!slackSync); } }} className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${slackSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setSlackSync(!slackSync)}>
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600"><MessageSquare /></div>
                                         <div>
@@ -139,7 +139,7 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                                     </div>
                                 </div>
 
-                                <div className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${teamsSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setTeamsSync(!teamsSync)}>
+                                <div role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setTeamsSync(!teamsSync); } }} className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${teamsSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setTeamsSync(!teamsSync)}>
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600"><MessageSquare /></div>
                                         <div>

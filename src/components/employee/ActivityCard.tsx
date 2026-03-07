@@ -119,7 +119,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                         whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.9 }}
                                         onClick={() => handleVibeCheck(mood.e)}
-                                        className="flex flex-col items-center gap-2 group"
+                                        className="flex flex-col items-center gap-2 group cursor-pointer"
                                     >
                                         <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm flex items-center justify-center text-3xl group-hover:border-primary group-hover:bg-primary/5 transition-colors">
                                             {mood.e}
@@ -140,10 +140,10 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                     </div>
                                     <div>
                                         <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                                            <span className={cn("px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest border", meta.bgLight, meta.color, meta.border)}>
+                                            <span className={cn("px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-widest border", meta.bgLight, meta.color, meta.border)}>
                                                 {meta.label}
                                             </span>
-                                            <span className="flex items-center gap-1.5 text-slate-500 font-bold text-[10px] uppercase tracking-wider bg-slate-100 px-2 py-0.5 rounded-full transition-colors group-hover:bg-white group-hover:shadow-sm">
+                                            <span className="flex items-center gap-1.5 text-slate-500 font-bold text-xs uppercase tracking-wider bg-slate-100 px-2 py-0.5 rounded-full transition-colors group-hover:bg-white group-hover:shadow-sm">
                                                 <Clock className="w-3 h-3" />
                                                 {activity.duration}
                                             </span>
@@ -157,7 +157,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 
                             <div className="flex items-start justify-between gap-4 mb-6">
                                 <div className="space-y-3 flex-1">
-                                    <p className={cn("text-sm leading-relaxed font-medium", activity.isDone ? 'text-slate-400' : 'text-slate-500')}>
+                                    <p className={cn("text-sm leading-relaxed font-medium", activity.isDone ? 'text-slate-500' : 'text-slate-500')}>
                                         {activity.description}
                                     </p>
 
@@ -200,7 +200,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                     "flex flex-row-reverse items-center gap-2 px-4 py-2 rounded-xl transition-colors",
                                     activity.isDone ? "bg-slate-100" : cn("bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]", meta.border, "border")
                                 )}>
-                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">نقاط</span>
+                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">نقاط</span>
                                     <span className={cn("text-lg font-black leading-none", activity.isDone ? 'text-slate-400' : 'text-slate-900')}>+{activity.points}</span>
                                     <Trophy className={cn("w-4 h-4", activity.isDone ? 'text-slate-400' : 'text-amber-500')} />
                                 </div>

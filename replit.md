@@ -66,6 +66,13 @@ src/
 - **Icon buttons**: All icon-only buttons have `aria-label` attributes; decorative icons use `aria-hidden="true"`
 - **Form labels**: All form labels connected to inputs via `htmlFor`/`id` pairs (RewardsManager, AdminSettings, HrOnboarding, LoginForm, WorkspaceSetup)
 - **Search inputs**: Include `name` and `autocomplete="off"` attributes
+- **Touch targets**: All mobile interactive elements meet 44x44px minimum (BottomNav, EmployeeLayout buttons, ActivityFeed tabs)
+- **Cursor pointer**: All clickable elements show pointer cursor on hover
+- **Color contrast**: Body/descriptive text upgraded from slate-400 to slate-300 (dark bg) or slate-500 (light bg) for 4.5:1 ratio
+- **Font sizing**: Minimum text-xs (12px) for meaningful content; text-[10px] only for BottomNav mobile labels
+- **Skeleton loading**: EmployeeDashboardSkeleton and AdminOverviewSkeleton integrated for initial data loads
+- **SVG icons**: Category indicators use Lucide icons (PersonStanding, Brain, Coffee, Droplets) instead of emojis
+- **Keyboard accessibility**: Clickable divs (HrOnboarding toggles, Rewards cards) have role="button", tabIndex, and keyboard handlers
 
 ## Development
 

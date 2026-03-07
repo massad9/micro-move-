@@ -90,6 +90,9 @@ export const Rewards: React.FC = () => {
                             transition={{ delay: idx * 0.1, type: "spring", stiffness: 200, damping: 20 }}
                         >
                             <Card
+                                role={canAfford ? "button" : undefined}
+                                tabIndex={canAfford ? 0 : undefined}
+                                onKeyDown={canAfford ? (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedReward(reward); } } : undefined}
                                 className={cn(
                                     "bg-white border text-right duration-300 h-full flex flex-col group relative overflow-hidden",
                                     canAfford
@@ -118,7 +121,7 @@ export const Rewards: React.FC = () => {
                                             </div>
                                         )}
                                         {canAfford && (
-                                            <div className="bg-amber-50 border border-amber-200 text-amber-600 text-[10px] font-black tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm">
+                                            <div className="bg-amber-50 border border-amber-200 text-amber-600 text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm">
                                                 متوفر
                                             </div>
                                         )}
@@ -133,7 +136,7 @@ export const Rewards: React.FC = () => {
                                     <div className="mt-auto space-y-4">
                                         <div className="flex justify-between items-end">
                                             <div className="flex flex-col">
-                                                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">التكلفة</span>
+                                                <span className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-0.5">التكلفة</span>
                                                 <span className={cn(
                                                     "text-xl font-black tracking-tighter flex items-center gap-1",
                                                     canAfford ? "text-amber-600" : "text-slate-400"
@@ -269,7 +272,7 @@ export const Rewards: React.FC = () => {
                                 </p>
 
                                 <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl p-5 mb-6">
-                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">كود القسيمة</span>
+                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">كود القسيمة</span>
                                     <div className="flex items-center justify-center gap-3">
                                         <span className="text-2xl font-black text-slate-900 tracking-[0.15em] font-mono" style={{ direction: 'ltr' }}>
                                             {redeemedReward.coupon}

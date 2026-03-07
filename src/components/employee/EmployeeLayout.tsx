@@ -45,7 +45,7 @@ export const EmployeeLayout: React.FC<EmployeeLayoutProps> = ({ children, onLogo
                     <div className="hidden sm:flex items-center gap-1 px-3 py-1.5 bg-orange-50 border border-orange-200/60 rounded-xl text-sm font-bold text-orange-600">
                         {user?.points.toLocaleString()} نقطة
                     </div>
-                    <Button variant="ghost" size="icon" aria-label="الإشعارات" className="relative text-slate-500 hover:bg-slate-100 rounded-full w-10 h-10 transition-colors">
+                    <Button variant="ghost" size="icon" aria-label="الإشعارات" className="relative text-slate-500 hover:bg-slate-100 rounded-full w-11 h-11 transition-colors">
                         <Bell className="w-5 h-5" aria-hidden="true" />
                         <span className="absolute top-2.5 left-2.5 w-2 h-2 bg-primary rounded-full ring-2 ring-white" aria-hidden="true" />
                     </Button>
@@ -56,7 +56,7 @@ export const EmployeeLayout: React.FC<EmployeeLayoutProps> = ({ children, onLogo
                     <button
                         onClick={onLogout}
                         aria-label="تسجيل الخروج"
-                        className="text-slate-400 hover:text-red-500 transition-colors p-2 rounded-full hover:bg-red-50"
+                        className="text-slate-400 hover:text-red-500 transition-colors p-3 rounded-full hover:bg-red-50"
                     >
                         <LogOut className="w-5 h-5" aria-hidden="true" />
                     </button>

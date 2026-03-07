@@ -56,7 +56,7 @@ const FaqItem: React.FC<{
       aria-expanded={isOpen}
       aria-controls={`faq-panel-${index}`}
       id={`faq-trigger-${index}`}
-      className="w-full flex items-center justify-between gap-4 p-6 text-right"
+      className="w-full flex items-center justify-between gap-4 p-6 text-right cursor-pointer"
     >
       <span className="text-white font-semibold text-base md:text-lg flex-1">{question}</span>
       <motion.div
