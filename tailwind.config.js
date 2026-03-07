@@ -100,6 +100,10 @@ module.exports = {
       },
       boxShadow: {
         'subtle': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+        'soft': '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03)',
+        'soft-md': '0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04)',
+        'soft-lg': '0 4px 8px rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.06)',
+        'inner-soft': 'inset 0 1px 3px rgba(0,0,0,0.06)',
       },
       backgroundImage: {
         'noise': "url('data:image/svg+xml;utf8,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')",

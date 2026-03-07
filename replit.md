@@ -45,6 +45,19 @@ src/
 - RTL layout support (Arabic-language targeting)
 - Local fallback when AI is unavailable
 
+## Admin Dashboard Design System
+
+- **Background**: #F9FAFB (light gray)
+- **Cards**: White (#FFFFFF) with 1px border (#E5E7EB)
+- **Primary headings**: #111827, **Secondary text**: #6B7280
+- **Sidebar**: Light theme with 1.5px vertical border, active items use #FFF7ED bg + orange accent
+- **Shadows**: Soft layered (`shadow-soft`, `shadow-soft-md`, `shadow-soft-lg`)
+- **Icons**: Consistent 1.5px stroke weight (strokeWidth={1.5})
+- **Search bars**: Inner shadow on focus (`focus:shadow-inner-soft`)
+- **AI button**: Mesh gradient background (multi-layer radial gradients)
+- **Heatmap cells**: `rounded` corners with `gap-1` spacing
+- **Empty states**: `PackageOpen` icon illustration with descriptive text
+
 ## Development
 
 ```bash

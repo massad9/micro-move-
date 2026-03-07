@@ -123,8 +123,8 @@ function App() {
               {activeAdminTab === 'overview' && (
                 <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <div>
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight">نظرة عامة على المنظمة</h2>
-                    <p className="text-slate-500 mt-1 text-lg">قياس نبض المنظمة وإرهاق الموظفين اللحظي.</p>
+                    <h2 className="text-2xl font-bold text-[#111827] tracking-tight">نظرة عامة على المنظمة</h2>
+                    <p className="text-[#6B7280] mt-1 text-sm leading-relaxed">قياس نبض المنظمة وإرهاق الموظفين اللحظي.</p>
                   </div>
                   <StatCards />
                   <AnalyticsChart />

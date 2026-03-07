@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
-import { Gift, Target, Plus } from 'lucide-react'
+import { Gift, Target, Plus, PackageOpen } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useMicroMoveStore } from '@/store/microMoveStore'
 
@@ -12,12 +11,10 @@ export const RewardsManager: React.FC = () => {
 
     const [activeTab, setActiveTab] = useState<'rewards' | 'challenges'>('rewards')
 
-    // New Reward Form
     const [rewardTitle, setRewardTitle] = useState('')
     const [rewardCost, setRewardCost] = useState('')
     const [rewardDesc, setRewardDesc] = useState('')
 
-    // New Challenge Form
     const [challengeTitle, setChallengeTitle] = useState('')
     const [challengeTarget, setChallengeTarget] = useState('')
     const [challengeReward, setChallengeReward] = useState('')
@@ -52,124 +49,122 @@ export const RewardsManager: React.FC = () => {
         <div className="space-y-6 font-sans">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-slate-900 tracking-tight">متجر المكافآت والتحديات</h1>
-                    <p className="text-slate-500 mt-1">حفز فريقك من خلال مكافآت وتحديات مخصصة.</p>
+                    <h1 className="text-2xl font-bold text-[#111827] tracking-tight">متجر المكافآت والتحديات</h1>
+                    <p className="text-[#6B7280] mt-1 text-sm leading-relaxed">حفز فريقك من خلال مكافآت وتحديات مخصصة.</p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Left Col: Creator Forms */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-1 space-y-6">
-                    <Card className="bg-white border text-right border-slate-200 shadow-sm overflow-hidden">
-                        <div className="flex border-b border-slate-100">
+                    <div className="bg-white border border-[#E5E7EB] rounded-2xl shadow-soft overflow-hidden text-right">
+                        <div className="flex border-b border-[#E5E7EB]">
                             <button
                                 onClick={() => setActiveTab('rewards')}
-                                className={`flex-1 py-4 text-sm font-bold transition-colors ${activeTab === 'rewards' ? 'bg-amber-50 text-amber-600 border-b-2 border-amber-500' : 'text-slate-500 hover:bg-slate-50'}`}
+                                className={`flex-1 py-4 text-sm font-semibold transition-all duration-200 ${activeTab === 'rewards' ? 'bg-[#FFF7ED] text-primary border-b-2 border-primary' : 'text-[#6B7280] hover:bg-[#F9FAFB]'}`}
                             >
-                                <Gift className="w-4 h-4 mx-auto mb-1" />
+                                <Gift className="w-4 h-4 mx-auto mb-1" strokeWidth={1.5} />
                                 مكافأة فردية
                             </button>
                             <button
                                 onClick={() => setActiveTab('challenges')}
-                                className={`flex-1 py-4 text-sm font-bold transition-colors ${activeTab === 'challenges' ? 'bg-orange-50 text-orange-600 border-b-2 border-orange-500' : 'text-slate-500 hover:bg-slate-50'}`}
+                                className={`flex-1 py-4 text-sm font-semibold transition-all duration-200 ${activeTab === 'challenges' ? 'bg-[#FFF7ED] text-primary border-b-2 border-primary' : 'text-[#6B7280] hover:bg-[#F9FAFB]'}`}
                             >
-                                <Target className="w-4 h-4 mx-auto mb-1" />
+                                <Target className="w-4 h-4 mx-auto mb-1" strokeWidth={1.5} />
                                 تحدي جماعي
                             </button>
                         </div>
-                        <CardContent className="p-6">
+                        <div className="p-6">
                             {activeTab === 'rewards' ? (
                                 <form onSubmit={handleAddReward} className="space-y-4">
                                     <div>
-                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 block">عنوان المكافأة</label>
-                                        <input type="text" value={rewardTitle} onChange={e => setRewardTitle(e.target.value)} required className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-right" placeholder="مثال: ساعة راحة إضافية" />
+                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">عنوان المكافأة</label>
+                                        <input type="text" value={rewardTitle} onChange={e => setRewardTitle(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: ساعة راحة إضافية" />
                                     </div>
                                     <div>
-                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 block">التكلفة (نقطة)</label>
-                                        <input type="number" value={rewardCost} onChange={e => setRewardCost(e.target.value)} required min="1" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-right" placeholder="مثال: 500" />
+                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">التكلفة (نقطة)</label>
+                                        <input type="number" value={rewardCost} onChange={e => setRewardCost(e.target.value)} required min="1" className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: 500" />
                                     </div>
                                     <div>
-                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 block">الوصف (اختياري)</label>
-                                        <textarea value={rewardDesc} onChange={e => setRewardDesc(e.target.value)} rows={3} className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all resize-none text-right" placeholder="وصف قصير للمكافأة..." />
+                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">الوصف (اختياري)</label>
+                                        <textarea value={rewardDesc} onChange={e => setRewardDesc(e.target.value)} rows={3} className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 resize-none text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="وصف قصير للمكافأة..." />
                                     </div>
-                                    <Button type="submit" className="w-full bg-amber-500 hover:bg-amber-600 font-bold shadow-md"><Plus className="w-4 h-4 mr-2" /> نشر في المتجر</Button>
+                                    <Button type="submit" className="w-full bg-primary hover:bg-primary/90 font-semibold shadow-soft transition-all duration-200"><Plus className="w-4 h-4 mr-2" strokeWidth={1.5} /> نشر في المتجر</Button>
                                 </form>
                             ) : (
                                 <form onSubmit={handleAddChallenge} className="space-y-4">
                                     <div>
-                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 block">عنوان التحدي</label>
-                                        <input type="text" value={challengeTitle} onChange={e => setChallengeTitle(e.target.value)} required className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all text-right" placeholder="مثال: تحدي المشي الأسبوعي" />
+                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">عنوان التحدي</label>
+                                        <input type="text" value={challengeTitle} onChange={e => setChallengeTitle(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: تحدي المشي الأسبوعي" />
                                     </div>
                                     <div>
-                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 block">النقاط المستهدفة</label>
-                                        <input type="number" value={challengeTarget} onChange={e => setChallengeTarget(e.target.value)} required min="10" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all text-right" placeholder="مثال: 1000" />
+                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">النقاط المستهدفة</label>
+                                        <input type="number" value={challengeTarget} onChange={e => setChallengeTarget(e.target.value)} required min="10" className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: 1000" />
                                     </div>
                                     <div>
-                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 block">الجائزة عند الإنجاز</label>
-                                        <input type="text" value={challengeReward} onChange={e => setChallengeReward(e.target.value)} required className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all text-right" placeholder="مثال: غداء للفريق" />
+                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">الجائزة عند الإنجاز</label>
+                                        <input type="text" value={challengeReward} onChange={e => setChallengeReward(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: غداء للفريق" />
                                     </div>
-                                    <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700 font-bold text-white shadow-md"><Plus className="w-4 h-4 mr-2" /> إطلاق التحدي</Button>
+                                    <Button type="submit" className="w-full bg-[#111827] hover:bg-[#1F2937] font-semibold text-white shadow-soft transition-all duration-200"><Plus className="w-4 h-4 mr-2" strokeWidth={1.5} /> إطلاق التحدي</Button>
                                 </form>
                             )}
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Right Col: Active Items */}
                 <div className="lg:col-span-2 space-y-8">
-                    {/* Active Challenges */}
                     <section>
-                        <h3 className="text-lg font-bold text-slate-900 mb-4 flexItems-center gap-2"><Target className="w-5 h-5 text-orange-500" /> التحديات النشطة</h3>
+                        <h3 className="text-base font-bold text-[#111827] mb-4 flex items-center gap-2"><Target className="w-5 h-5 text-primary" strokeWidth={1.5} /> التحديات النشطة</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {challenges.map(c => {
                                 const progress = Math.min((c.currentPoints / c.targetPoints) * 100, 100)
                                 return (
-                                    <div key={c.id} className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm group hover:border-orange-200 transition-colors">
+                                    <div key={c.id} className="bg-white border border-[#E5E7EB] p-5 rounded-2xl shadow-soft group hover:shadow-soft-md hover:border-primary/20 transition-all duration-200">
                                         <div className="flex justify-between items-start mb-4">
-                                            <div className="w-10 h-10 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"><Target className="w-5 h-5" /></div>
-                                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded-md">ينتهي في ٣ أيام</span>
+                                            <div className="w-10 h-10 bg-[#FFF7ED] text-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200"><Target className="w-5 h-5" strokeWidth={1.5} /></div>
+                                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#9CA3AF] bg-[#F9FAFB] px-2 py-1 rounded-lg border border-[#E5E7EB]">ينتهي في ٣ أيام</span>
                                         </div>
-                                        <h4 className="font-bold text-slate-900 leading-tight mb-1">{c.title}</h4>
-                                        <p className="text-xs text-slate-500 mb-4 line-clamp-2">{c.description}</p>
+                                        <h4 className="font-semibold text-[#111827] leading-tight mb-1">{c.title}</h4>
+                                        <p className="text-xs text-[#6B7280] mb-4 line-clamp-2 leading-relaxed">{c.description}</p>
                                         <div className="space-y-2">
-                                            <div className="flex justify-between text-xs font-bold">
-                                                <span className="text-orange-600">{Math.round(progress)}% مكتمل</span>
-                                                <span className="text-slate-400">{c.currentPoints} / {c.targetPoints}</span>
+                                            <div className="flex justify-between text-xs font-semibold">
+                                                <span className="text-primary">{Math.round(progress)}% مكتمل</span>
+                                                <span className="text-[#9CA3AF]">{c.currentPoints} / {c.targetPoints}</span>
                                             </div>
-                                            <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                                <div className="bg-orange-500 h-full rounded-full transition-all duration-1000" style={{ width: `${progress}%` }} />
+                                            <div className="w-full bg-[#F3F4F6] h-2 rounded-full overflow-hidden">
+                                                <div className="bg-primary h-full rounded-full transition-all duration-1000" style={{ width: `${progress}%` }} />
                                             </div>
-                                            <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between">
-                                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">الجائزة</span>
-                                                <span className="text-sm font-bold text-slate-900 flex items-center gap-1.5"><Gift className="w-3.5 h-3.5 text-orange-500" /> {c.rewardTitle}</span>
+                                            <div className="mt-3 pt-3 border-t border-[#F3F4F6] flex items-center justify-between">
+                                                <span className="text-[10px] font-medium text-[#9CA3AF] uppercase tracking-wider">الجائزة</span>
+                                                <span className="text-sm font-semibold text-[#111827] flex items-center gap-1.5"><Gift className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} /> {c.rewardTitle}</span>
                                             </div>
                                         </div>
                                     </div>
                                 )
                             })}
                             {challenges.length === 0 && (
-                                <div className="col-span-2 p-8 text-center text-slate-500 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
-                                    لا توجد تحديات نشطة. أنشئ التحدي الأول من القائمة المجاورة.
+                                <div className="col-span-2 p-12 text-center bg-[#F9FAFB] rounded-2xl border border-dashed border-[#D1D5DB]">
+                                    <PackageOpen className="w-10 h-10 text-[#D1D5DB] mx-auto mb-3" strokeWidth={1.5} />
+                                    <p className="text-[#6B7280] font-medium">لا توجد تحديات نشطة</p>
+                                    <p className="text-sm text-[#9CA3AF] mt-1">أنشئ التحدي الأول من القائمة المجاورة</p>
                                 </div>
                             )}
                         </div>
                     </section>
 
-                    {/* Rewards Catalog */}
                     <section>
-                        <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2"><Gift className="w-5 h-5 text-amber-500" /> متجر المكافآت</h3>
+                        <h3 className="text-base font-bold text-[#111827] mb-4 flex items-center gap-2"><Gift className="w-5 h-5 text-amber-500" strokeWidth={1.5} /> متجر المكافآت</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             {rewards.map(r => (
-                                <div key={r.id} className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 w-16 h-16 bg-amber-500/5 rounded-bl-[100px] z-0 transition-transform group-hover:scale-150" />
+                                <div key={r.id} className="bg-white border border-[#E5E7EB] p-5 rounded-2xl shadow-soft hover:shadow-soft-md transition-all duration-200 relative overflow-hidden group">
+                                    <div className="absolute top-0 right-0 w-16 h-16 bg-amber-50 rounded-bl-[100px] z-0 transition-transform duration-300 group-hover:scale-150" />
                                     <div className="relative z-10 flex flex-col h-full">
                                         <div className="flex justify-between items-start mb-6">
-                                            <div className="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center"><Gift className="w-5 h-5" /></div>
+                                            <div className="w-10 h-10 bg-amber-50 text-amber-500 rounded-xl flex items-center justify-center"><Gift className="w-5 h-5" strokeWidth={1.5} /></div>
                                         </div>
-                                        <h4 className="font-bold text-slate-900 text-lg leading-tight mb-2 flex-1">{r.title}</h4>
-                                        <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
-                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">التكلفة</span>
-                                            <span className="font-black text-amber-500">{r.cost} نقطه</span>
+                                        <h4 className="font-semibold text-[#111827] text-base leading-tight mb-2 flex-1">{r.title}</h4>
+                                        <div className="flex items-center justify-between pt-4 border-t border-[#F3F4F6] mt-auto">
+                                            <span className="text-[10px] font-medium text-[#9CA3AF] uppercase tracking-wider">التكلفة</span>
+                                            <span className="font-bold text-amber-500">{r.cost} نقطه</span>
                                         </div>
                                     </div>
                                 </div>
