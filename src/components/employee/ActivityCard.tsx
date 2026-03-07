@@ -86,20 +86,32 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={!activity.isDone && !showVibeCheck ? { y: -4, scale: 1.01 } : {}}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                whileHover={!activity.isDone && !showVibeCheck ? { y: -4, scale: 1.02, transition: { type: "spring", stiffness: 400, damping: 25 } } : {}}
+                whileTap={!activity.isDone && !showVibeCheck ? { scale: 0.98, transition: { type: "spring", stiffness: 400, damping: 25 } } : {}}
                 className={cn(
-                    "relative overflow-hidden rounded-[2rem] border p-6 shadow-sm backdrop-blur-xl transition-all h-full flex flex-col justify-between group font-sans bg-white text-right",
-                    activity.isDone && "bg-slate-50/50 border-slate-200/50 opacity-75 grayscale-[0.3]"
+                    "relative overflow-hidden rounded-[2.5rem] border p-8 shadow-diffusion backdrop-blur-xl transition-[border-color,background-color] h-full flex flex-col justify-between group font-sans bg-white border-slate-200/50 text-right",
+                    activity.isDone && "bg-slate-50/50 border-slate-200/40 opacity-75 grayscale-[0.3]"
                 )}
             >
-                <Icon
+                {/* Perpetual Background Animation */}
+                <motion.div
+                    animate={!activity.isDone ? {
+                        y: [0, -10, 0],
+                        rotate: [12, 17, 12],
+                    } : { rotate: 12, y: 0 }}
+                    transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: "linear"
+                    }}
                     className={cn(
-                        "absolute -left-6 -bottom-6 h-48 w-48 rotate-12 opacity-[0.03] transition-transform duration-700 pointer-events-none",
-                        !activity.isDone && "group-hover:rotate-0 group-hover:scale-110",
+                        "absolute -left-6 -bottom-6 h-48 w-48 opacity-[0.03] transition-all duration-700 pointer-events-none",
+                        !activity.isDone && "group-hover:scale-110",
                         meta.color
                     )}
-                />
+                >
+                    <Icon className="w-full h-full" />
+                </motion.div>
 
                 <AnimatePresence mode="wait">
                     {showVibeCheck && (

@@ -158,7 +158,7 @@ function App() {
       )}
 
       {!user && currentRoute === 'dashboard' && (
-        <div className="h-screen flex items-center justify-center bg-white">
+        <div className="min-h-[100dvh] flex items-center justify-center bg-[#F9FAFB]">
            <div className="w-8 h-8 rounded-full border-4 border-slate-200 border-t-primary animate-spin" />
         </div>
       )}

@@ -28,8 +28,10 @@ export const ActivityFeed: React.FC = () => {
         <div className="pb-20 font-sans">
             <HeroBanner />
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 mt-12">
-                <h2 className="text-2xl font-black tracking-tight text-slate-900 leading-none">واصل الحركة</h2>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 mt-16">
+                <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 leading-none">
+                    واصل الحركة
+                </h2>
 
                 <div className="flex p-1 bg-white border border-slate-200 rounded-2xl shadow-sm overflow-x-auto no-scrollbar">
                 {TABS.map((tab) => (
@@ -47,7 +49,7 @@ export const ActivityFeed: React.FC = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[minmax(280px,auto)]">
                 <AnimatePresence mode="popLayout">
                     {activeTasks.map((activity) => (
                         <ActivityCard key={activity.id} activity={activity} />
