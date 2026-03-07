@@ -9,9 +9,10 @@ import { CtaSection } from '@/components/landing/CtaSection';
 
 interface WelcomePageProps {
     onSelectRole: (role: 'admin' | 'employee') => void;
+    onSetupWorkspace?: () => void;
 }
 
-export const WelcomePage: React.FC<WelcomePageProps> = ({ onSelectRole }) => {
+export const WelcomePage: React.FC<WelcomePageProps> = ({ onSelectRole, onSetupWorkspace }) => {
     return (
         <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col relative overflow-x-hidden font-sans selection:bg-primary/30">
             <div className="absolute inset-0 z-0">
@@ -22,13 +23,13 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onSelectRole }) => {
             </div>
 
             <div className="relative z-10">
-                <HeroSection onSelectRole={onSelectRole} />
+                <HeroSection onSelectRole={onSelectRole} onSetupWorkspace={onSetupWorkspace} />
                 <SocialProofSection />
                 <BenefitsSection />
                 <HowItWorksSection />
                 <PricingSection />
                 <FaqSection />
-                <CtaSection onSelectRole={onSelectRole} />
+                <CtaSection onSelectRole={onSelectRole} onSetupWorkspace={onSetupWorkspace} />
             </div>
 
             <footer className="relative z-10 border-t border-white/5 py-12 px-8">

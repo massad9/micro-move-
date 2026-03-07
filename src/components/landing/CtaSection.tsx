@@ -4,9 +4,10 @@ import { Sparkles, Building2 } from 'lucide-react';
 
 interface CtaSectionProps {
   onSelectRole?: (role: 'admin' | 'employee') => void;
+  onSetupWorkspace?: () => void;
 }
 
-export const CtaSection: React.FC<CtaSectionProps> = ({ onSelectRole }) => {
+export const CtaSection: React.FC<CtaSectionProps> = ({ onSelectRole, onSetupWorkspace }) => {
   return (
     <section className="relative py-24 md:py-32 px-4 overflow-hidden">
       <div className="absolute inset-0">
@@ -52,7 +53,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onSelectRole }) => {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => onSelectRole?.('admin')}
+                onClick={() => onSetupWorkspace?.()}
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white to-slate-200 opacity-0 group-hover:opacity-100 transition-opacity" />

@@ -62,11 +62,7 @@ function App() {
   // Custom Navigation Handlers
   const handleSelectRole = (role: 'employee' | 'admin') => {
     setSelectedRole(role)
-    if (role === 'admin') {
-      setCurrentRoute('workspace-setup')
-    } else {
-      setCurrentRoute('login')
-    }
+    setCurrentRoute('login')
   }
 
   const handleLogin = () => {
@@ -102,7 +98,7 @@ function App() {
       <Toaster position="bottom-left" toastOptions={{ className: 'font-sans' }} closeButton />
 
       {currentRoute === 'welcome' && (
-        <WelcomePage onSelectRole={handleSelectRole} />
+        <WelcomePage onSelectRole={handleSelectRole} onSetupWorkspace={() => setCurrentRoute('workspace-setup')} />
       )}
 
       {currentRoute === 'login' && (

@@ -5,16 +5,25 @@ import { Button } from '@/components/ui/button';
 
 interface HeroSectionProps {
     onSelectRole: (role: 'admin' | 'employee') => void;
+    onSetupWorkspace?: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole, onSetupWorkspace }) => {
     return (
         <section className="relative z-10 w-full">
             <header className="px-8 py-6 w-full flex justify-between items-center max-w-7xl mx-auto">
                 <div className="flex items-center gap-2">
                     <img src="/logo.png" alt="Micro Move" className="h-8 brightness-0 invert" />
                 </div>
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-3 items-center">
+                    <Button
+                        variant="ghost"
+                        className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2"
+                        onClick={() => onSelectRole('admin')}
+                    >
+                        <Building2 className="w-5 h-5" />
+                        دخول للإدارة
+                    </Button>
                     <Button
                         variant="ghost"
                         className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2"
@@ -50,7 +59,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole }) => {
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                onClick={() => onSelectRole('admin')}
+                                onClick={() => onSetupWorkspace?.()}
                                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white to-slate-200 opacity-0 group-hover:opacity-100 transition-opacity" />
