@@ -23,24 +23,24 @@ export const StatCards: React.FC = () => {
             value: mainRisk,
             change: 'حرج',
             icon: Flame,
-            color: 'text-red-500',
-            bg: 'bg-red-50'
+            color: 'text-destructive',
+            bg: 'bg-destructive/10'
         },
         {
             label: 'متوسط وقت الجلوس',
             value: '٤ س ١٢ د',
             change: '-١٨ د',
             icon: Activity,
-            color: 'text-amber-500',
-            bg: 'bg-amber-50'
+            color: 'text-amber-400',
+            bg: 'bg-amber-500/10'
         },
         {
             label: 'إتمام التنبيهات',
             value: '٧٢%',
             change: '+٨%',
             icon: TrendingUp,
-            color: 'text-emerald-500',
-            bg: 'bg-emerald-50'
+            color: 'text-emerald-400',
+            bg: 'bg-emerald-500/10'
         },
     ]
 
@@ -56,19 +56,19 @@ export const StatCards: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
                     >
-                        <div className="bg-white border border-[#E5E7EB] rounded-2xl shadow-soft hover:shadow-soft-md transition-shadow duration-300 overflow-hidden group p-6">
+                        <div className="bg-surface-1 border border-border rounded-xl shadow-soft hover:shadow-glow-sm transition-shadow duration-300 overflow-hidden group p-6">
                             <div className="flex justify-between items-start mb-4">
-                                <div className={`p-2.5 rounded-xl ${stat.bg} ${stat.color} transition-colors duration-300`}>
+                                <div className={`p-2.5 rounded-lg ${stat.bg} ${stat.color} transition-colors duration-300`}>
                                     <Icon className="w-[18px] h-[18px] transition-transform group-hover:scale-110" strokeWidth={1.5} />
                                 </div>
-                                <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-lg ${isBadChange ? 'text-red-600 bg-red-50 border border-red-100' : stat.change.startsWith('-') ? 'text-green-600 bg-emerald-50 border border-emerald-100' : 'text-emerald-600 bg-emerald-50 border border-emerald-100'
+                                <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-lg ${isBadChange ? 'text-destructive bg-destructive/10 border border-destructive/20' : stat.change.startsWith('-') ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20' : 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
                                     }`}>
                                     {stat.change}
                                 </span>
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-[#6B7280] mb-1 leading-relaxed">{stat.label}</p>
-                                <h3 className="text-2xl font-bold text-[#111827] tracking-tight flex items-baseline gap-1">
+                                <p className="text-sm font-medium text-text-tertiary mb-1 leading-relaxed">{stat.label}</p>
+                                <h3 className="text-2xl font-bold text-text-primary tracking-tight flex items-baseline gap-1">
                                     {stat.value}
                                 </h3>
                             </div>

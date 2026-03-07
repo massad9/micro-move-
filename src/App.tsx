@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Toaster } from 'sonner'
 import { WelcomePage } from '@/components/auth/WelcomePage'
 import { LoginForm } from '@/components/auth/LoginForm'
 import { HrOnboarding } from '@/components/auth/HrOnboarding'
@@ -105,9 +104,7 @@ function App() {
 
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-primary/20" dir="rtl">
-      {/* Toast Notifications Provider - Adjusted for RTL */}
-      <Toaster position="bottom-left" toastOptions={{ className: 'font-sans' }} closeButton />
+    <div className="min-h-screen bg-background text-foreground font-sans" dir="rtl">
 
       {currentRoute === 'welcome' && (
         <WelcomePage onSelectRole={handleSelectRole} onSetupWorkspace={() => setCurrentRoute('workspace-setup')} />
@@ -138,8 +135,8 @@ function App() {
                 ) : (
                   <div className="space-y-6 animate-fade-in-up">
                     <div>
-                      <h2 className="text-2xl font-bold text-[#111827] tracking-tight">نظرة عامة على المنظمة</h2>
-                      <p className="text-[#6B7280] mt-1 text-sm leading-relaxed">قياس نبض المنظمة وإرهاق الموظفين اللحظي.</p>
+                      <h2 className="text-xl font-semibold text-text-primary tracking-tight">نظرة عامة على المنظمة</h2>
+                      <p className="text-text-tertiary mt-1 text-sm">قياس نبض المنظمة وإرهاق الموظفين اللحظي.</p>
                     </div>
                     <StatCards />
                     <AnalyticsChart />
@@ -174,8 +171,8 @@ function App() {
       )}
 
       {!user && currentRoute === 'dashboard' && (
-        <div className="h-screen flex items-center justify-center bg-white">
-           <div className="w-8 h-8 rounded-full border-4 border-slate-200 border-t-primary animate-spin" />
+        <div className="h-screen flex items-center justify-center bg-background">
+           <div className="w-8 h-8 rounded-full border-2 border-surface-3 border-t-primary animate-spin" />
         </div>
       )}
     </div>

@@ -22,22 +22,22 @@ export const SocialProofSection: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+                    className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16"
                 >
                     {stats.map((stat, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: i * 0.1 }}
-                            className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm"
+                            transition={{ duration: 0.5, delay: i * 0.08 }}
+                            className="flex flex-col items-center gap-3 p-6 rounded-xl bg-surface-1 border border-border shadow-soft"
                         >
-                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                                <stat.icon className="w-6 h-6 text-primary" />
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                                <stat.icon className="w-5 h-5 text-primary" />
                             </div>
-                            <span className="text-3xl md:text-4xl font-black text-white">{stat.value}</span>
-                            <span className="text-sm text-slate-400 font-medium">{stat.label}</span>
+                            <span className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">{stat.value}</span>
+                            <span className="text-sm text-text-tertiary">{stat.label}</span>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -49,12 +49,12 @@ export const SocialProofSection: React.FC = () => {
                     transition={{ duration: 0.8, delay: 0.3 }}
                     className="text-center"
                 >
-                    <p className="text-sm text-slate-500 font-medium mb-8 tracking-wide">موثوق من قبل أفضل الشركات في المنطقة</p>
+                    <p className="text-sm text-text-quaternary font-medium mb-8 tracking-wide">موثوق من قبل أفضل الشركات في المنطقة</p>
                     <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
                         {companyNames.map((name, i) => (
                             <span
                                 key={i}
-                                className="text-lg md:text-xl font-bold text-white/20 hover:text-white/40 transition-colors duration-300 select-none"
+                                className="text-lg md:text-xl font-semibold text-text-quaternary hover:text-text-tertiary transition-colors duration-300 select-none"
                             >
                                 {name}
                             </span>

@@ -43,12 +43,12 @@ const FaqItem: React.FC<{
   index: number;
 }> = ({ question, answer, isOpen, onToggle, index }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
+    initial={{ opacity: 0, y: 16 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.4, delay: index * 0.05 }}
-    className={`border border-white/10 rounded-2xl overflow-hidden transition-colors ${
-      isOpen ? 'bg-white/[0.03]' : 'bg-transparent hover:bg-white/[0.02]'
+    className={`border border-border rounded-xl overflow-hidden transition-colors duration-200 ${
+      isOpen ? 'bg-surface-1' : 'bg-transparent hover:bg-surface-1/50'
     }`}
   >
     <button
@@ -56,15 +56,15 @@ const FaqItem: React.FC<{
       aria-expanded={isOpen}
       aria-controls={`faq-panel-${index}`}
       id={`faq-trigger-${index}`}
-      className="w-full flex items-center justify-between gap-4 p-6 text-right cursor-pointer"
+      className="w-full flex items-center justify-between gap-4 p-5 text-right cursor-pointer"
     >
-      <span className="text-white font-semibold text-base md:text-lg flex-1">{question}</span>
+      <span className="text-text-primary font-medium text-sm md:text-base flex-1">{question}</span>
       <motion.div
         animate={{ rotate: isOpen ? 180 : 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.2 }}
         className="flex-shrink-0"
       >
-        <ChevronDown className={`w-5 h-5 transition-colors ${isOpen ? 'text-primary' : 'text-slate-500'}`} />
+        <ChevronDown className={`w-4 h-4 transition-colors ${isOpen ? 'text-primary' : 'text-text-quaternary'}`} />
       </motion.div>
     </button>
     <AnimatePresence initial={false}>
@@ -79,7 +79,7 @@ const FaqItem: React.FC<{
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="overflow-hidden"
         >
-          <p className="px-6 pb-6 text-slate-400 leading-relaxed text-sm md:text-base">
+          <p className="px-5 pb-5 text-text-secondary leading-relaxed text-sm">
             {answer}
           </p>
         </motion.div>
@@ -101,18 +101,18 @@ export const FaqSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+          <span className="inline-block px-3 py-1 rounded-lg bg-surface-2 border border-border text-primary text-xs font-medium mb-6 tracking-wide uppercase">
             الأسئلة الشائعة
           </span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary mb-4">
             كل ما تحتاج معرفته
           </h2>
-          <p className="text-lg text-slate-400">
+          <p className="text-base text-text-secondary">
             إجابات على أكثر الأسئلة شيوعاً حول مايكرو موف
           </p>
         </motion.div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           {faqs.map((faq, index) => (
             <FaqItem
               key={index}

@@ -14,12 +14,10 @@ interface WelcomePageProps {
 
 export const WelcomePage: React.FC<WelcomePageProps> = ({ onSelectRole, onSetupWorkspace }) => {
     return (
-        <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col relative overflow-x-hidden font-sans selection:bg-primary/30">
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/20 blur-[120px] rounded-full mix-blend-screen" />
-                <div className="absolute bottom-[-20%] left-[-10%] w-[60%] h-[60%] bg-orange-400/10 blur-[150px] rounded-full mix-blend-screen" />
-                <div className="absolute top-[40%] left-[50%] translate-x-[-50%] w-[100%] h-[20%] bg-amber-500/5 blur-[100px] rounded-full mix-blend-screen" />
-                <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+        <div className="min-h-screen bg-background text-foreground flex flex-col relative overflow-x-hidden font-sans">
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <div className="absolute top-[-15%] right-[-5%] w-[40%] h-[40%] bg-primary/8 blur-[120px] rounded-full" />
+                <div className="absolute bottom-[-15%] left-[-5%] w-[35%] h-[35%] bg-violet-500/5 blur-[120px] rounded-full" />
             </div>
 
             <div className="relative z-10">
@@ -29,37 +27,25 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ onSelectRole, onSetupW
                 <HowItWorksSection />
                 <PricingSection />
                 <FaqSection />
-                <CtaSection onSelectRole={onSelectRole} onSetupWorkspace={onSetupWorkspace} />
+                <CtaSection onSetupWorkspace={onSetupWorkspace} />
             </div>
 
-            <footer className="relative z-10 border-t border-white/5 py-12 px-8">
+            <footer className="relative z-10 border-t border-border py-8 px-6">
                 <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                         <div className="flex items-center gap-2">
-                            <img src="/logo.png" alt="Micro Move" className="h-6 brightness-0 invert" />
+                            <img src="/logo.png" alt="Micro Move" className="h-5 brightness-0 invert opacity-60" />
                         </div>
 
-                        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
-                            <button onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">الأسعار</button>
-                            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors">الرئيسية</button>
+                        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-text-quaternary">
+                            <button onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-text-secondary transition-colors cursor-pointer">الأسعار</button>
+                            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-text-secondary transition-colors cursor-pointer">الرئيسية</button>
                         </div>
 
-                        <p className="text-sm text-slate-500">© ٢٠٢٥ مايكرو موف. جميع الحقوق محفوظة.</p>
+                        <p className="text-xs text-text-quaternary">© ٢٠٢٥ مايكرو موف. جميع الحقوق محفوظة.</p>
                     </div>
                 </div>
             </footer>
-
-            <style dangerouslySetInnerHTML={{
-                __html: `
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient {
-          animation: gradient 8s ease infinite;
-        }
-      `}} />
         </div>
     );
 };

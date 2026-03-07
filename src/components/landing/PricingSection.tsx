@@ -18,8 +18,6 @@ const plans = [
     ],
     cta: 'ابدأ مجاناً',
     popular: false,
-    gradient: 'from-slate-800 to-slate-900',
-    borderColor: 'border-white/10',
   },
   {
     name: 'احترافي',
@@ -38,8 +36,6 @@ const plans = [
     ],
     cta: 'ابدأ تجربة مجانية',
     popular: true,
-    gradient: 'from-primary/20 to-amber-600/20',
-    borderColor: 'border-primary/40',
   },
   {
     name: 'المؤسسات',
@@ -59,15 +55,13 @@ const plans = [
     ],
     cta: 'تواصل معنا',
     popular: false,
-    gradient: 'from-slate-800 to-slate-900',
-    borderColor: 'border-white/10',
   },
 ];
 
 export const PricingSection: React.FC = () => {
   return (
     <section id="pricing" className="relative py-24 md:py-32 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,67 +69,69 @@ export const PricingSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+          <span className="inline-block px-3 py-1 rounded-lg bg-surface-2 border border-border text-primary text-xs font-medium mb-6 tracking-wide uppercase">
             خطط الأسعار
           </span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary mb-4">
             خطة مناسبة لكل فريق
           </h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          <p className="text-base text-text-secondary max-w-2xl mx-auto">
             اختر الخطة التي تناسب حجم فريقك واحتياجاتك. يمكنك الترقية أو التغيير في أي وقت.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 items-stretch">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative flex flex-col rounded-3xl border ${plan.borderColor} bg-gradient-to-b ${plan.gradient} p-8 ${
-                plan.popular ? 'md:-mt-4 md:mb-0 md:pb-12 shadow-[0_0_60px_rgba(249,115,22,0.15)]' : ''
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className={`relative flex flex-col rounded-xl border p-6 lg:p-8 ${
+                plan.popular
+                  ? 'bg-surface-1 border-primary/30 shadow-glow-sm'
+                  : 'bg-surface-1 border-border'
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-gradient-to-r from-primary to-amber-500 rounded-full text-white text-sm font-bold shadow-[0_4px_20px_rgba(249,115,22,0.4)]">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary rounded-lg text-white text-xs font-semibold">
                   الأكثر شيوعاً
                 </div>
               )}
 
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${plan.popular ? 'bg-primary/20' : 'bg-white/5'}`}>
-                  <plan.icon className={`w-5 h-5 ${plan.popular ? 'text-primary' : 'text-slate-400'}`} />
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${plan.popular ? 'bg-primary/15' : 'bg-surface-2'}`}>
+                  <plan.icon className={`w-4 h-4 ${plan.popular ? 'text-primary' : 'text-text-tertiary'}`} />
                 </div>
-                <h3 className="text-xl font-bold text-white">{plan.name}</h3>
+                <h3 className="text-lg font-semibold text-text-primary">{plan.name}</h3>
               </div>
 
-              <p className="text-slate-300 text-sm mb-6">{plan.description}</p>
+              <p className="text-text-secondary text-sm mb-5">{plan.description}</p>
 
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-4xl md:text-5xl font-black text-white">{plan.price}</span>
-                {plan.period && <span className="text-slate-400 text-sm">{plan.period}</span>}
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-3xl md:text-4xl font-bold text-text-primary">{plan.price}</span>
+                {plan.period && <span className="text-text-tertiary text-sm">{plan.period}</span>}
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-2.5 mb-8 flex-1">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${plan.popular ? 'bg-primary/20' : 'bg-white/10'}`}>
-                      <Check className={`w-3 h-3 ${plan.popular ? 'text-primary' : 'text-slate-400'}`} />
+                  <li key={feature} className="flex items-start gap-2.5">
+                    <div className={`mt-0.5 w-4 h-4 rounded flex items-center justify-center flex-shrink-0 ${plan.popular ? 'bg-primary/15' : 'bg-surface-3'}`}>
+                      <Check className={`w-2.5 h-2.5 ${plan.popular ? 'text-primary' : 'text-text-tertiary'}`} />
                     </div>
-                    <span className="text-slate-300 text-sm">{feature}</span>
+                    <span className="text-text-secondary text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-colors cursor-pointer ${
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                className={`w-full py-3 rounded-lg font-semibold text-sm transition-colors cursor-pointer ${
                   plan.popular
-                    ? 'bg-primary text-white hover:bg-primary/90 shadow-[0_4px_20px_rgba(249,115,22,0.3)]'
-                    : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'
+                    ? 'bg-primary text-white hover:bg-primary/90'
+                    : 'bg-surface-2 text-text-primary border border-border hover:bg-surface-3'
                 }`}
               >
                 {plan.cta}

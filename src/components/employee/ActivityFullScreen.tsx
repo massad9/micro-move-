@@ -115,24 +115,24 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
         markActivityDone(activity.id)
 
         toast.custom(() => (
-            <div className="bg-slate-900 text-white rounded-2xl p-5 shadow-2xl border border-white/10 backdrop-blur-xl max-w-sm w-full font-sans" dir="rtl">
+            <div className="bg-surface-1 text-white rounded-2xl p-5 shadow-2xl border border-border backdrop-blur-xl max-w-sm w-full font-sans" dir="rtl">
                 <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-orange-500/30 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-violet-600 flex items-center justify-center shadow-lg shadow-primary/30 shrink-0">
                         <Trophy className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
-                        <h4 className="font-black text-base tracking-tight">أحسنت! اكتملت الحركة {emoji}</h4>
-                        <p className="text-slate-400 text-sm mt-1 font-medium">كسبت <span className="text-amber-400 font-black">+{activity.points}</span> نقطة</p>
+                        <h4 className="font-black text-base tracking-tight text-text-primary">أحسنت! اكتملت الحركة {emoji}</h4>
+                        <p className="text-text-tertiary text-sm mt-1 font-medium">كسبت <span className="text-primary font-black">+{activity.points}</span> نقطة</p>
                         <div className="flex items-center gap-2 mt-3">
                             <div className="h-1.5 flex-1 bg-white/10 rounded-full overflow-hidden">
                                 <motion.div
                                     initial={{ width: 0 }}
                                     animate={{ width: '100%' }}
                                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                                    className="h-full bg-gradient-to-l from-amber-400 to-orange-500 rounded-full"
+                                    className="h-full bg-gradient-to-l from-primary to-violet-500 rounded-full"
                                 />
                             </div>
-                            <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">مكتمل</span>
+                            <span className="text-xs font-bold text-primary uppercase tracking-wider">مكتمل</span>
                         </div>
                     </div>
                 </div>
@@ -256,7 +256,7 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                                         style={{ transformStyle: 'preserve-3d' }}
                                     >
                                         <div
-                                            className="w-40 h-40 md:w-48 md:h-48 rounded-[2.5rem] flex items-center justify-center relative"
+                                            className="w-40 h-40 md:w-48 md:h-48 rounded-3xl flex items-center justify-center relative"
                                             style={{
                                                 background: `linear-gradient(135deg, ${charMeta.accent}33, ${charMeta.accent}11)`,
                                                 border: `1px solid ${charMeta.accent}33`,
@@ -289,7 +289,7 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                                                     opacity: [0.3, 0.6, 0.3],
                                                 }}
                                                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                                                className="absolute -inset-4 rounded-[3rem]"
+                                                className="absolute -inset-4 rounded-3xl"
                                                 style={{
                                                     background: `radial-gradient(circle, ${charMeta.accent}22, transparent 70%)`,
                                                 }}

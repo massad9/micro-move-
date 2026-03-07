@@ -4,14 +4,14 @@ A wellness platform for corporate environments that encourages employees to enga
 
 ## Tech Stack
 
-- **Frontend**: React 19 + TypeScript
+- **Frontend**: React 18 + TypeScript
 - **Build Tool**: Vite 7
 - **Styling**: Tailwind CSS v4 (CSS-first `@theme` configuration)
 - **UI Components**: Radix UI primitives, Lucide React icons
 - **Animations**: Framer Motion
 - **State Management**: Zustand
 - **AI Integration**: OpenRouter API (Llama 3 / Google Gemma)
-- **Notifications**: Sonner
+- **Notifications**: Sonner (dark theme)
 
 ## Project Structure
 
@@ -33,7 +33,7 @@ src/
 │   └── ui/          # Reusable UI primitives
 ├── lib/             # Utility functions and OpenRouter API integration
 ├── store/           # Zustand global state (microMoveStore.ts)
-├── App.tsx          # Main app with hash-based routing
+├── App.tsx          # Main app with state-driven routing
 └── main.tsx         # Entry point
 ```
 
@@ -45,49 +45,64 @@ src/
 - RTL layout support (Arabic-language targeting)
 - Local fallback when AI is unavailable
 
-## Design System (Tailwind v4 CSS-first)
+## Design System — Linear-inspired Dark SaaS
 
-- **Configuration**: No `tailwind.config.js` — all tokens defined via `@theme` block in `src/index.css`
-- **Build pipeline**: `@tailwindcss/vite` plugin in `vite.config.ts` + `@tailwindcss/postcss` in `postcss.config.js`
-- **Dark mode**: `@custom-variant dark (&:where(.dark, .dark *))` — class-based
-- **Design tokens** (in `@theme`):
-  - Colors: semantic tokens (`--color-primary`, `--color-background`, etc.) + brand tokens (`--color-mm-charcoal`, `--color-mm-slate`)
-  - Typography: `--font-sans` / `--font-body` → IBM Plex Sans Arabic
-  - Shadows: `--shadow-soft`, `--shadow-soft-md`, `--shadow-soft-lg`, `--shadow-subtle`, `--shadow-inner-soft`
-  - Radii: `--radius-sm/md/lg/4xl/5xl` based on `--radius` CSS variable
-  - Animations: `--animate-accordion-down/up`, `--animate-blob`, `--animate-slow-spin`, `--animate-swing`, `--animate-fade-in-up`
-- **Component variants**: `cva` (class-variance-authority) in `src/lib/variants.ts` — `buttonVariants`, `badgeVariants`
+### Visual Identity
+- **Aesthetic**: Dark, minimal, premium — inspired by Linear.app
+- **Theme**: Dark-first (no light mode toggle). Deep black backgrounds with layered surfaces.
+- **Typography**: IBM Plex Sans Arabic. Confident headings, clean body text, muted secondary text.
+- **Border radius**: Tighter (`rounded-lg`, `rounded-xl`, `rounded-2xl`) — no bubbly shapes
+- **Motion**: Subtle fade-in-up transitions via Framer Motion, minimal micro-interactions
+
+### Color Tokens (in `@theme` block, `src/index.css`)
+- **Background**: `#09090b` (near-black)
+- **Surfaces**: `surface-1` (#111113), `surface-2` (#1c1c22), `surface-3` (#27272a) — layered elevation
+- **Text hierarchy**: `text-primary` (#fafafa), `text-secondary` (#a1a1aa), `text-tertiary` (#71717a), `text-quaternary` (#52525b)
+- **Primary accent**: Violet (#8b5cf6) — buttons, links, active states
+- **Energy accent**: Orange (#f97316) — activity-related, gamification
+- **Borders**: `rgba(255,255,255,0.06)` — very subtle white transparency
+- **Destructive**: Red (#ef4444) — error states, danger zones
+- **Activity categories**: emerald (physical), rose (mindfulness), violet (social), blue (hydration)
+
+### Shadows & Glows
+- `shadow-soft`, `shadow-soft-md`, `shadow-soft-lg` — dark shadows with higher opacity
+- `shadow-glow-sm`, `shadow-glow-md` — violet glow effects for emphasis
+- `shadow-glow-accent` — orange glow for activity contexts
+
+### Utility Classes
+- `.glass` — glass-morphism effect (blur + semi-transparent bg + thin border)
+- `.glass-subtle` — lighter glass effect
+- `.glow-primary` / `.glow-accent` — box-shadow glow effects
+- `.gradient-text` — white-to-gray text gradient
+- `.gradient-text-primary` — violet text gradient
+- `.gradient-text-accent` — orange text gradient
+- `.line-border-b` / `.line-border-t` — thin border lines
+
+### Component Architecture
+- **Variants**: `cva` (class-variance-authority) in `src/lib/variants.ts` — `buttonVariants` (7 variants: default/destructive/outline/secondary/ghost/link/accent), `badgeVariants` (6 variants: default/secondary/destructive/outline/success/warning)
 - **Class merging**: `cn()` utility via `clsx` + `tailwind-merge` in `src/lib/utils.ts`
-- **Dark mode overrides**: CSS variable reassignments in `.dark { }` block (not in @theme)
+- **Build pipeline**: `@tailwindcss/vite` plugin + `@tailwindcss/postcss` in PostCSS config
 
-## Admin Dashboard Design System
-
-- **Background**: #F9FAFB (light gray)
-- **Cards**: White (#FFFFFF) with 1px border (#E5E7EB)
-- **Primary headings**: #111827, **Secondary text**: #6B7280
-- **Sidebar**: Light theme with 1.5px vertical border, active items use #FFF7ED bg + orange accent
-- **Shadows**: Soft layered (`shadow-soft`, `shadow-soft-md`, `shadow-soft-lg`)
-- **Icons**: Consistent 1.5px stroke weight (strokeWidth={1.5})
-- **Search bars**: Inner shadow on focus (`focus:shadow-inner-soft`)
-- **AI button**: Mesh gradient background (multi-layer radial gradients)
-- **Heatmap cells**: `rounded` corners with `gap-1` spacing
-- **Empty states**: `PackageOpen` icon illustration with descriptive text
+### Component Styling Patterns
+- **Cards**: `bg-surface-1 border border-border rounded-xl`
+- **Inputs**: `bg-surface-2 border border-border text-text-primary placeholder:text-text-quaternary rounded-lg focus:border-primary/50`
+- **Buttons**: Use `buttonVariants` — primary (violet), accent (orange), secondary (surface-2), ghost, outline
+- **Nav items**: `text-text-tertiary hover:text-text-primary hover:bg-surface-2`, active: `bg-surface-2 text-text-primary`
+- **Admin sidebar**: `bg-surface-1`, active items with violet accent bar
+- **Bottom nav**: `bg-surface-1/90 backdrop-blur`, active: `text-primary`
 
 ## Accessibility & Performance
 
-- **prefers-reduced-motion**: Global CSS media query disables animations/transitions for users who prefer reduced motion
-- **Transitions**: All `transition-all` replaced with specific properties (`transition-colors`, `transition-shadow`, `transition-[width]`, etc.) for better performance
-- **Focus management**: `outline-none` replaced with `focus-visible:outline-none` across all inputs, preserving keyboard focus indicators
+- **prefers-reduced-motion**: Global CSS media query disables animations/transitions
+- **Focus management**: `focus-visible:outline-none` with ring states on interactive elements
 - **Icon buttons**: All icon-only buttons have `aria-label` attributes; decorative icons use `aria-hidden="true"`
-- **Form labels**: All form labels connected to inputs via `htmlFor`/`id` pairs (RewardsManager, AdminSettings, HrOnboarding, LoginForm, WorkspaceSetup)
-- **Search inputs**: Include `name` and `autocomplete="off"` attributes
-- **Touch targets**: All mobile interactive elements meet 44x44px minimum (BottomNav, EmployeeLayout buttons, ActivityFeed tabs)
-- **Cursor pointer**: All clickable elements show pointer cursor on hover
-- **Color contrast**: Body/descriptive text upgraded from slate-400 to slate-300 (dark bg) or slate-500 (light bg) for 4.5:1 ratio
-- **Font sizing**: Minimum text-xs (12px) for meaningful content; text-[10px] only for BottomNav mobile labels
-- **Skeleton loading**: EmployeeDashboardSkeleton and AdminOverviewSkeleton integrated for initial data loads
-- **SVG icons**: Category indicators use Lucide icons (PersonStanding, Brain, Coffee, Droplets) instead of emojis
-- **Keyboard accessibility**: Clickable divs (HrOnboarding toggles, Rewards cards) have role="button", tabIndex, and keyboard handlers
+- **Form labels**: Connected via `htmlFor`/`id` pairs
+- **Touch targets**: Mobile elements meet 44x44px minimum
+- **Cursor pointer**: All clickable elements show pointer cursor
+- **Color contrast**: Meets WCAG AA ratios in dark theme (text-secondary on background)
+- **Skeleton loading**: Dark skeleton states for initial loads
+- **SVG icons**: Lucide icons for categories (PersonStanding, Brain, Coffee, Droplets)
+- **Keyboard accessibility**: role="button", tabIndex, onKeyDown on non-native interactive elements
 
 ## Development
 

@@ -18,9 +18,8 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, setActiveTab })
 
     return (
         <div className="md:hidden fixed bottom-6 left-4 right-4 z-40 font-sans">
-            <div className="bg-white/90 backdrop-blur-xl border border-slate-200/50 rounded-3xl p-2 shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex justify-between items-center relative overflow-hidden">
-                {/* Active Indicator Background */}
-                <div className="absolute inset-y-2 w-[22%] bg-primary/10 rounded-2xl transition-[right] duration-300 ease-out"
+            <div className="bg-surface-1/90 backdrop-blur-xl border border-border rounded-2xl p-2 shadow-[0_8px_30px_rgba(0,0,0,0.3)] flex justify-between items-center relative overflow-hidden">
+                <div className="absolute inset-y-2 w-[22%] bg-primary/10 rounded-xl transition-[right] duration-300 ease-out"
                     style={{
                         right: `${navItems.findIndex(i => i.id === activeTab) * 25 + 1.5}%`
                     }}
@@ -40,7 +39,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, setActiveTab })
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                 className={cn(
                                     "p-1.5 rounded-xl transition-colors duration-300",
-                                    isActive ? "text-primary" : "text-slate-400 group-hover:text-slate-600"
+                                    isActive ? "text-primary" : "text-text-quaternary group-hover:text-text-secondary"
                                 )}
                             >
                                 <Icon className={cn("w-5 h-5", isActive && "fill-primary/20")} />
@@ -49,7 +48,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, setActiveTab })
                                 animate={{ opacity: isActive ? 1 : 0.7, y: isActive ? 0 : 2 }}
                                 className={cn(
                                     "text-[10px] font-bold mt-1 tracking-wide transition-colors duration-300",
-                                    isActive ? "text-primary" : "text-slate-500"
+                                    isActive ? "text-primary" : "text-text-quaternary"
                                 )}
                             >
                                 {item.label}

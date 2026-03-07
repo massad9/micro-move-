@@ -17,11 +17,11 @@ const categoryMeta: Record<
     string,
     { icon: React.ElementType, label: string, color: string, bgLight: string, bgDark: string, border: string }
 > = {
-    Stretch: { icon: ActivityIcon, label: "تمدد", color: "text-emerald-600", bgLight: "bg-emerald-500/10", bgDark: "bg-emerald-500/20", border: "border-emerald-200/50" },
-    social: { icon: ChevronLeft, label: "اجتماعي", color: "text-violet-600", bgLight: "bg-violet-500/10", bgDark: "bg-violet-500/20", border: "border-violet-200/50" },
-    hydration: { icon: Flame, label: "ترطيب", color: "text-blue-600", bgLight: "bg-blue-500/10", bgDark: "bg-blue-500/20", border: "border-blue-200/50" },
-    mindfulness: { icon: Sparkles, label: "تأمل", color: "text-rose-600", bgLight: "bg-rose-500/10", bgDark: "bg-rose-500/20", border: "border-rose-200/50" },
-    physical: { icon: ActivityIcon, label: "بدني", color: "text-emerald-600", bgLight: "bg-emerald-500/10", bgDark: "bg-emerald-500/20", border: "border-emerald-200/50" }
+    Stretch: { icon: ActivityIcon, label: "تمدد", color: "text-emerald-400", bgLight: "bg-emerald-500/15", bgDark: "bg-emerald-500/20", border: "border-emerald-500/20" },
+    social: { icon: ChevronLeft, label: "اجتماعي", color: "text-violet-400", bgLight: "bg-violet-500/15", bgDark: "bg-violet-500/20", border: "border-violet-500/20" },
+    hydration: { icon: Flame, label: "ترطيب", color: "text-blue-400", bgLight: "bg-blue-500/15", bgDark: "bg-blue-500/20", border: "border-blue-500/20" },
+    mindfulness: { icon: Sparkles, label: "تأمل", color: "text-rose-400", bgLight: "bg-rose-500/15", bgDark: "bg-rose-500/20", border: "border-rose-500/20" },
+    physical: { icon: ActivityIcon, label: "بدني", color: "text-emerald-400", bgLight: "bg-emerald-500/15", bgDark: "bg-emerald-500/20", border: "border-emerald-500/20" }
 }
 
 export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
@@ -59,14 +59,14 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
             markActivityDone(activity.id)
             setIsAnimating(false)
             toast.custom(() => (
-                <div className="bg-slate-900 text-white rounded-2xl p-5 shadow-2xl border border-white/10 backdrop-blur-xl max-w-sm w-full font-sans" dir="rtl">
+                <div className="bg-surface-1 text-white rounded-2xl p-5 shadow-2xl border border-border backdrop-blur-xl max-w-sm w-full font-sans" dir="rtl">
                     <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-orange-500/30 shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-violet-600 flex items-center justify-center shadow-lg shadow-primary/30 shrink-0">
                             <Trophy className="w-6 h-6 text-white" />
                         </div>
                         <div className="flex-1">
-                            <h4 className="font-black text-base tracking-tight">تم تسجيل النشاط {emoji}</h4>
-                            <p className="text-slate-400 text-sm mt-1 font-medium">كسبت <span className="text-amber-400 font-black">+{activity.points}</span> نقطة</p>
+                            <h4 className="font-black text-base tracking-tight text-text-primary">تم تسجيل النشاط {emoji}</h4>
+                            <p className="text-text-tertiary text-sm mt-1 font-medium">كسبت <span className="text-primary font-black">+{activity.points}</span> نقطة</p>
                         </div>
                     </div>
                 </div>
@@ -84,8 +84,8 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                 whileHover={!activity.isDone && !showVibeCheck ? { y: -4, scale: 1.01 } : {}}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 className={cn(
-                    "relative overflow-hidden rounded-[2rem] border p-6 shadow-sm backdrop-blur-xl transition-[color,background-color,border-color,box-shadow] h-full flex flex-col justify-between group font-sans bg-white text-right",
-                    activity.isDone && "bg-slate-50/50 border-slate-200/50 opacity-75 grayscale-[0.3]"
+                    "relative overflow-hidden rounded-xl border p-6 backdrop-blur-xl transition-[color,background-color,border-color,box-shadow] h-full flex flex-col justify-between group font-sans bg-surface-1 border-border text-right",
+                    activity.isDone && "bg-surface-1/50 border-border opacity-75 grayscale-[0.3]"
                 )}
             >
                 <Icon
@@ -103,10 +103,10 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="absolute inset-0 z-40 bg-white flex flex-col items-center justify-center p-6 text-center"
+                            className="absolute inset-0 z-40 bg-surface-1 flex flex-col items-center justify-center p-6 text-center"
                         >
-                            <h2 className="text-2xl font-black text-slate-900 tracking-tight mb-2">تحليل الشعور</h2>
-                            <p className="text-slate-500 text-sm mb-8">كيف تشعر بعد هذا النشاط؟</p>
+                            <h2 className="text-2xl font-black text-text-primary tracking-tight mb-2">تحليل الشعور</h2>
+                            <p className="text-text-tertiary text-sm mb-8">كيف تشعر بعد هذا النشاط؟</p>
 
                             <div className="flex flex-row-reverse items-center gap-4">
                                 {[
@@ -121,10 +121,10 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                         onClick={() => handleVibeCheck(mood.e)}
                                         className="flex flex-col items-center gap-2 group cursor-pointer"
                                     >
-                                        <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm flex items-center justify-center text-3xl group-hover:border-primary group-hover:bg-primary/5 transition-colors">
+                                        <div className="w-16 h-16 rounded-2xl bg-surface-2 border border-border shadow-sm flex items-center justify-center text-3xl group-hover:border-primary group-hover:bg-primary/10 transition-colors">
                                             {mood.e}
                                         </div>
-                                        <span className="text-xs font-bold text-slate-400 group-hover:text-primary transition-colors uppercase tracking-wider">{mood.label}</span>
+                                        <span className="text-xs font-bold text-text-quaternary group-hover:text-primary transition-colors uppercase tracking-wider">{mood.label}</span>
                                     </motion.button>
                                 ))}
                             </div>
@@ -135,7 +135,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                         <motion.div key="default" className="relative z-10 flex-1 flex flex-col h-full">
                             <div className="flex items-start justify-between gap-3 mb-4">
                                 <div className="flex items-center gap-4">
-                                    <div className={cn("grid h-14 w-14 place-items-center rounded-2xl flex-shrink-0 shadow-inner", meta.bgLight, meta.color, meta.border, "border")}>
+                                    <div className={cn("grid h-14 w-14 place-items-center rounded-2xl flex-shrink-0", meta.bgLight, meta.color, meta.border, "border")}>
                                         <Icon className="h-6 w-6" />
                                     </div>
                                     <div>
@@ -143,12 +143,12 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                             <span className={cn("px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-widest border", meta.bgLight, meta.color, meta.border)}>
                                                 {meta.label}
                                             </span>
-                                            <span className="flex items-center gap-1.5 text-slate-500 font-bold text-xs uppercase tracking-wider bg-slate-100 px-2 py-0.5 rounded-full transition-colors group-hover:bg-white group-hover:shadow-sm">
+                                            <span className="flex items-center gap-1.5 text-text-quaternary font-bold text-xs uppercase tracking-wider bg-surface-2 px-2 py-0.5 rounded-full transition-colors group-hover:bg-surface-3">
                                                 <Clock className="w-3 h-3" />
                                                 {activity.duration}
                                             </span>
                                         </div>
-                                        <h3 className={cn("text-xl font-black tracking-tight leading-tight transition-colors", activity.isDone ? 'text-slate-400 line-through' : 'text-slate-900')}>
+                                        <h3 className={cn("text-xl font-black tracking-tight leading-tight transition-colors", activity.isDone ? 'text-text-quaternary line-through' : 'text-text-primary')}>
                                             {activity.title}
                                         </h3>
                                     </div>
@@ -157,14 +157,14 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 
                             <div className="flex items-start justify-between gap-4 mb-6">
                                 <div className="space-y-3 flex-1">
-                                    <p className={cn("text-sm leading-relaxed font-medium", activity.isDone ? 'text-slate-500' : 'text-slate-500')}>
+                                    <p className={cn("text-sm leading-relaxed font-medium", activity.isDone ? 'text-text-quaternary' : 'text-text-tertiary')}>
                                         {activity.description}
                                     </p>
 
                                     {!activity.isDone && activity.aiBadge && (
-                                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-violet-500/10 border border-violet-300/30 rounded-full w-fit max-w-full shadow-[0_0_12px_rgba(139,92,246,0.15)]">
+                                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-violet-500/10 border border-violet-500/20 rounded-full w-fit max-w-full shadow-[0_0_12px_rgba(139,92,246,0.15)]">
                                             <span className="text-sm shrink-0">✨</span>
-                                            <span className="text-[11px] font-bold text-violet-600 truncate">يُقترح بفضل {activity.aiBadge.toLowerCase()}</span>
+                                            <span className="text-[11px] font-bold text-violet-400 truncate">يُقترح بفضل {activity.aiBadge.toLowerCase()}</span>
                                         </div>
                                     )}
                                 </div>
@@ -177,8 +177,8 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                     className={cn(
                                         "h-12 px-6 rounded-xl text-sm font-bold tracking-wide transition-[color,background-color,box-shadow,transform] duration-300",
                                         activity.isDone
-                                            ? "bg-slate-100 text-slate-400 shadow-none border border-slate-200 opacity-80"
-                                            : "bg-slate-900 hover:bg-slate-800 text-white shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_25px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 border-0"
+                                            ? "bg-surface-2 text-text-quaternary shadow-none border border-border opacity-80"
+                                            : "bg-primary hover:bg-primary/90 text-white shadow-[0_8px_20px_rgba(139,92,246,0.2)] hover:shadow-[0_12px_25px_rgba(139,92,246,0.3)] hover:-translate-y-0.5 border-0"
                                     )}
                                 >
                                     {activity.isDone ? (
@@ -198,11 +198,11 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
 
                                 <div className={cn(
                                     "flex flex-row-reverse items-center gap-2 px-4 py-2 rounded-xl transition-colors",
-                                    activity.isDone ? "bg-slate-100" : cn("bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]", meta.border, "border")
+                                    activity.isDone ? "bg-surface-2" : cn("bg-surface-2 border", meta.border)
                                 )}>
-                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">نقاط</span>
-                                    <span className={cn("text-lg font-black leading-none", activity.isDone ? 'text-slate-400' : 'text-slate-900')}>+{activity.points}</span>
-                                    <Trophy className={cn("w-4 h-4", activity.isDone ? 'text-slate-400' : 'text-amber-500')} />
+                                    <span className="text-xs font-bold text-text-quaternary uppercase tracking-widest mt-0.5">نقاط</span>
+                                    <span className={cn("text-lg font-black leading-none", activity.isDone ? 'text-text-quaternary' : 'text-text-primary')}>+{activity.points}</span>
+                                    <Trophy className={cn("w-4 h-4", activity.isDone ? 'text-text-quaternary' : 'text-primary')} />
                                 </div>
                             </div>
                         </motion.div>

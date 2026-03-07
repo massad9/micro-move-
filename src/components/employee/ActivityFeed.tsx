@@ -25,16 +25,16 @@ export const ActivityFeed: React.FC = () => {
             <HeroBanner />
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 mt-12">
-                <h2 className="text-2xl font-black tracking-tight text-slate-900 leading-none">واصل الحركة</h2>
+                <h2 className="text-2xl font-black tracking-tight text-text-primary leading-none">واصل الحركة</h2>
 
-                <div className="flex p-1 bg-white border border-slate-200 rounded-2xl shadow-sm overflow-x-auto no-scrollbar">
+                <div className="flex p-1 bg-surface-1 border border-border rounded-xl overflow-x-auto no-scrollbar">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setFilter(tab.id)}
-                            className={`px-5 py-3 text-sm font-bold rounded-xl whitespace-nowrap transition-colors cursor-pointer ${filter === tab.id
-                                ? 'bg-slate-900 text-white shadow-md'
-                                : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+                            className={`px-5 py-3 text-sm font-bold rounded-lg whitespace-nowrap transition-colors cursor-pointer ${filter === tab.id
+                                ? 'bg-primary text-white shadow-md'
+                                : 'text-text-tertiary hover:text-text-primary hover:bg-surface-2'
                                 }`}
                         >
                             {tab.label}
@@ -54,8 +54,8 @@ export const ActivityFeed: React.FC = () => {
                 </AnimatePresence>
 
                 {filteredActivities.length === 0 && (
-                    <div className="col-span-full py-16 text-center bg-white border border-dashed border-slate-300 rounded-[2rem]">
-                        <p className="text-slate-500 font-medium">لا توجد أنشطة في هذا التصنيف حالياً.</p>
+                    <div className="col-span-full py-16 text-center bg-surface-1 border border-dashed border-border rounded-xl">
+                        <p className="text-text-tertiary font-medium">لا توجد أنشطة في هذا التصنيف حالياً.</p>
                     </div>
                 )}
             </div>
