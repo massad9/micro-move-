@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Lock, Star, ChevronLeft } from 'lucide-react'
 import { useMicroMoveStore } from '@/store/microMoveStore'
@@ -7,15 +7,12 @@ export const PremiumActivityCard: React.FC = () => {
     const user = useMicroMoveStore(state => state.user)
     const activeChallenge = useMicroMoveStore(state => state.challenges[0])
     const pointsNeeded = 500
-    const [, setIsHovered] = useState(false)
 
     if (!activeChallenge) return null
 
     return (
         <Card
             className="bg-surface-1 border border-border overflow-hidden hover:border-primary/20 transition-[border-color,box-shadow] h-full flex flex-col group relative font-sans text-right"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
         >
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

@@ -4,7 +4,12 @@ import type { Activity } from '@/store/microMoveStore'
 import { useMicroMoveStore } from '@/store/microMoveStore'
 import { CheckCircle2, Clock, Sparkles, Trophy, Activity as ActivityIcon, ChevronLeft, Flame, Play } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import confetti from 'canvas-confetti'
+// Dynamic import for canvas-confetti (bundle-conditional optimization)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fireConfetti = async (opts?: Record<string, any>) => {
+    const confetti = (await import('canvas-confetti')).default
+    if (confetti) confetti(opts)
+}
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 import { ActivityFullScreen } from './ActivityFullScreen'
@@ -45,7 +50,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
     const handleVibeCheck = (emoji: string) => {
         setShowVibeCheck(false)
         setIsAnimating(true)
-        confetti({
+        fireConfetti({
             particleCount: 150,
             spread: 80,
             origin: { y: 0.6 },

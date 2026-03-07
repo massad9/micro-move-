@@ -4,7 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import type { Activity } from '@/store/microMoveStore'
 import { useMicroMoveStore } from '@/store/microMoveStore'
 import { parseDurationToSeconds } from '@/lib/parseDuration'
-import confetti from 'canvas-confetti'
+// Dynamic import for canvas-confetti (bundle-conditional optimization)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fireConfetti = async (opts?: Record<string, any>) => {
+    const confetti = (await import('canvas-confetti')).default
+    if (confetti) confetti(opts)
+}
 import { toast } from 'sonner'
 
 interface ActivityFullScreenProps {
@@ -36,7 +41,7 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
     const [isComplete, setIsComplete] = useState(false)
     const [showVibeCheck, setShowVibeCheck] = useState(false)
     const [encouragement, setEncouragement] = useState('')
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+    const mousePosRef = useRef({ x: 0, y: 0 })
     const containerRef = useRef<HTMLDivElement>(null)
 
     const charMeta = categoryCharacters[activity.category] || categoryCharacters.physical
@@ -77,15 +82,16 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!containerRef.current) return
         const rect = containerRef.current.getBoundingClientRect()
-        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2
-        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2
-        setMousePos({ x, y })
+        mousePosRef.current = {
+            x: ((e.clientX - rect.left) / rect.width - 0.5) * 2,
+            y: ((e.clientY - rect.top) / rect.height - 0.5) * 2,
+        }
     }
 
     const handleVibeCheck = (emoji: string) => {
         setShowVibeCheck(false)
 
-        confetti({
+        fireConfetti({
             particleCount: 200,
             spread: 100,
             origin: { y: 0.5 },
@@ -93,14 +99,14 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
         })
 
         setTimeout(() => {
-            confetti({
+            fireConfetti({
                 particleCount: 80,
                 angle: 60,
                 spread: 55,
                 origin: { x: 0 },
                 colors: ['#F97316', '#FBBF24']
             })
-            confetti({
+            fireConfetti({
                 particleCount: 80,
                 angle: 120,
                 spread: 55,
@@ -243,8 +249,8 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                                 >
                                     <motion.div
                                         animate={{
-                                            rotateY: mousePos.x * 15,
-                                            rotateX: -mousePos.y * 15,
+                                            rotateY: mousePosRef.current.x * 15,
+                                            rotateX: -mousePosRef.current.y * 15,
                                             y: [0, -12, 0],
                                         }}
                                         transition={{

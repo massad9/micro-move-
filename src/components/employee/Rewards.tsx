@@ -4,7 +4,12 @@ import { Gift, Lock, Star, Sparkles, Coffee, Plane, Heart, Clock } from 'lucide-
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useMicroMoveStore, type Reward } from '@/store/microMoveStore'
-import confetti from 'canvas-confetti'
+// Dynamic import for canvas-confetti (bundle-conditional optimization)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fireConfetti = async (opts?: Record<string, any>) => {
+    const confetti = (await import('canvas-confetti')).default
+    if (confetti) confetti(opts)
+}
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 
@@ -44,7 +49,7 @@ export const Rewards: React.FC = () => {
 
             const coupon = generateCoupon()
 
-            confetti({
+            fireConfetti({
                 particleCount: 200,
                 spread: 100,
                 origin: { y: 0.5 },

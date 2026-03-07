@@ -4,21 +4,25 @@ import { useMicroMoveStore } from '@/store/microMoveStore'
 import { AnimatePresence } from 'framer-motion'
 import { HeroBanner } from './HeroBanner'
 
+// Hoisted outside component to avoid recreating on every render
+const TABS = [
+    { id: 'all', label: 'الكل' },
+    { id: 'physical', label: 'بدني' },
+    { id: 'mindfulness', label: 'تأمل' },
+    { id: 'social', label: 'اجتماعي' },
+    { id: 'hydration', label: 'ترطيب' }
+] as const
+
 export const ActivityFeed: React.FC = () => {
     const activities = useMicroMoveStore(state => state.activities)
     const [filter, setFilter] = useState<string>('all')
 
-    const tabs = [
-        { id: 'all', label: 'الكل' },
-        { id: 'physical', label: 'بدني' },
-        { id: 'mindfulness', label: 'تأمل' },
-        { id: 'social', label: 'اجتماعي' },
-        { id: 'hydration', label: 'ترطيب' }
-    ]
-
     const filteredActivities = activities.filter(a => filter === 'all' || a.category === filter)
-    const activeTasks = filteredActivities.filter(a => !a.isDone)
-    const doneTasks = filteredActivities.filter(a => a.isDone)
+    // Single pass to split into active/done (combined array iterations optimization)
+    const [activeTasks, doneTasks] = filteredActivities.reduce<[typeof filteredActivities, typeof filteredActivities]>(
+        ([active, done], a) => a.isDone ? [active, [...done, a]] : [[...active, a], done],
+        [[], []]
+    )
 
     return (
         <div className="pb-20 font-sans">
@@ -28,7 +32,7 @@ export const ActivityFeed: React.FC = () => {
                 <h2 className="text-2xl font-black tracking-tight text-slate-900 leading-none">واصل الحركة</h2>
 
                 <div className="flex p-1 bg-white border border-slate-200 rounded-2xl shadow-sm overflow-x-auto no-scrollbar">
-                    {tabs.map((tab) => (
+                {TABS.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setFilter(tab.id)}

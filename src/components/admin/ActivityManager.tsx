@@ -4,7 +4,12 @@ import { Button } from '@/components/ui/button'
 import { useMicroMoveStore } from '@/store/microMoveStore'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
-import confetti from 'canvas-confetti'
+// Dynamic import for canvas-confetti (bundle-conditional optimization)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fireConfetti = async (opts?: Record<string, any>) => {
+    const confetti = (await import('canvas-confetti')).default
+    if (confetti) confetti(opts)
+}
 
 export const ActivityManager: React.FC = () => {
     const activities = useMicroMoveStore(state => state.activities)
@@ -23,7 +28,7 @@ export const ActivityManager: React.FC = () => {
         setIsGenerating(true)
         setTimeout(() => {
             setIsGenerating(false)
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#F97316', '#14B8A6'] })
+            fireConfetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#F97316', '#14B8A6'] })
             toast.success('تمت إضافة حركات ذكية بناءً على ملاحظات مكتبية مريحة.', {
                 icon: '✨'
             })
