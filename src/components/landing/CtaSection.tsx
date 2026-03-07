@@ -7,7 +7,7 @@ interface CtaSectionProps {
   onSetupWorkspace?: () => void;
 }
 
-export const CtaSection: React.FC<CtaSectionProps> = ({ onSelectRole, onSetupWorkspace }) => {
+export const CtaSection: React.FC<CtaSectionProps> = ({ onSetupWorkspace }) => {
   return (
     <section className="relative py-24 md:py-32 px-4 overflow-hidden">
       <div className="absolute inset-0">

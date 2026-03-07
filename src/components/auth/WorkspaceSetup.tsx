@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, Users, Mail, Lock, ArrowRight, ChevronLeft, Loader2, Activity } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Building2, Users, Mail, Lock, ArrowRight, ChevronLeft, Loader2 } from 'lucide-react';
 import { useMicroMoveStore } from '@/store/microMoveStore';
 import { toast } from 'sonner';
 
