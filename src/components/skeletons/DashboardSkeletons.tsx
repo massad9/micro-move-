@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export const EmployeeDashboardSkeleton = () => {
     return (
-        <div className="space-y-8 animate-in fade-in duration-500">
+        <div className="space-y-8 animate-fade-in-up">
             {/* Greeting Skeleton */}
             <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col md:flex-row items-start md:items-center gap-6">
                 <Skeleton className="w-24 h-24 rounded-full" />
@@ -42,7 +42,7 @@ export const EmployeeDashboardSkeleton = () => {
 
 export const AdminOverviewSkeleton = () => {
     return (
-        <div className="animate-in fade-in duration-500 w-full mb-12">
+        <div className="animate-fade-in-up w-full mb-12">
             {/* Header Skeleton */}
             <div className="mb-8 space-y-3">
                 <Skeleton className="h-10 w-80" />

@@ -136,7 +136,7 @@ function App() {
                 adminLoading ? (
                   <AdminOverviewSkeleton />
                 ) : (
-                  <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="space-y-6 animate-fade-in-up">
                     <div>
                       <h2 className="text-2xl font-bold text-[#111827] tracking-tight">نظرة عامة على المنظمة</h2>
                       <p className="text-[#6B7280] mt-1 text-sm leading-relaxed">قياس نبض المنظمة وإرهاق الموظفين اللحظي.</p>
@@ -147,22 +147,22 @@ function App() {
                 )
               )}
               {activeAdminTab === 'activities' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="animate-fade-in-up">
                   <ActivityManager />
                 </div>
               )}
               {activeAdminTab === 'employees' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 h-[calc(100vh-8rem)]">
+                <div className="animate-fade-in-up h-[calc(100vh-8rem)]">
                   <EmployeeList />
                 </div>
               )}
               {activeAdminTab === 'rewards' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="animate-fade-in-up">
                   <RewardsManager />
                 </div>
               )}
                {activeAdminTab === 'settings' && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 h-[calc(100vh-8rem)]">
+                <div className="animate-fade-in-up h-[calc(100vh-8rem)]">
                   <AdminSettings />
                 </div>
               )}

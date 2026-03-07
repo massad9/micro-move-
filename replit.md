@@ -6,7 +6,7 @@ A wellness platform for corporate environments that encourages employees to enga
 
 - **Frontend**: React 19 + TypeScript
 - **Build Tool**: Vite 7
-- **Styling**: Tailwind CSS + PostCSS
+- **Styling**: Tailwind CSS v4 (CSS-first `@theme` configuration)
 - **UI Components**: Radix UI primitives, Lucide React icons
 - **Animations**: Framer Motion
 - **State Management**: Zustand
@@ -44,6 +44,21 @@ src/
 - AI-generated wellness activities via OpenRouter API
 - RTL layout support (Arabic-language targeting)
 - Local fallback when AI is unavailable
+
+## Design System (Tailwind v4 CSS-first)
+
+- **Configuration**: No `tailwind.config.js` — all tokens defined via `@theme` block in `src/index.css`
+- **Build pipeline**: `@tailwindcss/vite` plugin in `vite.config.ts` + `@tailwindcss/postcss` in `postcss.config.js`
+- **Dark mode**: `@custom-variant dark (&:where(.dark, .dark *))` — class-based
+- **Design tokens** (in `@theme`):
+  - Colors: semantic tokens (`--color-primary`, `--color-background`, etc.) + brand tokens (`--color-mm-charcoal`, `--color-mm-slate`)
+  - Typography: `--font-sans` / `--font-body` → IBM Plex Sans Arabic
+  - Shadows: `--shadow-soft`, `--shadow-soft-md`, `--shadow-soft-lg`, `--shadow-subtle`, `--shadow-inner-soft`
+  - Radii: `--radius-sm/md/lg/4xl/5xl` based on `--radius` CSS variable
+  - Animations: `--animate-accordion-down/up`, `--animate-blob`, `--animate-slow-spin`, `--animate-swing`, `--animate-fade-in-up`
+- **Component variants**: `cva` (class-variance-authority) in `src/lib/variants.ts` — `buttonVariants`, `badgeVariants`
+- **Class merging**: `cn()` utility via `clsx` + `tailwind-merge` in `src/lib/utils.ts`
+- **Dark mode overrides**: CSS variable reassignments in `.dark { }` block (not in @theme)
 
 ## Admin Dashboard Design System
 
