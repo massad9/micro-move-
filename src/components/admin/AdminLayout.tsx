@@ -1,6 +1,5 @@
 import React from 'react'
 import { LayoutDashboard, Users, Zap, Gift, Sliders, LogOut, Menu, Search, Bell } from 'lucide-react'
-import { motion } from 'framer-motion'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 
@@ -22,15 +21,14 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
     ]
 
     return (
-        <div className="flex h-screen bg-background overflow-hidden selection:bg-primary/20">
-            {/* Sidebar */}
-            <aside className="hidden lg:flex flex-col w-64 bg-card border-l border-border/60 z-30 font-sans">
-                <div className="flex items-center gap-3 h-16 px-6 border-b border-border/40">
-                    <img src="/logo.png" alt="Micro Move" className="h-6 brightness-0 invert" />
-                    <span className="font-bold text-xs tracking-[0.2em] text-muted-foreground uppercase">نظام الإدارة</span>
+        <div className="flex h-screen bg-[#F9FAFB] overflow-hidden">
+            <aside className="hidden lg:flex flex-col w-64 bg-white border-l-[1.5px] border-[#E5E7EB] p-6 z-10 font-sans">
+                <div className="flex items-center gap-3 mb-10 px-2">
+                    <img src="/logo.png" alt="Micro Move" className="h-8" />
+                    <span className="block font-semibold text-[10px] tracking-wider text-primary uppercase">بوابة الإدارة</span>
                 </div>
 
-                <div className="flex-1 px-3 py-6 space-y-1 overflow-y-auto no-scrollbar">
+                <nav className="flex-1 space-y-1">
                     {navItems.map((item) => {
                         const Icon = item.icon
                         const isActive = activeAdminTab === item.id
@@ -38,91 +36,80 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                             <button
                                 key={item.id}
                                 onClick={() => setActiveAdminTab(item.id)}
-                                className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium group ${isActive
-                                    ? 'bg-primary/10 text-primary border border-primary/20'
-                                    : 'text-muted-foreground hover:bg-secondary hover:text-foreground border border-transparent'
+                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-semibold ${isActive
+                                    ? 'bg-[#FFF7ED] text-primary border-r-[3px] border-primary'
+                                    : 'text-[#6B7280] hover:bg-[#F9FAFB] hover:text-[#111827] border-r-[3px] border-transparent'
                                     }`}
                             >
-                                <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-primary' : 'group-hover:text-foreground'}`} strokeWidth={2} />
+                                <Icon className={`w-[18px] h-[18px] ${isActive ? 'text-primary' : 'text-[#9CA3AF]'}`} strokeWidth={1.5} />
                                 <span>{item.label}</span>
-                                {isActive && (
-                                    <motion.div 
-                                        layoutId="active-pill"
-                                        className="mr-auto w-1 h-4 bg-primary rounded-full"
-                                    />
-                                )}
                             </button>
                         )
                     })}
-                </div>
+                </nav>
 
-                <div className="p-4 border-t border-border/40 space-y-4">
-                    <div className="p-3 bg-secondary/50 rounded-xl border border-border/40 hover:bg-secondary transition-colors cursor-pointer group">
+                <div className="mt-auto pt-6 space-y-4 border-t border-[#E5E7EB]">
+                    <button
+                        onClick={onLogout}
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B7280] hover:bg-red-50 hover:text-red-500 transition-all duration-200 group"
+                    >
+                        <LogOut className="w-[18px] h-[18px] group-hover:text-red-500 transition-colors" strokeWidth={1.5} />
+                        <span className="font-semibold text-sm">تسجيل الخروج</span>
+                    </button>
+                    <div className="p-3 bg-[#F9FAFB] rounded-xl border border-[#E5E7EB]">
                         <div className="flex items-center gap-3">
-                            <Avatar className="w-8 h-8 border border-white/5 rounded-full overflow-hidden">
+                            <Avatar className="w-10 h-10 border border-[#E5E7EB] rounded-lg">
                                 <AvatarImage src="https://i.pravatar.cc/150?u=admin" />
-                                <AvatarFallback className="bg-primary/20 text-primary text-[10px]">مد</AvatarFallback>
+                                <AvatarFallback className="bg-primary/10 text-primary">مد</AvatarFallback>
                             </Avatar>
                             <div className="flex-1 min-w-0">
-                                <p className="text-xs font-bold text-foreground truncate group-hover:text-primary transition-colors">سارة الفهد</p>
-                                <p className="text-[10px] text-muted-foreground uppercase tracking-widest">المشرف</p>
+                                <p className="text-sm font-bold text-[#111827] leading-none">سارة الفهد</p>
+                                <p className="text-xs text-[#6B7280] mt-1">مدير النظام</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <button
-                        onClick={onLogout}
-                        className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:bg-red-500/10 hover:text-red-400 transition-all duration-200 text-sm font-medium"
-                    >
-                        <LogOut className="w-4 h-4" strokeWidth={2} />
-                        <span>تسجيل الخروج</span>
-                    </button>
                 </div>
             </aside>
 
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
-                <header className="h-16 border-b border-border/40 flex items-center justify-between px-8 bg-background/50 backdrop-blur-xl z-20 sticky top-0">
+            <div className="flex-1 flex flex-col min-w-0 overflow-hidden font-sans">
+                <header className="h-16 bg-white border-b border-[#E5E7EB] flex items-center justify-between px-8 shrink-0 relative z-20">
                     <div className="flex items-center gap-4 flex-1">
-                        <button className="lg:hidden p-2 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-all">
-                            <Menu className="w-5 h-5" strokeWidth={2} />
+                        <button className="lg:hidden p-2 text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-all duration-200">
+                            <Menu className="w-5 h-5" strokeWidth={1.5} />
                         </button>
-                        
                         <div className="relative max-w-md w-full hidden md:block group">
-                            <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" strokeWidth={2} />
+                            <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] group-focus-within:text-primary transition-colors" strokeWidth={1.5} />
                             <input
                                 type="text"
-                                placeholder="ابحث عن مهام، موظفين..."
-                                className="w-full pr-10 pl-4 py-2 bg-secondary/40 border border-border/40 rounded-lg text-sm text-foreground placeholder:text-muted-foreground/60 focus:bg-background focus:border-primary/50 focus:ring-4 focus:ring-primary/5 focus:outline-none transition-all duration-300 text-right"
+                                placeholder="ابحث عن موظفين، أنشطة..."
+                                className="w-full pr-10 pl-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm text-[#111827] placeholder-[#9CA3AF] focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft focus:outline-none transition-all duration-200 text-right"
                             />
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1">
-                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:bg-secondary hover:text-foreground rounded-lg h-9 w-9">
-                                <Bell className="w-4 h-4" />
-                            </Button>
-                        </div>
-                        <div className="h-4 w-[1px] bg-border/60 mx-2 hidden sm:block" />
+                    <div className="flex items-center gap-6">
+                        <Button variant="ghost" size="icon" className="relative text-[#6B7280] rounded-full hover:bg-[#F9FAFB] transition-all duration-200 h-9 w-9">
+                            <Bell className="w-5 h-5" strokeWidth={1.5} />
+                            <span className="absolute top-1.5 left-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
+                        </Button>
+                        <div className="h-6 w-[1px] bg-[#E5E7EB] mx-2 hidden sm:block" />
                         <div className="flex items-center gap-3">
                             <div className="text-right hidden sm:block">
-                                <p className="text-xs font-bold text-foreground">سارة الفهد</p>
-                                <div className="flex items-center justify-end gap-1 mt-0.5">
-                                    <div className="w-1 h-1 bg-green-500 rounded-full animate-pulse" />
-                                    <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">نشط</span>
-                                </div>
+                                <p className="text-sm font-bold text-[#111827] leading-none">سارة الفهد</p>
+                                <p className="text-xs text-[#6B7280] mt-1">مدير النظام</p>
                             </div>
+                            <Avatar className="w-9 h-9 cursor-pointer hover:opacity-80 transition-opacity">
+                                <AvatarImage src="https://i.pravatar.cc/150?u=sara-admin" />
+                                <AvatarFallback className="bg-primary/10 text-primary font-medium text-sm">سف</AvatarFallback>
+                            </Avatar>
                         </div>
                     </div>
                 </header>
 
-                <main className="flex-1 overflow-y-auto no-scrollbar relative">
-                    <div className="max-w-7xl mx-auto p-8 space-y-8 animate-fade-up">
+                <main className="flex-1 overflow-y-auto p-8 no-scrollbar bg-[#F9FAFB] relative">
+                    <div className="relative z-10 max-w-7xl mx-auto">
                         {children}
                     </div>
-                    {/* Background Glow */}
-                    <div className="absolute top-0 right-0 w-full h-96 bg-primary/5 blur-[120px] pointer-events-none -z-10" />
                 </main>
             </div>
         </div>

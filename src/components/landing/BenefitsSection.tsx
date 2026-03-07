@@ -49,41 +49,41 @@ const benefits = [
 
 export const BenefitsSection: React.FC = () => {
     return (
-        <section className="relative z-10 py-32 px-6">
-            <div className="max-w-7xl mx-auto">
+        <section className="relative z-10 py-24 px-4">
+            <div className="max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col gap-6 mb-20"
+                    className="text-center mb-16"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-primary/10 rounded-full border border-primary/20 w-fit">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-6">
                         المزايا والخصائص
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-                        مميزات صُممت لنظام <br /> عمل عصري
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
+                        مميزات صُممت لبيئة عملك
                     </h2>
-                    <p className="text-xl text-muted-foreground max-w-2xl font-medium opacity-80">
+                    <p className="text-lg text-slate-400 max-w-2xl mx-auto font-light">
                         نظام متكامل يجمع بين ذكاء التنبيهات ومتعة التحديات، ليجعل من بيئة العمل مساحة أكثر حيوية، صحة، وكفاءة.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {benefits.map((benefit, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 15 }}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.08 }}
-                            className="linear-card p-10 group hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
+                            className="group relative p-8 rounded-3xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/[0.1] transition-all duration-300"
                         >
-                            <div className={`w-12 h-12 rounded-xl bg-secondary border border-border/40 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
-                                <benefit.icon className={`w-5 h-5 ${benefit.iconColor}`} />
+                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                <benefit.icon className={`w-7 h-7 ${benefit.iconColor}`} />
                             </div>
-                            <h3 className="text-lg font-bold text-foreground mb-4 tracking-tight">{benefit.title}</h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed font-medium opacity-80">{benefit.description}</p>
+                            <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
+                            <p className="text-slate-400 leading-relaxed">{benefit.description}</p>
                         </motion.div>
                     ))}
                 </div>

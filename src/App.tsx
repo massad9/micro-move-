@@ -93,7 +93,7 @@ function App() {
 
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20" dir="rtl">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-primary/20" dir="rtl">
       {/* Toast Notifications Provider - Adjusted for RTL */}
       <Toaster position="bottom-left" toastOptions={{ className: 'font-sans' }} closeButton />
 

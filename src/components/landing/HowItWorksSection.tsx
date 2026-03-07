@@ -39,49 +39,63 @@ const steps = [
 
 export const HowItWorksSection: React.FC = () => {
     return (
-        <section className="relative z-10 py-32 px-6">
-            <div className="max-w-7xl mx-auto">
+        <section className="relative z-10 py-24 px-4">
+            <div className="max-w-5xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col gap-6 mb-24"
+                    className="text-center mb-20"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-primary/10 rounded-full border border-primary/20 w-fit">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-6">
                         كيف يعمل
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-                        أربع خطوات نحو فريق <br /> أكثر صحة
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
+                        أربع خطوات نحو فريق أكثر صحة
                     </h2>
-                    <p className="text-xl text-muted-foreground max-w-2xl font-medium opacity-80">
+                    <p className="text-lg text-slate-400 max-w-2xl mx-auto font-light">
                         من الإعداد إلى النتائج في أقل من ١٠ دقائق.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-                    {/* Connection Line */}
-                    <div className="absolute top-1/2 left-0 right-0 h-px bg-border/10 -translate-y-1/2 hidden lg:block" />
-                    
-                    {steps.map((step, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: i * 0.15 }}
-                            className="linear-card p-10 relative z-10 group hover:border-primary/20 transition-all duration-500"
-                        >
-                            <div className="flex items-center justify-between mb-8">
-                                <div className="w-12 h-12 rounded-xl bg-secondary border border-border/40 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                    <step.icon className="w-5 h-5 text-primary" />
+                <div className="relative">
+                    <div className="absolute top-0 bottom-0 right-[39px] md:right-auto md:left-1/2 md:-translate-x-px w-[2px] bg-gradient-to-b from-white/10 via-white/5 to-transparent hidden md:block" />
+
+                    <div className="flex flex-col gap-16">
+                        {steps.map((step, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: i % 2 === 0 ? 40 : -40 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: i * 0.15 }}
+                                className={`relative flex flex-col md:flex-row items-center gap-8 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                            >
+                                <div className="flex-1 w-full">
+                                    <div className="p-8 rounded-3xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm hover:bg-white/[0.05] transition-colors duration-300">
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div
+                                                className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center`}
+                                                style={{ boxShadow: `0 0 30px ${step.glowColor}` }}
+                                            >
+                                                <step.icon className="w-6 h-6 text-white" />
+                                            </div>
+                                            <span className="text-3xl font-black text-white/10">{step.number}</span>
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-white mb-3">{step.title}</h3>
+                                        <p className="text-slate-400 leading-relaxed text-[1.05rem]">{step.description}</p>
+                                    </div>
                                 </div>
-                                <span className="text-3xl font-bold text-foreground/5 tracking-tighter group-hover:text-primary/10 transition-colors duration-500">{step.number}</span>
-                            </div>
-                            <h3 className="text-lg font-bold text-foreground mb-4 tracking-tight">{step.title}</h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed font-medium opacity-80">{step.description}</p>
-                        </motion.div>
-                    ))}
+
+                                <div className="hidden md:flex w-10 h-10 rounded-full bg-[#0A0A0A] border-2 border-white/10 items-center justify-center shrink-0 z-10">
+                                    <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${step.color}`} />
+                                </div>
+
+                                <div className="flex-1 hidden md:block" />
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

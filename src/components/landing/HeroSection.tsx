@@ -11,138 +11,144 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectRole, onSetupWorkspace }) => {
     return (
         <section className="relative z-10 w-full">
-            <header className="px-8 py-8 w-full flex justify-between items-center max-w-7xl mx-auto">
+            <header className="px-8 py-6 w-full flex justify-between items-center max-w-7xl mx-auto">
                 <div className="flex items-center gap-2">
-                    <img src="/logo.png" alt="Micro Move" className="h-7 brightness-0 invert" />
+                    <img src="/logo.png" alt="Micro Move" className="h-8 brightness-0 invert" />
                 </div>
-                <div className="flex gap-4 items-center">
-                    <button
-                        className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+                <div className="flex gap-3 items-center">
+                    <Button
+                        variant="ghost"
+                        className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2"
                         onClick={() => onSelectRole('admin')}
                     >
-                        دخول الإدارة
-                    </button>
-                    <button
-                        className="px-5 py-2.5 rounded-lg bg-secondary border border-border/40 text-[11px] font-bold uppercase tracking-widest text-foreground hover:bg-secondary/80 transition-all"
+                        <Building2 className="w-5 h-5" />
+                        دخول للإدارة
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        className="text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2"
                         onClick={() => onSelectRole('employee')}
                     >
+                        <UserCircle className="w-5 h-5" />
                         دخول الموظفين
-                    </button>
+                    </Button>
                 </div>
             </header>
 
-            <main className="flex flex-col items-center justify-center px-6 pt-16 pb-32 max-w-7xl mx-auto w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center w-full">
+            <main className="flex flex-col items-center justify-center px-4 pt-12 pb-24 max-w-6xl mx-auto w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-7 flex flex-col gap-10"
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.15 }}
+                        className="flex flex-col gap-8"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-primary/10 rounded-full border border-primary/20 w-fit">
-                            <Sparkles className="w-3 h-3" />
-                            مستقبل بيئة العمل الصحية
-                        </div>
-                        
-                        <h1 className="text-6xl md:text-8xl font-bold tracking-tight leading-[1.05] text-foreground">
-                            استثمر في <br />
-                            <span className="text-secondary-foreground">صحة فريقك</span>
-                        </h1>
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-6xl md:text-[5.5rem] font-sans font-black tracking-tighter leading-[1.05] text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70 drop-shadow-sm"
+                        >
+                            صحة فريقك هي محرك
+                            إنتاجيتك..{' '}
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ff7a00] via-[#ffb938] to-[#ff7a00] bg-[length:200%_auto] animate-gradient block mt-2 drop-shadow-lg">
+                                استثمر فيها كل يوم
+                            </span>
+                        </motion.h1>
 
-                        <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl font-medium opacity-80">
-                            منصة ذكية تحول الفواصل المكتبية إلى تجارب تنشيطية ملهمة. عزز إنتاجية فريقك وقلل الإرهاق عبر حركات بسيطة ومؤثرة.
-                        </p>
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-lg md:text-2xl text-slate-300/90 leading-relaxed max-w-xl font-light"
+                        >
+                            نوفر منصة متكاملة للحد من أضرار الجلوس المكتبي. عبر فواصل قصيرة وممتعة، نضمن لك فريقاً أكثر نشاطاً، أقل توتراً، وبولاء وسعادة أكبر لشركتك.
+                        </motion.p>
 
-                        <div className="flex flex-col sm:flex-row gap-6 pt-4">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="flex flex-col sm:flex-row gap-5 pt-4"
+                        >
                             <motion.button
-                                whileHover={{ scale: 1.02 }}
+                                whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => onSetupWorkspace?.()}
-                                className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-primary text-primary-foreground font-bold rounded-xl shadow-2xl shadow-primary/20 hover:shadow-primary/30 transition-all text-sm uppercase tracking-widest"
+                                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold text-lg rounded-full overflow-hidden transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] ring-1 ring-white/50"
                             >
-                                <Building2 className="w-5 h-5" />
-                                <span>ابدأ تجربة شركتك</span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-white via-slate-100 to-slate-200 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <Building2 className="w-6 h-6 relative z-10" />
+                                <span className="relative z-10">إنشاء مساحة عمل الشركة</span>
+                                <Sparkles className="w-5 h-5 text-primary relative z-10 animate-pulse" />
                             </motion.button>
 
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-secondary/50 border border-border/40 text-foreground font-bold rounded-xl hover:bg-secondary transition-all text-sm uppercase tracking-widest"
+                                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-lg rounded-full hover:bg-white/10 hover:border-white/30 transition-all shadow-lg"
                             >
-                                <span>خطط الأسعار</span>
+                                <span>تعرّف على الأسعار</span>
                             </motion.button>
-                        </div>
-                        
-                        <div className="flex items-center gap-8 pt-8 border-t border-border/20">
-                            <div className="flex flex-col">
-                                <span className="text-2xl font-bold text-foreground">+٥٠٠</span>
-                                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">شركة مستفيدة</span>
-                            </div>
-                            <div className="w-[1px] h-10 bg-border/20" />
-                            <div className="flex flex-col">
-                                <span className="text-2xl font-bold text-foreground">٩٨٪</span>
-                                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">رضا الموظفين</span>
-                            </div>
-                        </div>
+                        </motion.div>
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="lg:col-span-5 relative flex items-center justify-center"
+                        transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative lg:h-[600px] flex items-center justify-center perspective-[2000px]"
                     >
-                        <div className="relative w-full max-w-lg">
-                            {/* Dashboard Mockup Component */}
+                        <div className="relative w-full max-w-md" style={{ transformStyle: 'preserve-3d', transform: 'rotateY(10deg) rotateX(10deg)' }}>
                             <motion.div
                                 animate={{ y: [0, -10, 0] }}
                                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                                className="linear-card p-10 relative z-20 shadow-[0_50px_100px_rgba(0,0,0,0.4)]"
+                                className="absolute -top-12 -left-16 w-64 p-6 bg-slate-900/40 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] skew-x-[2deg] z-20"
+                                style={{ transform: 'translateZ(-50px)' }}
                             >
-                                <div className="flex items-center gap-5 border-b border-border/40 pb-8 mb-8">
-                                    <div className="w-14 h-14 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
-                                        <Sparkles className="w-7 h-7" />
+                                <div className="flex justify-between items-start mb-4">
+                                    <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.3)]">
+                                        <Activity className="w-5 h-5 text-red-400" />
+                                    </div>
+                                    <span className="text-xs font-semibold px-3 py-1 bg-white/10 rounded-full text-white/80 border border-white/5">خطر عالي</span>
+                                </div>
+                                <h3 className="text-white/80 font-medium mb-1 text-sm">وقت الجلوس</h3>
+                                <p className="text-3xl font-bold text-white tracking-tight">٤ س ١٢ د <span className="text-sm font-normal text-red-400 ml-1">متوسط</span></p>
+                            </motion.div>
+
+                            <motion.div
+                                animate={{ y: [0, 10, 0] }}
+                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                                className="relative z-10 w-full bg-[#0a0a0a]/60 backdrop-blur-3xl border border-white/15 rounded-[2rem] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col gap-6 transform-gpu before:absolute before:inset-0 before:rounded-[2rem] before:bg-gradient-to-br before:from-white/10 before:to-transparent before:pointer-events-none"
+                            >
+                                <div className="flex items-center gap-4 border-b border-white/10 pb-6">
+                                    <div className="relative">
+                                        <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#ff7a00] to-amber-400 flex items-center justify-center shadow-[0_0_30px_rgba(255,122,0,0.5)]">
+                                            <Sparkles className="w-6 h-6 text-white" />
+                                        </div>
+                                        <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-[#111] shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-foreground tracking-tight">تنبيه ذكي</h3>
-                                        <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">توصية مخصصة الآن</p>
+                                        <h3 className="text-xl font-bold text-white tracking-tight">تنبيه ذكي</h3>
+                                        <p className="text-sm text-slate-300">مقاطعة واعية بالسياق</p>
                                     </div>
                                 </div>
 
-                                <div className="space-y-8">
-                                    <p className="text-lg leading-relaxed text-muted-foreground">
-                                        "لقد قضيت <span className="text-foreground font-bold">٣ ساعات متواصلة</span> أمام الشاشة. جسمك يحتاج حركة سريعة لاستعادة التركيز."
+                                <div className="space-y-4">
+                                    <p className="text-[1.05rem] leading-relaxed text-slate-300">
+                                        "<span className="text-white font-medium">أحسنت في اجتماعك الطويل!</span> جسمك يحتاج استراحة. ما رأيك بتمرين رقبة لمدة دقيقتين لتجديد نشاطك؟"
                                     </p>
 
-                                    <div className="flex items-center gap-4">
-                                        <button className="flex-1 bg-primary text-primary-foreground font-bold py-4 px-6 rounded-xl flex justify-center items-center gap-2 hover:brightness-110 transition-all text-xs uppercase tracking-widest">
-                                            <Play className="w-4 h-4 fill-current" /> قبول الجلسة
+                                    <div className="flex items-center gap-3 pt-4">
+                                        <button className="flex-1 bg-primary text-white font-semibold py-3 px-4 rounded-xl flex justify-center items-center gap-2 hover:bg-primary/90 transition-colors">
+                                            <Play className="w-4 h-4 fill-current" /> قبول (+٢٠ نقطة)
                                         </button>
-                                        <button className="py-4 px-6 bg-secondary text-muted-foreground font-bold rounded-xl hover:text-foreground transition-all text-xs uppercase tracking-widest">
+                                        <button className="py-3 px-4 bg-white/5 text-slate-400 font-medium rounded-xl hover:bg-white/10 hover:text-white transition-colors">
                                             تخطي
                                         </button>
                                     </div>
                                 </div>
                             </motion.div>
-                            
-                            {/* Secondary Mockup Card */}
-                            <motion.div
-                                animate={{ y: [0, 10, 0] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                className="absolute -top-16 -left-16 w-72 p-6 linear-glass border-primary/20 rounded-2xl z-10 shadow-2xl"
-                            >
-                                <div className="flex justify-between items-start mb-4">
-                                    <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
-                                        <Activity className="w-5 h-5 text-orange-500" />
-                                    </div>
-                                    <span className="text-[9px] font-bold px-2.5 py-1 bg-red-500/10 text-red-500 border border-red-500/20 rounded-full uppercase tracking-widest">خطر إرهاق</span>
-                                </div>
-                                <h3 className="text-muted-foreground font-bold text-[10px] uppercase tracking-widest mb-1">وقت الجلوس</h3>
-                                <p className="text-2xl font-bold text-foreground tracking-tighter">٤ س ١٢ د</p>
-                            </motion.div>
 
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-primary/5 blur-[120px] rounded-full -z-10" />
+                            <div className="absolute top-[20%] -right-16 w-32 h-32 bg-primary/30 blur-[60px] rounded-full mix-blend-screen -z-10" />
                         </div>
                     </motion.div>
                 </div>

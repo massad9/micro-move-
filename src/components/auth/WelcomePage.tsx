@@ -15,9 +15,12 @@ interface WelcomePageProps {
 export const WelcomePage: React.FC<WelcomePageProps> = ({ onSelectRole, onSetupWorkspace }) => {
     return (
         <div className="min-h-screen bg-background text-foreground flex flex-col relative overflow-x-hidden font-sans">
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <div className="absolute top-[-15%] right-[-5%] w-[40%] h-[40%] bg-primary/8 blur-[120px] rounded-full" />
-                <div className="absolute bottom-[-15%] left-[-5%] w-[35%] h-[35%] bg-violet-500/5 blur-[120px] rounded-full" />
+            <div className="absolute inset-0 z-0 overflow-hidden bg-[#030712]">
+                <div className="absolute top-[-20%] right-[-10%] w-[60vw] h-[60vh] bg-primary/30 blur-[160px] rounded-full animate-mesh-1 mix-blend-screen" />
+                <div className="absolute bottom-[-10%] left-[-20%] w-[50vw] h-[50vh] bg-indigo-600/20 blur-[150px] rounded-full animate-mesh-2 mix-blend-screen" />
+                <div className="absolute top-[30%] left-[20%] w-[50vw] h-[50vh] bg-amber-500/15 blur-[140px] rounded-full animate-mesh-3 mix-blend-screen" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#030712_120%)] opacity-90" />
+                <div className="noise-overlay" />
             </div>
 
             <div className="relative z-10">

@@ -184,28 +184,28 @@ export const Rewards: React.FC = () => {
                             initial={{ scale: 0.9, y: 20 }}
                             animate={{ scale: 1, y: 0 }}
                             exit={{ scale: 0.9, y: 20 }}
-                            className="bg-surface-1 border border-border rounded-2xl p-8 md:p-10 max-w-md w-full shadow-2xl relative overflow-hidden text-right"
+                            className="bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-10 max-w-md w-full shadow-2xl relative overflow-hidden text-right"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="absolute top-0 right-0 w-full h-32 bg-primary/5 opacity-50" />
-                            <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 blur-3xl rounded-full" />
+                            <div className="absolute top-0 right-0 w-full h-32 bg-primary/20 opacity-50" />
+                            <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 blur-3xl rounded-full" />
 
                             <div className="relative z-10">
-                                <div className="w-20 h-20 bg-primary/15 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 border-4 border-surface-1">
+                                <div className="w-20 h-20 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 border-4 border-slate-800 shadow-inner">
                                     {getIconForReward(selectedReward.title, "w-10", "h-10")}
                                 </div>
-                                <h2 className="text-3xl font-black text-center text-text-primary mb-2">{selectedReward.title}</h2>
-                                <p className="text-text-tertiary text-center text-sm mb-8 leading-relaxed px-4">{selectedReward.description}</p>
+                                <h2 className="text-3xl font-black text-center text-white mb-2">{selectedReward.title}</h2>
+                                <p className="text-slate-300 text-center text-sm mb-8 leading-relaxed px-4">{selectedReward.description}</p>
 
-                                <div className="bg-surface-2 border border-border rounded-xl p-6 mb-8 flex justify-between items-center">
+                                <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 mb-8 flex justify-between items-center shadow-inner">
                                     <div className="text-right">
-                                        <p className="text-sm font-semibold text-text-quaternary uppercase tracking-widest mb-1">الرصيد المتاح</p>
-                                        <span className="block text-lg font-black text-text-primary">{(user.points - selectedReward.cost).toLocaleString()} نقطة</span>
+                                        <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-1">الرصيد المتاح</p>
+                                        <span className="block text-lg font-black text-white">{(user.points - selectedReward.cost).toLocaleString()} نقطة</span>
                                     </div>
-                                    <div className="w-px h-10 bg-border" />
+                                    <div className="w-px h-10 bg-slate-700" />
                                     <div className="text-left">
-                                        <span className="block text-xs font-bold text-primary/70 uppercase tracking-widest mb-1">تكلفة المكافأة</span>
-                                        <span className="block text-lg font-black text-primary flex items-center gap-1 justify-end"><Star className="w-4 h-4" /> {selectedReward.cost.toLocaleString()}</span>
+                                        <span className="block text-xs font-bold text-primary/80 uppercase tracking-widest mb-1">تكلفة المكافأة</span>
+                                        <span className="block text-lg font-black text-primary flex items-center gap-1 justify-end"><Star className="w-4 h-4 fill-current" /> {selectedReward.cost.toLocaleString()}</span>
                                     </div>
                                 </div>
 
@@ -214,7 +214,7 @@ export const Rewards: React.FC = () => {
                                         variant="outline"
                                         onClick={() => setSelectedReward(null)}
                                         disabled={isRedeeming}
-                                        className="flex-1 h-14 rounded-xl border-border font-bold text-text-tertiary hover:bg-surface-2"
+                                        className="flex-1 h-14 rounded-xl border-slate-700 font-bold text-slate-300 hover:text-white hover:bg-slate-800"
                                     >
                                         تراجع
                                     </Button>
@@ -249,39 +249,39 @@ export const Rewards: React.FC = () => {
                             initial={{ scale: 0.9, y: 20 }}
                             animate={{ scale: 1, y: 0 }}
                             exit={{ scale: 0.9, y: 20 }}
-                            className="bg-surface-1 border border-border rounded-2xl p-8 md:p-10 max-w-md w-full shadow-2xl relative overflow-hidden text-center"
+                            className="bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-10 max-w-md w-full shadow-2xl relative overflow-hidden text-center"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-emerald-500/5 to-transparent" />
-                            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-60 h-60 bg-emerald-500/10 blur-3xl rounded-full" />
+                            <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-emerald-500/10 to-transparent" />
+                            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-60 h-60 bg-emerald-500/20 blur-3xl rounded-full" />
 
                             <div className="relative z-10">
                                 <motion.div
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
                                     transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
-                                    className="w-20 h-20 bg-emerald-500/15 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-6 border-4 border-surface-1"
+                                    className="w-20 h-20 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-6 border-4 border-slate-800 shadow-inner"
                                 >
                                     <span className="text-4xl">🎉</span>
                                 </motion.div>
 
-                                <h2 className="text-2xl font-black text-text-primary mb-2">تم الاستبدال بنجاح!</h2>
-                                <p className="text-text-tertiary text-sm mb-6 font-medium leading-relaxed">
-                                    استمتع بـ <strong className="text-text-primary">{redeemedReward.reward.title}</strong>
+                                <h2 className="text-2xl font-black text-white mb-2">تم الاستبدال بنجاح!</h2>
+                                <p className="text-slate-300 text-sm mb-6 font-medium leading-relaxed">
+                                    استمتع بـ <strong className="text-white">{redeemedReward.reward.title}</strong>
                                     <br />تم خصم <strong className="text-primary">{redeemedReward.reward.cost}</strong> نقطة من رصيدك.
                                 </p>
 
-                                <div className="bg-surface-2 border-2 border-dashed border-border rounded-xl p-5 mb-6">
-                                    <span className="text-xs font-bold text-text-quaternary uppercase tracking-widest block mb-2">كود القسيمة</span>
+                                <div className="bg-slate-800 border-2 border-dashed border-slate-700 rounded-xl p-5 mb-6 shadow-inner">
+                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">كود القسيمة</span>
                                     <div className="flex items-center justify-center gap-3">
-                                        <span className="text-2xl font-black text-text-primary tracking-[0.15em] font-mono" style={{ direction: 'ltr' }}>
+                                        <span className="text-2xl font-black text-white tracking-[0.15em] font-mono" style={{ direction: 'ltr' }}>
                                             {redeemedReward.coupon}
                                         </span>
                                     </div>
                                     <button
                                         onClick={() => {
                                             navigator.clipboard.writeText(redeemedReward.coupon)
-                                            toast.success('تم نسخ الكود!', { duration: 2000 })
+                                            toast.success('تم نسخ الكود!', { duration: 2000, icon: '📋' })
                                         }}
                                         className="mt-3 text-xs font-bold text-primary hover:text-primary/80 transition-colors"
                                     >

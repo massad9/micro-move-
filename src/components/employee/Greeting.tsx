@@ -21,105 +21,95 @@ export const Greeting: React.FC<GreetingProps> = ({ onNavigateStore }) => {
     const isGoalMet = user.completedToday >= user.dailyGoal
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16 font-sans">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10 font-sans">
             <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="lg:col-span-8 linear-card p-10 relative overflow-hidden group"
+                className="lg:col-span-2 relative overflow-hidden rounded-[2rem] bg-slate-900 text-white p-8 sm:p-10 shadow-xl"
             >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] -z-10 group-hover:bg-primary/10 transition-all duration-700" />
-                
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-                    <div className="flex-1">
-                        <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-6 text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-primary/10 rounded-full border border-primary/20">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                            ملخص النشاط اليومي
-                        </div>
-                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground leading-tight">
-                            {greeting}، <span className="text-secondary-foreground">{user.name.split(' ')[0]}</span>
+                {/* Decorative Gradients */}
+                <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/30 blur-[80px] rounded-full mix-blend-screen" />
+                <div className="absolute bottom-[-20%] left-[-10%] w-[40%] h-[50%] bg-amber-500/20 blur-[60px] rounded-full mix-blend-screen" />
+
+                <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div>
+                        <motion.span
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="inline-block px-3 py-1 mb-4 text-[10px] font-black tracking-[0.2em] uppercase text-primary bg-primary/10 rounded-full border border-primary/20"
+                        >
+                            تحليل الطاقة
+                        </motion.span>
+                        <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2 text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70">
+                            {greeting}، {user.name.split(' ')[0]}
                         </h1>
-                        <p className="text-muted-foreground font-medium text-lg max-w-md leading-relaxed">
+                        <p className="text-slate-400 font-medium text-lg mt-4 max-w-sm leading-relaxed">
                             {isGoalMet
-                                ? "أداء استثنائي اليوم! لقد تجاوزت أهدافك المقترحة بالفعل."
-                                : "خطوة واحدة صغيرة كفيلة بتنشيط ذهنك. هل أنت مستعد للنشاط القادم؟"}
+                                ? "لقد حققت هدفك اليوم! استمر في نشاطك الإضافي."
+                                : "جاهز لتعزيز إنتاجيتك؟ أكمل حركة صغيرة لتنشيط تركيزك."}
                         </p>
                     </div>
 
-                    <div className="linear-glass border-border/40 rounded-3xl p-8 w-full md:w-72 shrink-0 flex flex-col items-center justify-center relative group/progress">
+                    <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 w-full md:w-64 shrink-0 flex flex-col items-center justify-center relative">
                         {isGoalMet && (
-                            <motion.div 
-                                initial={{ scale: 0 }} 
-                                animate={{ scale: 1 }}
-                                className="absolute -top-3 -right-3 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-lg shadow-primary/20 z-10"
-                            >
-                                <Flame className="w-5 h-5" />
-                            </motion.div>
+                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.5)] z-10">
+                                <Flame className="w-4 h-4 text-white" />
+                            </div>
                         )}
-                        
-                        {/* Refined Circular Progress */}
-                        <div className="relative w-32 h-32 mb-6">
+                        {/* Custom Circular Progress */}
+                        <div className="relative w-28 h-28 mb-4">
                             <svg className="w-full h-full transform -rotate-90">
-                                <circle cx="64" cy="64" r="58" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-secondary" />
+                                <circle cx="56" cy="56" r="48" stroke="currentColor" strokeWidth="6" fill="transparent" className="text-white/10" />
                                 <motion.circle
-                                    cx="64" cy="64" r="58" stroke="currentColor" strokeWidth="4" fill="transparent"
-                                    className="text-primary"
-                                    strokeDasharray="364"
-                                    initial={{ strokeDashoffset: 364 }}
-                                    animate={{ strokeDashoffset: 364 - (364 * progress) / 100 }}
-                                    transition={{ duration: 2, ease: [0.23, 1, 0.32, 1], delay: 0.5 }}
+                                    cx="56" cy="56" r="48" stroke="currentColor" strokeWidth="6" fill="transparent"
+                                    className={isGoalMet ? "text-amber-400" : "text-primary"}
+                                    strokeDasharray="301"
+                                    initial={{ strokeDashoffset: 301 }}
+                                    animate={{ strokeDashoffset: 301 - (301 * progress) / 100 }}
+                                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
                                     strokeLinecap="round"
                                 />
                             </svg>
                             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <span className="text-4xl font-bold tracking-tighter">{user.completedToday}</span>
-                                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-1">/{user.dailyGoal}</span>
+                                <span className="text-3xl font-black">{user.completedToday}</span>
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">من {user.dailyGoal}</span>
                             </div>
                         </div>
-                        
-                        <div className="text-center">
-                            <h3 className="font-bold text-xs uppercase tracking-widest mb-1 text-foreground">الهدف اليومي</h3>
-                            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-tighter opacity-70">
-                                تقف على بعد خطوة من الهدف
-                            </p>
-                        </div>
+                        <h3 className="font-bold text-sm tracking-wide mb-2">الهدف اليومي</h3>
+                        <p className="text-[11px] text-slate-400 font-medium leading-relaxed text-center max-w-[180px]">
+                            أكملت {user.completedToday} فاصل{user.completedToday > 1 ? 'ين' : ''} من أصل {user.dailyGoal} مقترحة اليوم
+                        </p>
                     </div>
                 </div>
             </motion.div>
 
-            {/* Motivation Card */}
+            {/* Sneak Peek / Motivation Card */}
             <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="lg:col-span-4 linear-card p-10 flex flex-col justify-between group overflow-hidden relative border-primary/10"
+                className="bg-white rounded-[2rem] border border-slate-200 shadow-sm p-8 flex flex-col justify-between group overflow-hidden relative"
             >
-                <div className="absolute -right-20 -top-20 w-48 h-48 bg-primary/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-primary/10 transition-all duration-700" />
+                <div className="absolute -right-10 -top-10 w-40 h-40 bg-orange-50 rounded-full blur-3xl group-hover:bg-orange-100 transition-colors pointer-events-none" />
 
                 <div className="relative z-10">
-                    <div className="w-12 h-12 bg-secondary border border-border/40 text-primary rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
                         <Target className="w-6 h-6" />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground tracking-tight leading-tight mb-4">اقتربت من الإنجاز</h3>
-                    <p className="text-sm text-muted-foreground font-medium leading-relaxed">
-                        بقي لك <span className="text-primary font-bold">٢٤٠ نقطة</span> لفتح مكافأة "ساعة تركيز إضافية" هذا الأسبوع.
+                    <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-tight mb-2">اقتربت من إنجاز عظيم</h3>
+                    <p className="text-sm text-slate-500 font-medium leading-relaxed">
+                        أنت على بُعد <strong className="text-orange-600">٢٤٠ نقطة</strong> فقط من فتح مكافأة "ساعة راحة إضافية".
                     </p>
                 </div>
 
-                <div className="relative z-10 mt-10 space-y-4">
-                    <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-                        <motion.div 
-                            initial={{ width: 0 }} 
-                            animate={{ width: '65%' }} 
-                            transition={{ duration: 1.5, delay: 0.8 }}
-                            className="h-full bg-primary" 
-                        />
-                    </div>
-                    <button 
-                        onClick={onNavigateStore} 
-                        className="w-full flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-widest text-foreground bg-secondary hover:bg-secondary/80 border border-border/40 py-3 rounded-lg transition-all"
-                    >
-                        استكشف المكافآت <ChevronLeft className="w-4 h-4" />
+                <div className="relative z-10 mt-8">
+                    <button onClick={onNavigateStore} className="inline-flex items-center gap-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                        عرض المتجر <ChevronLeft className="w-4 h-4" />
                     </button>
+                    <div className="h-1 w-full bg-slate-100 mt-3 rounded-full overflow-hidden">
+                        <div className="h-full bg-orange-500 w-[65%]" />
+                    </div>
                 </div>
             </motion.div>
         </div>

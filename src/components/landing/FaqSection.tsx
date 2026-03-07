@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const faqs = [
   {
@@ -44,35 +43,28 @@ const FaqItem: React.FC<{
   index: number;
 }> = ({ question, answer, isOpen, onToggle, index }) => (
   <motion.div
-    initial={{ opacity: 0, y: 10 }}
+    initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.4, delay: index * 0.05 }}
-    className={cn(
-        "border-b border-border/10 transition-colors duration-500",
-        isOpen && "bg-secondary/20"
-    )}
+    className={`border border-white/10 rounded-2xl overflow-hidden transition-colors ${
+      isOpen ? 'bg-white/[0.03]' : 'bg-transparent hover:bg-white/[0.02]'
+    }`}
   >
     <button
       onClick={onToggle}
       aria-expanded={isOpen}
       aria-controls={`faq-panel-${index}`}
       id={`faq-trigger-${index}`}
-      className="w-full flex items-center justify-between gap-6 py-8 px-6 text-right group"
+      className="w-full flex items-center justify-between gap-4 p-6 text-right"
     >
-      <span className={cn(
-          "text-lg font-bold tracking-tight transition-colors duration-500",
-          isOpen ? "text-primary" : "text-foreground opacity-80 group-hover:opacity-100"
-      )}>{question}</span>
+      <span className="text-white font-semibold text-base md:text-lg flex-1">{question}</span>
       <motion.div
         animate={{ rotate: isOpen ? 180 : 0 }}
         transition={{ duration: 0.3 }}
         className="flex-shrink-0"
       >
-        <ChevronDown className={cn(
-            "w-5 h-5 transition-colors duration-500",
-            isOpen ? "text-primary" : "text-muted-foreground opacity-40 group-hover:opacity-100"
-        )} />
+        <ChevronDown className={`w-5 h-5 transition-colors ${isOpen ? 'text-primary' : 'text-slate-500'}`} />
       </motion.div>
     </button>
     <AnimatePresence initial={false}>
@@ -84,14 +76,12 @@ const FaqItem: React.FC<{
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="overflow-hidden"
         >
-          <div className="px-6 pb-8">
-            <p className="text-sm font-medium text-muted-foreground leading-relaxed max-w-2xl opacity-80">
-                {answer}
-            </p>
-          </div>
+          <p className="px-6 pb-6 text-slate-400 leading-relaxed text-sm md:text-base">
+            {answer}
+          </p>
         </motion.div>
       )}
     </AnimatePresence>
@@ -102,27 +92,27 @@ export const FaqSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative py-32 px-6">
-      <div className="max-w-4xl mx-auto">
+    <section className="relative py-24 md:py-32 px-4">
+      <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col gap-6 mb-20"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-primary/10 rounded-full border border-primary/20 w-fit">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
             الأسئلة الشائعة
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            كل ما تحتاج <br /> معرفته عن المنصة
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">
+            كل ما تحتاج معرفته
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl font-medium opacity-80">
+          <p className="text-lg text-slate-400">
             إجابات على أكثر الأسئلة شيوعاً حول مايكرو موف
           </p>
         </motion.div>
 
-        <div className="border-t border-border/10">
+        <div className="space-y-3">
           {faqs.map((faq, index) => (
             <FaqItem
               key={index}

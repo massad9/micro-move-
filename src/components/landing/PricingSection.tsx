@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, Sparkles, Building2, Zap } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const plans = [
   {
@@ -67,84 +66,80 @@ const plans = [
 
 export const PricingSection: React.FC = () => {
   return (
-    <section id="pricing" className="relative py-32 px-6">
+    <section id="pricing" className="relative py-24 md:py-32 px-4">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col gap-6 mb-20"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-primary/10 rounded-full border border-primary/20 w-fit">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
             خطط الأسعار
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">
             خطة مناسبة لكل فريق
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl font-medium opacity-80">
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             اختر الخطة التي تناسب حجم فريقك واحتياجاتك. يمكنك الترقية أو التغيير في أي وقت.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={cn(
-                "linear-card flex flex-col p-10 relative",
-                plan.popular && "border-primary/40 shadow-2xl shadow-primary/5 bg-primary/[0.02]"
-              )}
+              className={`relative flex flex-col rounded-3xl border ${plan.borderColor} bg-gradient-to-b ${plan.gradient} p-8 ${
+                plan.popular ? 'md:-mt-4 md:mb-0 md:pb-12 shadow-[0_0_60px_rgba(249,115,22,0.15)]' : ''
+              }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 right-10 px-4 py-1.5 bg-primary rounded-full text-primary-foreground text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-primary/20">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-gradient-to-r from-primary to-amber-500 rounded-full text-white text-sm font-bold shadow-[0_4px_20px_rgba(249,115,22,0.4)]">
                   الأكثر شيوعاً
                 </div>
               )}
 
-              <div className="flex items-center gap-4 mb-8">
-                <div className={cn(
-                  "w-12 h-12 rounded-xl flex items-center justify-center border",
-                  plan.popular ? "bg-primary/20 border-primary/40" : "bg-secondary border-border/40"
-                )}>
-                  <plan.icon className={cn("w-6 h-6", plan.popular ? "text-primary" : "text-muted-foreground")} />
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${plan.popular ? 'bg-primary/20' : 'bg-white/5'}`}>
+                  <plan.icon className={`w-5 h-5 ${plan.popular ? 'text-primary' : 'text-slate-400'}`} />
                 </div>
-                <div>
-                    <h3 className="text-xl font-bold text-foreground tracking-tight">{plan.name}</h3>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold opacity-70">خطة أساسية</p>
-                </div>
+                <h3 className="text-xl font-bold text-white">{plan.name}</h3>
               </div>
 
-              <div className="flex items-baseline gap-2 mb-8">
-                <span className="text-5xl font-bold text-foreground tracking-tighter">{plan.price}</span>
-                {plan.period && <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none">{plan.period}</span>}
+              <p className="text-slate-400 text-sm mb-6">{plan.description}</p>
+
+              <div className="flex items-baseline gap-1 mb-8">
+                <span className="text-4xl md:text-5xl font-black text-white">{plan.price}</span>
+                {plan.period && <span className="text-slate-400 text-sm">{plan.period}</span>}
               </div>
 
-              <p className="text-sm text-muted-foreground mb-10 font-medium leading-relaxed">{plan.description}</p>
-
-              <ul className="space-y-4 mb-12 flex-1 pt-8 border-t border-border/10">
+              <ul className="space-y-3 mb-8 flex-1">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
-                    <Check className={cn("w-4 h-4 mt-0.5", plan.popular ? "text-primary" : "text-muted-foreground")} />
-                    <span className="text-[11px] font-bold text-foreground/80 uppercase tracking-widest">{feature}</span>
+                    <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${plan.popular ? 'bg-primary/20' : 'bg-white/10'}`}>
+                      <Check className={`w-3 h-3 ${plan.popular ? 'text-primary' : 'text-slate-400'}`} />
+                    </div>
+                    <span className="text-slate-300 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <button
-                className={cn(
-                  "w-full h-14 rounded-xl font-bold text-[11px] uppercase tracking-widest transition-all active:scale-[0.98]",
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all ${
                   plan.popular
-                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/10 hover:brightness-110'
-                    : 'bg-secondary text-foreground border border-border/40 hover:bg-secondary/80'
-                )}
+                    ? 'bg-primary text-white hover:bg-primary/90 shadow-[0_4px_20px_rgba(249,115,22,0.3)]'
+                    : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'
+                }`}
               >
                 {plan.cta}
-              </button>
+              </motion.button>
             </motion.div>
           ))}
         </div>

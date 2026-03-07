@@ -108,7 +108,7 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                         ))}
                     </div>
 
-                    <div className="linear-card p-8 md:p-10 relative overflow-hidden">
+                    <div className="bg-[#111] p-8 md:p-10 rounded-[2rem] border border-white/10 shadow-2xl">
                         <AnimatePresence mode="wait">
                             {step === 1 && (
                                 <motion.div
