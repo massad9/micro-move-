@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #ffffff;
+    color: #064E3B;
+    @apply font-sans antialiased;
+  }
+}
+
+.growth-gradient {
+  background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+}
+
+.benefit-card {
+  @apply bg-white border border-emerald-100 rounded-[2rem] p-10 hover:shadow-[0_20px_50px_rgba(16,185,129,0.1)] transition-all duration-500 hover:-translate-y-2;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F0FDF4;
+}
+::-webkit-scrollbar-thumb {
+  background: #10B981;
+  border-radius: 10px;
+}

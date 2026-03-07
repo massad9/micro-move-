@@ -11,36 +11,33 @@ export const StatCards: React.FC = () => {
 
     const stats = [
         {
-            label: 'مؤشر أجواء العمل',
+            label: 'مؤشر الأجواء',
             value: `${vibeScore}/١٠٠`,
             change: '+٥.٢%',
             icon: Heart,
-            color: 'text-primary',
-            bg: 'bg-primary/10'
+            trend: 'up'
         },
         {
-            label: 'أعلى خطر إرهاق',
+            label: 'خطر الإرهاق',
             value: mainRisk,
             change: 'حرج',
+            itemLabel: 'القسم الأكثر تضرراً',
             icon: Flame,
-            color: 'text-destructive',
-            bg: 'bg-destructive/10'
+            trend: 'warning'
         },
         {
-            label: 'متوسط وقت الجلوس',
+            label: 'وقت الجلوس',
             value: '٤ س ١٢ د',
             change: '-١٨ د',
             icon: Activity,
-            color: 'text-amber-400',
-            bg: 'bg-amber-500/10'
+            trend: 'down'
         },
         {
-            label: 'إتمام التنبيهات',
+            label: 'إتمام المهام',
             value: '٧٢%',
             change: '+٨%',
             icon: TrendingUp,
-            color: 'text-emerald-400',
-            bg: 'bg-emerald-500/10'
+            trend: 'up'
         },
     ]
 
@@ -48,30 +45,37 @@ export const StatCards: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {stats.map((stat, index) => {
                 const Icon = stat.icon
-                const isBadChange = stat.change === 'حرج'
                 return (
                     <motion.div
                         key={stat.label}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
+                        className="linear-card group p-5 flex flex-col justify-between h-32"
                     >
-                        <div className="bg-surface-1 border border-border rounded-xl shadow-soft hover:shadow-glow-sm transition-shadow duration-300 overflow-hidden group p-6">
-                            <div className="flex justify-between items-start mb-4">
-                                <div className={`p-2.5 rounded-lg ${stat.bg} ${stat.color} transition-colors duration-300`}>
-                                    <Icon className="w-[18px] h-[18px] transition-transform group-hover:scale-110" strokeWidth={1.5} />
-                                </div>
-                                <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-lg ${isBadChange ? 'text-destructive bg-destructive/10 border border-destructive/20' : stat.change.startsWith('-') ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20' : 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
-                                    }`}>
-                                    {stat.change}
-                                </span>
+                        <div className="flex justify-between items-start">
+                            <div className="p-1.5 rounded-md bg-secondary border border-border/40 text-muted-foreground group-hover:text-primary transition-colors">
+                                <Icon className="w-4 h-4" strokeWidth={2} />
                             </div>
-                            <div>
-                                <p className="text-sm font-medium text-text-tertiary mb-1 leading-relaxed">{stat.label}</p>
-                                <h3 className="text-2xl font-bold text-text-primary tracking-tight flex items-baseline gap-1">
-                                    {stat.value}
-                                </h3>
-                            </div>
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                                stat.trend === 'warning' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
+                                stat.trend === 'up' ? 'bg-primary/10 text-primary border-primary/20' :
+                                'bg-green-500/10 text-green-400 border-green-500/20'
+                            }`}>
+                                {stat.change}
+                            </span>
+                        </div>
+                        
+                        <div>
+                            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mb-1">{stat.label}</p>
+                            <h3 className="text-xl font-bold text-foreground tracking-tight">{stat.value}</h3>
+                        </div>
+                        
+                        {/* Interactive Sparkline Mockup (Linear Style) */}
+                        <div className="absolute bottom-0 right-0 left-0 h-[2px] bg-secondary overflow-hidden">
+                            <div className={`h-full animate-shimmer ${
+                                stat.trend === 'warning' ? 'bg-red-500/30' : 'bg-primary/30'
+                            }`} style={{ width: '100%' }} />
                         </div>
                     </motion.div>
                 )

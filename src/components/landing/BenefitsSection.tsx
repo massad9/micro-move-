@@ -7,77 +7,83 @@ const benefits = [
         icon: Brain,
         title: 'تنبيهات ذكية بالذكاء الاصطناعي',
         description: 'تنبيهات مخصصة تراعي سياق العمل وجدول الاجتماعات لكل موظف.',
-        iconColor: 'text-accent',
+        gradient: 'from-orange-500/20 to-amber-500/20',
+        iconColor: 'text-orange-400',
     },
     {
         icon: Gamepad2,
         title: 'تحديات تفاعلية ومكافآت',
         description: 'نظام نقاط ومكافآت يحوّل الحركة إلى تجربة ممتعة ومحفّزة.',
-        iconColor: 'text-primary',
+        gradient: 'from-violet-500/20 to-purple-500/20',
+        iconColor: 'text-violet-400',
     },
     {
         icon: BarChart3,
         title: 'تحليلات متقدمة',
         description: 'لوحة تحكم شاملة تعرض بيانات النشاط والإنتاجية لفريقك بالكامل.',
-        iconColor: 'text-energy-hydration',
+        gradient: 'from-blue-500/20 to-cyan-500/20',
+        iconColor: 'text-blue-400',
     },
     {
         icon: HeartPulse,
         title: 'صحة الفريق',
         description: 'مراقبة مؤشرات صحة الفريق وتقليل مخاطر الجلوس المطوّل.',
-        iconColor: 'text-energy-mindfulness',
+        gradient: 'from-rose-500/20 to-pink-500/20',
+        iconColor: 'text-rose-400',
     },
     {
         icon: Bell,
         title: 'تنبيهات واعية بالسياق',
         description: 'لا تقاطع اجتماعاتك المهمة — التنبيهات تأتي في الوقت المناسب فقط.',
-        iconColor: 'text-energy-physical',
+        gradient: 'from-emerald-500/20 to-green-500/20',
+        iconColor: 'text-emerald-400',
     },
     {
         icon: Shield,
         title: 'خصوصية وأمان',
         description: 'بيانات الموظفين محمية بالكامل مع التزام صارم بمعايير الأمان.',
-        iconColor: 'text-text-secondary',
+        gradient: 'from-slate-500/20 to-gray-500/20',
+        iconColor: 'text-slate-300',
     },
 ];
 
 export const BenefitsSection: React.FC = () => {
     return (
-        <section className="relative z-10 py-24 px-4">
-            <div className="max-w-6xl mx-auto">
+        <section className="relative z-10 py-32 px-6">
+            <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    className="flex flex-col gap-6 mb-20"
                 >
-                    <span className="inline-block px-3 py-1 rounded-lg bg-surface-2 border border-border text-primary text-xs font-medium mb-6 tracking-wide uppercase">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-primary/10 rounded-full border border-primary/20 w-fit">
                         المزايا والخصائص
-                    </span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
-                        مميزات صُممت لبيئة عملك
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
+                        مميزات صُممت لنظام <br /> عمل عصري
                     </h2>
-                    <p className="text-base text-text-secondary max-w-2xl mx-auto">
+                    <p className="text-xl text-muted-foreground max-w-2xl font-medium opacity-80">
                         نظام متكامل يجمع بين ذكاء التنبيهات ومتعة التحديات، ليجعل من بيئة العمل مساحة أكثر حيوية، صحة، وكفاءة.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {benefits.map((benefit, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: i * 0.06 }}
-                            className="group p-6 rounded-xl bg-surface-1 border border-border hover:border-primary/20 transition-colors duration-200"
+                            transition={{ duration: 0.5, delay: i * 0.08 }}
+                            className="linear-card p-10 group hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
                         >
-                            <div className="w-10 h-10 rounded-lg bg-surface-2 border border-border flex items-center justify-center mb-4">
+                            <div className={`w-12 h-12 rounded-xl bg-secondary border border-border/40 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
                                 <benefit.icon className={`w-5 h-5 ${benefit.iconColor}`} />
                             </div>
-                            <h3 className="text-base font-semibold text-text-primary mb-2">{benefit.title}</h3>
-                            <p className="text-sm text-text-secondary leading-relaxed">{benefit.description}</p>
+                            <h3 className="text-lg font-bold text-foreground mb-4 tracking-tight">{benefit.title}</h3>
+                            <p className="text-sm text-muted-foreground leading-relaxed font-medium opacity-80">{benefit.description}</p>
                         </motion.div>
                     ))}
                 </div>

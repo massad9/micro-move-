@@ -22,19 +22,20 @@ export const ActivityFeed: React.FC = () => {
 
     return (
         <div className="pb-20 font-sans">
-            <HeroBanner />
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12">
+                <div>
+                    <h2 className="text-2xl font-bold tracking-tight text-foreground leading-none">واصل الحركة</h2>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest mt-2">أنشطة مصممة ليومك</p>
+                </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 mt-12">
-                <h2 className="text-2xl font-black tracking-tight text-text-primary leading-none">واصل الحركة</h2>
-
-                <div className="flex p-1 bg-surface-1 border border-border rounded-xl overflow-x-auto no-scrollbar">
+                <div className="flex p-1 bg-secondary/50 border border-border/40 rounded-xl overflow-x-auto no-scrollbar">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setFilter(tab.id)}
-                            className={`px-5 py-3 text-sm font-bold rounded-lg whitespace-nowrap transition-colors cursor-pointer ${filter === tab.id
-                                ? 'bg-primary text-white shadow-md'
-                                : 'text-text-tertiary hover:text-text-primary hover:bg-surface-2'
+                            className={`px-4 py-2 text-[11px] font-bold rounded-lg whitespace-nowrap transition-all uppercase tracking-widest ${filter === tab.id
+                                ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/10'
+                                : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
                                 }`}
                         >
                             {tab.label}
@@ -43,7 +44,7 @@ export const ActivityFeed: React.FC = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <AnimatePresence mode="popLayout">
                     {activeTasks.map((activity) => (
                         <ActivityCard key={activity.id} activity={activity} />
@@ -54,8 +55,8 @@ export const ActivityFeed: React.FC = () => {
                 </AnimatePresence>
 
                 {filteredActivities.length === 0 && (
-                    <div className="col-span-full py-16 text-center bg-surface-1 border border-dashed border-border rounded-xl">
-                        <p className="text-text-tertiary font-medium">لا توجد أنشطة في هذا التصنيف حالياً.</p>
+                    <div className="col-span-full py-20 text-center linear-card border-dashed">
+                        <p className="text-muted-foreground font-medium uppercase tracking-widest text-[10px]">لا توجد أنشطة في هذا التصنيف حالياً.</p>
                     </div>
                 )}
             </div>

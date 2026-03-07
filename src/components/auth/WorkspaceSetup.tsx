@@ -67,10 +67,10 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
     };
 
     return (
-        <div className="min-h-screen bg-background flex flex-col relative overflow-hidden font-sans text-text-primary">
+        <div className="min-h-screen bg-[#050505] flex flex-col relative overflow-hidden font-sans text-white">
             <div className="absolute inset-0 pointer-events-none z-0">
-                <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/8 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent/5 rounded-full blur-[150px]" />
+                <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/15 rounded-full blur-[120px]" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-orange-400/8 rounded-full blur-[150px]" />
             </div>
 
             <header className="relative z-10 px-8 py-6 w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -79,9 +79,9 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                 </div>
                 <motion.button
                     onClick={onBack}
-                    initial={{ opacity: 0, x: 10 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-2 text-text-secondary hover:text-text-primary font-medium text-sm transition-colors bg-surface-2 px-4 py-2 rounded-lg border border-border"
+                    className="flex items-center gap-2 text-slate-400 hover:text-white font-medium text-sm transition-colors bg-white/5 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/10"
                 >
                     <ArrowRight className="w-4 h-4" />
                     العودة
@@ -90,14 +90,14 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
 
             <div className="flex-1 flex items-center justify-center relative z-10 px-4 pb-12">
                 <motion.div
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     className="w-full max-w-lg"
                 >
                     <div className="flex items-center gap-3 mb-8">
                         {[1, 2].map(s => (
-                            <div key={s} className="flex-1 h-1 rounded-full bg-surface-2 overflow-hidden">
+                            <div key={s} className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
                                 <motion.div
                                     className="h-full bg-primary rounded-full"
                                     initial={{ width: "0%" }}
@@ -108,48 +108,48 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                         ))}
                     </div>
 
-                    <div className="bg-surface-1 p-8 md:p-10 rounded-xl border border-border">
+                    <div className="linear-card p-8 md:p-10 relative overflow-hidden">
                         <AnimatePresence mode="wait">
                             {step === 1 && (
                                 <motion.div
                                     key="step1"
-                                    initial={{ opacity: 0, x: -10 }}
+                                    initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: 10 }}
-                                    transition={{ duration: 0.25 }}
+                                    exit={{ opacity: 0, x: 20 }}
+                                    transition={{ duration: 0.3 }}
                                 >
                                     <div className="flex flex-col items-center text-center mb-8">
-                                        <div className="w-14 h-14 rounded-xl bg-primary/15 flex items-center justify-center mb-5 border border-border">
-                                            <Building2 className="w-7 h-7 text-primary" />
+                                        <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-5 border border-primary/20">
+                                            <Building2 className="w-8 h-8 text-primary" />
                                         </div>
-                                        <h1 className="text-2xl font-bold text-text-primary tracking-tight mb-1.5">
+                                        <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-2">
                                             إعداد مساحة العمل
                                         </h1>
-                                        <p className="text-text-tertiary text-sm">
+                                        <p className="text-slate-400 text-sm">
                                             أخبرنا عن شركتك لنخصص التجربة لك
                                         </p>
                                     </div>
 
                                     <div className="space-y-5">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-medium text-text-secondary" htmlFor="companyName">
+                                            <label className="text-sm font-semibold text-slate-300" htmlFor="companyName">
                                                 اسم الشركة
                                             </label>
                                             <div className="relative">
-                                                <Building2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-quaternary" />
+                                                <Building2 className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                                                 <input
                                                     id="companyName"
                                                     type="text"
                                                     value={companyName}
                                                     onChange={e => setCompanyName(e.target.value)}
-                                                    className="w-full pr-10 pl-3 bg-surface-2 border border-border text-text-primary placeholder:text-text-quaternary rounded-lg h-10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-colors focus-visible:outline-none text-right text-sm"
+                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-medium text-white placeholder:text-slate-500 text-right"
                                                     placeholder="مثال: شركة أكمي"
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="space-y-2">
-                                            <label className="text-sm font-medium text-text-secondary">
+                                            <label className="text-sm font-semibold text-slate-300">
                                                 حجم الشركة
                                             </label>
                                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -158,10 +158,10 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                                         key={size.value}
                                                         type="button"
                                                         onClick={() => setCompanySize(size.value)}
-                                                        className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-colors border ${
+                                                        className={`px-4 py-3 rounded-xl text-sm font-medium transition-all border ${
                                                             companySize === size.value
-                                                                ? 'bg-primary/15 border-primary/30 text-primary'
-                                                                : 'bg-surface-2 border-border text-text-tertiary hover:bg-surface-3 hover:text-text-secondary'
+                                                                ? 'bg-primary/15 border-primary/40 text-primary'
+                                                                : 'bg-[#1A1A1A] border-white/10 text-slate-400 hover:bg-white/5 hover:text-white'
                                                         }`}
                                                     >
                                                         {size.label}
@@ -175,7 +175,7 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                                 type="button"
                                                 onClick={handleNext}
                                                 disabled={!canProceedStep1}
-                                                className="w-full bg-primary text-primary-foreground h-10 rounded-lg font-medium text-sm transition-colors active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary/90 flex items-center justify-center gap-2"
+                                                className="w-full bg-white text-black py-3.5 rounded-xl font-bold transition-all duration-200 active:scale-[0.98] shadow-lg disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2"
                                             >
                                                 <span>التالي</span>
                                                 <ChevronLeft className="w-4 h-4" />
@@ -188,61 +188,61 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                             {step === 2 && (
                                 <motion.div
                                     key="step2"
-                                    initial={{ opacity: 0, x: -10 }}
+                                    initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: 10 }}
-                                    transition={{ duration: 0.25 }}
+                                    exit={{ opacity: 0, x: 20 }}
+                                    transition={{ duration: 0.3 }}
                                 >
                                     <div className="flex flex-col items-center text-center mb-8">
-                                        <div className="w-14 h-14 rounded-xl bg-primary/15 flex items-center justify-center mb-5 border border-border">
-                                            <Users className="w-7 h-7 text-primary" />
+                                        <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-5 border border-primary/20">
+                                            <Users className="w-8 h-8 text-primary" />
                                         </div>
-                                        <h1 className="text-2xl font-bold text-text-primary tracking-tight mb-1.5">
+                                        <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-2">
                                             إنشاء حساب المدير
                                         </h1>
-                                        <p className="text-text-tertiary text-sm">
-                                            أدخل بياناتك لإدارة مساحة عمل <span className="text-text-primary font-medium">{companyName}</span>
+                                        <p className="text-slate-400 text-sm">
+                                            أدخل بياناتك لإدارة مساحة عمل <span className="text-white font-medium">{companyName}</span>
                                         </p>
                                     </div>
 
                                     <form onSubmit={handleSubmit} className="space-y-5">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-medium text-text-secondary" htmlFor="email">
+                                            <label className="text-sm font-semibold text-slate-300" htmlFor="email">
                                                 البريد الإلكتروني
                                             </label>
                                             <div className="relative">
-                                                <Mail className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-quaternary" />
+                                                <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                                                 <input
                                                     id="email"
                                                     type="email"
                                                     required
                                                     value={email}
                                                     onChange={e => setEmail(e.target.value)}
-                                                    className="w-full pr-10 pl-3 bg-surface-2 border border-border text-text-primary placeholder:text-text-quaternary rounded-lg h-10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-colors focus-visible:outline-none text-right text-sm"
+                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-medium text-white placeholder:text-slate-500 text-right"
                                                     placeholder="admin@company.com"
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="space-y-2">
-                                            <label className="text-sm font-medium text-text-secondary" htmlFor="password">
+                                            <label className="text-sm font-semibold text-slate-300" htmlFor="password">
                                                 كلمة المرور
                                             </label>
                                             <div className="relative">
-                                                <Lock className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-quaternary" />
+                                                <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                                                 <input
                                                     id="password"
                                                     type="password"
                                                     required
                                                     value={password}
                                                     onChange={e => setPassword(e.target.value)}
-                                                    className="w-full pr-10 pl-3 bg-surface-2 border border-border text-text-primary placeholder:text-text-quaternary rounded-lg h-10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-colors focus-visible:outline-none text-right text-sm"
+                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-medium text-white placeholder:text-slate-500 text-right"
                                                     placeholder="٦ أحرف على الأقل"
                                                     minLength={6}
                                                 />
                                             </div>
                                             {password.length > 0 && password.length < 6 && (
-                                                <p className="text-xs text-destructive">كلمة المرور يجب أن تكون ٦ أحرف على الأقل</p>
+                                                <p className="text-xs text-red-400">كلمة المرور يجب أن تكون ٦ أحرف على الأقل</p>
                                             )}
                                         </div>
 
@@ -250,18 +250,18 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                             <button
                                                 type="button"
                                                 onClick={() => setStep(1)}
-                                                className="px-5 h-10 bg-surface-2 border border-border text-text-secondary font-medium rounded-lg hover:bg-surface-3 hover:text-text-primary transition-colors text-sm"
+                                                className="px-6 py-3.5 bg-white/5 border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors"
                                             >
                                                 السابق
                                             </button>
                                             <button
                                                 type="submit"
                                                 disabled={!canProceedStep2 || isLoading}
-                                                className="flex-1 bg-primary text-primary-foreground h-10 rounded-lg font-medium text-sm transition-colors active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary/90 flex items-center justify-center gap-2"
+                                                className="flex-1 bg-primary text-white py-3.5 rounded-xl font-bold transition-all duration-200 active:scale-[0.98] shadow-lg disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary/90 flex items-center justify-center gap-2"
                                             >
                                                 {isLoading ? (
                                                     <>
-                                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                                        <Loader2 className="w-5 h-5 animate-spin" />
                                                         جاري إنشاء مساحة العمل...
                                                     </>
                                                 ) : (

@@ -15,52 +15,42 @@ const companyNames = [
 
 export const SocialProofSection: React.FC = () => {
     return (
-        <section className="relative z-10 py-20 px-4">
-            <div className="max-w-6xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16"
-                >
+        <section className="relative z-10 py-16 px-6">
+            <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
                     {stats.map((stat, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: i * 0.08 }}
-                            className="flex flex-col items-center gap-3 p-6 rounded-xl bg-surface-1 border border-border shadow-soft"
+                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                            className="linear-glass p-8 flex flex-col items-center gap-4 text-center border-border/20"
                         >
-                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                            <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center border border-border/40">
                                 <stat.icon className="w-5 h-5 text-primary" />
                             </div>
-                            <span className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">{stat.value}</span>
-                            <span className="text-sm text-text-tertiary">{stat.label}</span>
+                            <div className="flex flex-col">
+                                <span className="text-3xl font-bold text-foreground tracking-tighter">{stat.value}</span>
+                                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{stat.label}</span>
+                            </div>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
 
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-center"
-                >
-                    <p className="text-sm text-text-quaternary font-medium mb-8 tracking-wide">موثوق من قبل أفضل الشركات في المنطقة</p>
-                    <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+                <div className="text-center pt-10 border-t border-border/10">
+                    <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-[0.3em] mb-10 opacity-60">الشركات التي تصنع مستقبل العمل معنا</p>
+                    <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
                         {companyNames.map((name, i) => (
                             <span
                                 key={i}
-                                className="text-lg md:text-xl font-semibold text-text-quaternary hover:text-text-tertiary transition-colors duration-300 select-none"
+                                className="text-xl font-bold text-foreground/20 hover:text-foreground/50 transition-colors duration-500 cursor-default"
                             >
                                 {name}
                             </span>
                         ))}
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

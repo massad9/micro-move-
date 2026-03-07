@@ -5,7 +5,6 @@ import { ActivityFeed } from './ActivityFeed'
 import { Leaderboard } from './Leaderboard'
 import { Rewards } from './Rewards'
 import { ContextNudgeModal } from './ContextNudgeModal'
-import { EmployeeDashboardSkeleton } from '@/components/skeletons/DashboardSkeletons'
 import { toast } from 'sonner'
 
 interface EmployeeDashboardProps {
@@ -15,14 +14,6 @@ interface EmployeeDashboardProps {
 export const EmployeeDashboard: React.FC<EmployeeDashboardProps> = ({ onLogout }) => {
     const [currentView, setCurrentView] = useState<'home' | 'store'>('home')
     const [showNudge, setShowNudge] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false)
-        }, 1200)
-        return () => clearTimeout(timer)
-    }, [])
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -34,34 +25,42 @@ export const EmployeeDashboard: React.FC<EmployeeDashboardProps> = ({ onLogout }
     const handleAcceptNudge = () => {
         setShowNudge(false)
         setTimeout(() => {
-            toast.success('تمت إضافة الجلسة الذكية إلى أنشطتك بنجاح!', { icon: '🤖' })
+            toast.success('تمت إضافة الجلسة الذكية إلى أنشطتك بنجاح!', { 
+                icon: '🤖',
+                className: 'linear-glass border-primary/20 text-foreground'
+            })
         }, 500)
     }
 
     return (
         <EmployeeLayout onLogout={onLogout} currentView={currentView} onNavigate={setCurrentView}>
-            {isLoading ? (
-                <EmployeeDashboardSkeleton />
-            ) : (
-                <>
-                    {currentView === 'home' && (
-                        <div className="space-y-10">
-                            <Greeting onNavigateStore={() => setCurrentView('store')} />
-                            <ActivityFeed />
-                            <Leaderboard />
+            <div className="max-w-4xl mx-auto px-6 py-12 animate-fade-up">
+                {currentView === 'home' && (
+                    <div className="space-y-16">
+                        <Greeting onNavigateStore={() => setCurrentView('store')} />
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                            <div className="lg:col-span-8 space-y-12">
+                                <ActivityFeed />
+                            </div>
+                            <div className="lg:col-span-4 space-y-12">
+                                <Leaderboard />
+                            </div>
                         </div>
-                    )}
-                    {currentView === 'store' && (
-                        <Rewards />
-                    )}
-                </>
-            )}
+                    </div>
+                )}
+                {currentView === 'store' && (
+                    <Rewards />
+                )}
+            </div>
 
             <ContextNudgeModal 
                 isOpen={showNudge} 
                 onClose={() => setShowNudge(false)} 
                 onAccept={handleAcceptNudge} 
             />
+            
+            {/* Ambient Background Glow for Employee Hub */}
+            <div className="fixed top-0 left-0 w-full h-screen pointer-events-none -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(25,100,250,0.03)_0%,transparent_50%)]" />
         </EmployeeLayout>
     )
 }

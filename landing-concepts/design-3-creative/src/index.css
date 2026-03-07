@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #ffffff;
+    color: #0A0A0B;
+    @apply font-sans antialiased overflow-x-hidden;
+  }
+}
+
+.studio-heading {
+  letter-spacing: -0.05em;
+  @apply font-heading font-bold uppercase leading-[0.85];
+}
+
+.bg-checkered {
+  background-image: radial-gradient(#2D3FE7 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: white;
+}
+::-webkit-scrollbar-thumb {
+  background: #2D3FE7;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF2D55;
+}
