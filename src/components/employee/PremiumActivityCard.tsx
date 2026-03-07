@@ -13,7 +13,7 @@ export const PremiumActivityCard: React.FC = () => {
 
     return (
         <Card
-            className="bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all h-full flex flex-col group relative font-sans text-right"
+            className="bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col group relative font-sans text-right"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -64,12 +64,12 @@ export const PremiumActivityCard: React.FC = () => {
 
                     <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden shadow-inner relative">
                         <div
-                            className="absolute top-0 right-0 h-full bg-gradient-to-l from-amber-400 to-orange-500 transition-all duration-1000 ease-out"
+                            className="absolute top-0 right-0 h-full bg-gradient-to-l from-amber-400 to-orange-500 transition-[width] duration-1000 ease-out"
                             style={{ width: `${Math.min(((user?.points || 0) / pointsNeeded) * 100, 100)}%` }}
                         />
                     </div>
 
-                    <button className={`w-full h-12 rounded-xl flex items-center justify-center gap-2 font-bold transition-all duration-300 text-sm tracking-wide ${user && user.points >= pointsNeeded
+                    <button className={`w-full h-12 rounded-xl flex items-center justify-center gap-2 font-bold transition-[color,background-color,box-shadow,transform] duration-300 text-sm tracking-wide ${user && user.points >= pointsNeeded
                         ? 'bg-slate-900 text-white shadow-md hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 border-0'
                         : 'bg-white border-2 border-slate-200 text-slate-400 cursor-not-allowed'
                         }`}>

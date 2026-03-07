@@ -41,10 +41,10 @@ export const HeroBanner: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <Button className="h-14 px-8 bg-white hover:bg-slate-100 text-slate-900 font-bold text-base rounded-2xl shadow-[0_4px_14px_0_rgba(255,255,255,0.2)] hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)] hover:-translate-y-0.5 transition-all w-full sm:w-auto">
+                    <Button className="h-14 px-8 bg-white hover:bg-slate-100 text-slate-900 font-bold text-base rounded-2xl shadow-[0_4px_14px_0_rgba(255,255,255,0.2)] hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)] hover:-translate-y-0.5 transition-[color,background-color,box-shadow,transform] w-full sm:w-auto">
                         ابدأ بتحدي "المشي اليومي"
                     </Button>
-                    <Button variant="outline" className="h-14 px-8 border-slate-700 bg-white/5 hover:bg-white/10 text-white font-bold text-base rounded-2xl backdrop-blur-sm transition-all w-full sm:w-auto group">
+                    <Button variant="outline" className="h-14 px-8 border-slate-700 bg-white/5 hover:bg-white/10 text-white font-bold text-base rounded-2xl backdrop-blur-sm transition-colors w-full sm:w-auto group">
                         <Plus className="w-5 h-5 ml-2 group-hover:rotate-90 transition-transform" /> أضف نشاطاً مخصصاً
                     </Button>
                 </div>

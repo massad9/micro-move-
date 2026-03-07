@@ -211,9 +211,10 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                 <div className="relative z-10 flex items-center justify-between p-6 md:p-8">
                     <button
                         onClick={onClose}
-                        className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all"
+                        aria-label="إغلاق"
+                        className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"
                     >
-                        <X className="w-5 h-5" />
+                        <X className="w-5 h-5" aria-hidden="true" />
                     </button>
 
                     <div className="flex items-center gap-3">
@@ -366,16 +367,17 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={handleReset}
-                                        className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"
+                                        aria-label="إعادة"
+                                        className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-colors"
                                     >
-                                        <RotateCcw className="w-5 h-5" />
+                                        <RotateCcw className="w-5 h-5" aria-hidden="true" />
                                     </motion.button>
 
                                     <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setIsPaused(!isPaused)}
-                                        className="h-14 px-10 rounded-2xl font-bold text-base flex items-center gap-3 transition-all"
+                                        className="h-14 px-10 rounded-2xl font-bold text-base flex items-center gap-3 transition-colors"
                                         style={{
                                             background: isPaused ? charMeta.accent : 'rgba(255,255,255,0.08)',
                                             color: isPaused ? 'white' : 'rgba(255,255,255,0.7)',
@@ -443,7 +445,7 @@ export const ActivityFullScreen: React.FC<ActivityFullScreenProps> = ({ activity
                                             className="flex flex-col items-center gap-3 group"
                                         >
                                             <div
-                                                className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl transition-all"
+                                                className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl transition-colors"
                                                 style={{
                                                     background: 'rgba(255,255,255,0.05)',
                                                     border: '1px solid rgba(255,255,255,0.1)',

@@ -85,12 +85,12 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
 
                             <div className="space-y-4">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-slate-700">اسم الشركة</label>
-                                    <input type="text" value={companyName} onChange={e => setCompanyName(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-primary outline-none text-right" placeholder="مثال: شركة أكمي" />
+                                    <label htmlFor="hr-company-name" className="text-sm font-semibold text-slate-700">اسم الشركة</label>
+                                    <input id="hr-company-name" type="text" value={companyName} onChange={e => setCompanyName(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-primary focus-visible:outline-none text-right" placeholder="مثال: شركة أكمي" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-slate-700">حجم الشركة</label>
-                                    <select value={companySize} onChange={e => setCompanySize(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-primary outline-none">
+                                    <label htmlFor="hr-company-size" className="text-sm font-semibold text-slate-700">حجم الشركة</label>
+                                    <select id="hr-company-size" value={companySize} onChange={e => setCompanySize(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-primary focus-visible:outline-none">
                                         <option value="1-50">١-٥٠ موظف</option>
                                         <option value="51-200">٥١-٢٠٠ موظف</option>
                                         <option value="201-500">٢٠١-٥٠٠ موظف</option>
@@ -114,7 +114,7 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                             <p className="text-sm text-slate-500 mb-6">اربط أدواتك لتمكين الإعداد السلس والتنبيهات الذكية.</p>
 
                             <div className="space-y-4">
-                                <div className={`p-4 rounded-xl border-2 transition-all cursor-pointer flex items-center justify-between ${calendarSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setCalendarSync(!calendarSync)}>
+                                <div className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${calendarSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setCalendarSync(!calendarSync)}>
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"><Calendar /></div>
                                         <div>
@@ -125,7 +125,7 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                                     {calendarSync && <CheckCircle2 className="text-primary" />}
                                 </div>
 
-                                <div className={`p-4 rounded-xl border-2 transition-all cursor-pointer flex items-center justify-between ${slackSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setSlackSync(!slackSync)}>
+                                <div className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${slackSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setSlackSync(!slackSync)}>
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600"><MessageSquare /></div>
                                         <div>
@@ -139,7 +139,7 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                                     </div>
                                 </div>
 
-                                <div className={`p-4 rounded-xl border-2 transition-all cursor-pointer flex items-center justify-between ${teamsSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setTeamsSync(!teamsSync)}>
+                                <div className={`p-4 rounded-xl border-2 transition-colors cursor-pointer flex items-center justify-between ${teamsSync ? 'border-primary bg-primary/5' : 'border-slate-200 bg-white'}`} onClick={() => setTeamsSync(!teamsSync)}>
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600"><MessageSquare /></div>
                                         <div>
@@ -162,9 +162,9 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                                     <label className="text-sm font-bold text-slate-900">ساعات العمل الافتراضية</label>
                                     <p className="text-xs text-slate-500">يتوقف نشاط المنصة خارج هذه الساعات احتراماً لوقت الموظفين.</p>
                                     <div className="flex items-center gap-4">
-                                        <input type="time" value={workStart} onChange={e => setWorkStart(e.target.value)} className="px-4 py-2 border rounded-lg bg-slate-50 outline-none" />
+                                        <input type="time" value={workStart} onChange={e => setWorkStart(e.target.value)} aria-label="بداية ساعات العمل" className="px-4 py-2 border rounded-lg bg-slate-50 focus-visible:outline-none" />
                                         <span className="text-slate-400">إلى</span>
-                                        <input type="time" value={workEnd} onChange={e => setWorkEnd(e.target.value)} className="px-4 py-2 border rounded-lg bg-slate-50 outline-none" />
+                                        <input type="time" value={workEnd} onChange={e => setWorkEnd(e.target.value)} aria-label="نهاية ساعات العمل" className="px-4 py-2 border rounded-lg bg-slate-50 focus-visible:outline-none" />
                                     </div>
                                 </div>
 
@@ -174,7 +174,7 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                                         {departments.map(dept => (
                                             <div key={dept} className="bg-slate-100 px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
                                                 {dept}
-                                                <button onClick={() => removeDepartment(dept)} className="text-slate-400 hover:text-red-500">&times;</button>
+                                                <button onClick={() => removeDepartment(dept)} aria-label={`حذف ${dept}`} className="text-slate-400 hover:text-red-500">&times;</button>
                                             </div>
                                         ))}
                                     </div>
@@ -185,7 +185,7 @@ export const HrOnboarding: React.FC<HrOnboardingProps> = ({ onComplete }) => {
                                             onChange={e => setNewDept(e.target.value)}
                                             onKeyDown={e => e.key === 'Enter' && addDepartment()}
                                             placeholder="أضف قسماً جديداً..."
-                                            className="flex-1 px-4 py-2 border rounded-lg bg-slate-50 outline-none text-right"
+                                            className="flex-1 px-4 py-2 border rounded-lg bg-slate-50 focus-visible:outline-none text-right"
                                         />
                                         <Button onClick={addDepartment} variant="secondary">إضافة</Button>
                                     </div>

@@ -84,7 +84,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                 whileHover={!activity.isDone && !showVibeCheck ? { y: -4, scale: 1.01 } : {}}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 className={cn(
-                    "relative overflow-hidden rounded-[2rem] border p-6 shadow-sm backdrop-blur-xl transition-all h-full flex flex-col justify-between group font-sans bg-white text-right",
+                    "relative overflow-hidden rounded-[2rem] border p-6 shadow-sm backdrop-blur-xl transition-[color,background-color,border-color,box-shadow] h-full flex flex-col justify-between group font-sans bg-white text-right",
                     activity.isDone && "bg-slate-50/50 border-slate-200/50 opacity-75 grayscale-[0.3]"
                 )}
             >
@@ -121,7 +121,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                         onClick={() => handleVibeCheck(mood.e)}
                                         className="flex flex-col items-center gap-2 group"
                                     >
-                                        <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm flex items-center justify-center text-3xl group-hover:border-primary group-hover:bg-primary/5 transition-all">
+                                        <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm flex items-center justify-center text-3xl group-hover:border-primary group-hover:bg-primary/5 transition-colors">
                                             {mood.e}
                                         </div>
                                         <span className="text-xs font-bold text-slate-400 group-hover:text-primary transition-colors uppercase tracking-wider">{mood.label}</span>
@@ -175,7 +175,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
                                     onClick={handleStartActivity}
                                     disabled={activity.isDone || isAnimating}
                                     className={cn(
-                                        "h-12 px-6 rounded-xl text-sm font-bold tracking-wide transition-all duration-300",
+                                        "h-12 px-6 rounded-xl text-sm font-bold tracking-wide transition-[color,background-color,box-shadow,transform] duration-300",
                                         activity.isDone
                                             ? "bg-slate-100 text-slate-400 shadow-none border border-slate-200 opacity-80"
                                             : "bg-slate-900 hover:bg-slate-800 text-white shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_25px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 border-0"

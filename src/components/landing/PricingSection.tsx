@@ -132,7 +132,7 @@ export const PricingSection: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all ${
+                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-colors ${
                   plan.popular
                     ? 'bg-primary text-white hover:bg-primary/90 shadow-[0_4px_20px_rgba(249,115,22,0.3)]'
                     : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'

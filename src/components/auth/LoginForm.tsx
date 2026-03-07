@@ -156,7 +156,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ role, onLogin, onBack }) =
                                 id="email"
                                 type="email"
                                 required
-                                className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-medium text-white placeholder:text-slate-500 text-right"
+                                className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors focus-visible:outline-none font-medium text-white placeholder:text-slate-500 text-right"
                                 placeholder={isAdmin ? "admin@micromove.sa" : "employee@company.com"}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -172,7 +172,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ role, onLogin, onBack }) =
                                     id="password"
                                     type="password"
                                     required={!(!isAdmin && email === '')}
-                                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-medium text-white placeholder:text-slate-500 text-right"
+                                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors focus-visible:outline-none font-medium text-white placeholder:text-slate-500 text-right"
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -183,7 +183,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ role, onLogin, onBack }) =
                         <div className="pt-2">
                             <button
                                 type="submit"
-                                className={`w-full ${isAdmin ? 'bg-slate-200 text-slate-900 hover:bg-white' : 'bg-primary text-white hover:bg-primary/90'} py-3.5 rounded-xl font-bold transition-all duration-200 active:scale-[0.98] shadow-lg`}
+                                className={`w-full ${isAdmin ? 'bg-slate-200 text-slate-900 hover:bg-white' : 'bg-primary text-white hover:bg-primary/90'} py-3.5 rounded-xl font-bold transition-[color,background-color,box-shadow,transform] duration-200 active:scale-[0.98] shadow-lg`}
                                 disabled={isLoading}
                             >
                                 {isLoading ? (
@@ -205,7 +205,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ role, onLogin, onBack }) =
                             </span>
                             <button
                                 onClick={() => setIsOnboarding(!isOnboarding)}
-                                className="text-primary hover:text-white font-semibold underline-offset-4 hover:underline transition-all"
+                                className="text-primary hover:text-white font-semibold underline-offset-4 hover:underline transition-colors"
                             >
                                 {isOnboarding ? 'سجّل الدخول' : 'أنشئ واحدة'}
                             </button>

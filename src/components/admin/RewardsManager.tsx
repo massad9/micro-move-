@@ -60,14 +60,14 @@ export const RewardsManager: React.FC = () => {
                         <div className="flex border-b border-[#E5E7EB]">
                             <button
                                 onClick={() => setActiveTab('rewards')}
-                                className={`flex-1 py-4 text-sm font-semibold transition-all duration-200 ${activeTab === 'rewards' ? 'bg-[#FFF7ED] text-primary border-b-2 border-primary' : 'text-[#6B7280] hover:bg-[#F9FAFB]'}`}
+                                className={`flex-1 py-4 text-sm font-semibold transition-colors duration-200 ${activeTab === 'rewards' ? 'bg-[#FFF7ED] text-primary border-b-2 border-primary' : 'text-[#6B7280] hover:bg-[#F9FAFB]'}`}
                             >
                                 <Gift className="w-4 h-4 mx-auto mb-1" strokeWidth={1.5} />
                                 مكافأة فردية
                             </button>
                             <button
                                 onClick={() => setActiveTab('challenges')}
-                                className={`flex-1 py-4 text-sm font-semibold transition-all duration-200 ${activeTab === 'challenges' ? 'bg-[#FFF7ED] text-primary border-b-2 border-primary' : 'text-[#6B7280] hover:bg-[#F9FAFB]'}`}
+                                className={`flex-1 py-4 text-sm font-semibold transition-colors duration-200 ${activeTab === 'challenges' ? 'bg-[#FFF7ED] text-primary border-b-2 border-primary' : 'text-[#6B7280] hover:bg-[#F9FAFB]'}`}
                             >
                                 <Target className="w-4 h-4 mx-auto mb-1" strokeWidth={1.5} />
                                 تحدي جماعي
@@ -77,34 +77,34 @@ export const RewardsManager: React.FC = () => {
                             {activeTab === 'rewards' ? (
                                 <form onSubmit={handleAddReward} className="space-y-4">
                                     <div>
-                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">عنوان المكافأة</label>
-                                        <input type="text" value={rewardTitle} onChange={e => setRewardTitle(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: ساعة راحة إضافية" />
+                                        <label htmlFor="reward-title" className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">عنوان المكافأة</label>
+                                        <input id="reward-title" type="text" value={rewardTitle} onChange={e => setRewardTitle(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm focus-visible:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-colors duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: ساعة راحة إضافية" />
                                     </div>
                                     <div>
-                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">التكلفة (نقطة)</label>
-                                        <input type="number" value={rewardCost} onChange={e => setRewardCost(e.target.value)} required min="1" className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: 500" />
+                                        <label htmlFor="reward-cost" className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">التكلفة (نقطة)</label>
+                                        <input id="reward-cost" type="number" value={rewardCost} onChange={e => setRewardCost(e.target.value)} required min="1" className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm focus-visible:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-colors duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: 500" />
                                     </div>
                                     <div>
-                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">الوصف (اختياري)</label>
-                                        <textarea value={rewardDesc} onChange={e => setRewardDesc(e.target.value)} rows={3} className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 resize-none text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="وصف قصير للمكافأة..." />
+                                        <label htmlFor="reward-desc" className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">الوصف (اختياري)</label>
+                                        <textarea id="reward-desc" value={rewardDesc} onChange={e => setRewardDesc(e.target.value)} rows={3} className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm focus-visible:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-colors duration-200 resize-none text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="وصف قصير للمكافأة..." />
                                     </div>
-                                    <Button type="submit" className="w-full bg-primary hover:bg-primary/90 font-semibold shadow-soft transition-all duration-200"><Plus className="w-4 h-4 mr-2" strokeWidth={1.5} /> نشر في المتجر</Button>
+                                    <Button type="submit" className="w-full bg-primary hover:bg-primary/90 font-semibold shadow-soft transition-colors duration-200"><Plus className="w-4 h-4 mr-2" strokeWidth={1.5} /> نشر في المتجر</Button>
                                 </form>
                             ) : (
                                 <form onSubmit={handleAddChallenge} className="space-y-4">
                                     <div>
-                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">عنوان التحدي</label>
-                                        <input type="text" value={challengeTitle} onChange={e => setChallengeTitle(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: تحدي المشي الأسبوعي" />
+                                        <label htmlFor="challenge-title" className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">عنوان التحدي</label>
+                                        <input id="challenge-title" type="text" value={challengeTitle} onChange={e => setChallengeTitle(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm focus-visible:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-colors duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: تحدي المشي الأسبوعي" />
                                     </div>
                                     <div>
-                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">النقاط المستهدفة</label>
-                                        <input type="number" value={challengeTarget} onChange={e => setChallengeTarget(e.target.value)} required min="10" className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: 1000" />
+                                        <label htmlFor="challenge-target" className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">النقاط المستهدفة</label>
+                                        <input id="challenge-target" type="number" value={challengeTarget} onChange={e => setChallengeTarget(e.target.value)} required min="10" className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm focus-visible:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-colors duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: 1000" />
                                     </div>
                                     <div>
-                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">الجائزة عند الإنجاز</label>
-                                        <input type="text" value={challengeReward} onChange={e => setChallengeReward(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-all duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: غداء للفريق" />
+                                        <label htmlFor="challenge-reward" className="text-xs font-semibold text-[#374151] uppercase tracking-wider mb-2 block">الجائزة عند الإنجاز</label>
+                                        <input id="challenge-reward" type="text" value={challengeReward} onChange={e => setChallengeReward(e.target.value)} required className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm focus-visible:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft transition-colors duration-200 text-right text-[#111827] placeholder-[#9CA3AF]" placeholder="مثال: غداء للفريق" />
                                     </div>
-                                    <Button type="submit" className="w-full bg-[#111827] hover:bg-[#1F2937] font-semibold text-white shadow-soft transition-all duration-200"><Plus className="w-4 h-4 mr-2" strokeWidth={1.5} /> إطلاق التحدي</Button>
+                                    <Button type="submit" className="w-full bg-[#111827] hover:bg-[#1F2937] font-semibold text-white shadow-soft transition-colors duration-200"><Plus className="w-4 h-4 mr-2" strokeWidth={1.5} /> إطلاق التحدي</Button>
                                 </form>
                             )}
                         </div>
@@ -118,7 +118,7 @@ export const RewardsManager: React.FC = () => {
                             {challenges.map(c => {
                                 const progress = Math.min((c.currentPoints / c.targetPoints) * 100, 100)
                                 return (
-                                    <div key={c.id} className="bg-white border border-[#E5E7EB] p-5 rounded-2xl shadow-soft group hover:shadow-soft-md hover:border-primary/20 transition-all duration-200">
+                                    <div key={c.id} className="bg-white border border-[#E5E7EB] p-5 rounded-2xl shadow-soft group hover:shadow-soft-md hover:border-primary/20 transition-colors duration-200">
                                         <div className="flex justify-between items-start mb-4">
                                             <div className="w-10 h-10 bg-[#FFF7ED] text-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200"><Target className="w-5 h-5" strokeWidth={1.5} /></div>
                                             <span className="text-[10px] font-semibold uppercase tracking-wider text-[#9CA3AF] bg-[#F9FAFB] px-2 py-1 rounded-lg border border-[#E5E7EB]">ينتهي في ٣ أيام</span>
@@ -131,7 +131,7 @@ export const RewardsManager: React.FC = () => {
                                                 <span className="text-[#9CA3AF]">{c.currentPoints} / {c.targetPoints}</span>
                                             </div>
                                             <div className="w-full bg-[#F3F4F6] h-2 rounded-full overflow-hidden">
-                                                <div className="bg-primary h-full rounded-full transition-all duration-1000" style={{ width: `${progress}%` }} />
+                                                <div className="bg-primary h-full rounded-full transition-[width] duration-1000" style={{ width: `${progress}%` }} />
                                             </div>
                                             <div className="mt-3 pt-3 border-t border-[#F3F4F6] flex items-center justify-between">
                                                 <span className="text-[10px] font-medium text-[#9CA3AF] uppercase tracking-wider">الجائزة</span>
@@ -155,7 +155,7 @@ export const RewardsManager: React.FC = () => {
                         <h3 className="text-base font-bold text-[#111827] mb-4 flex items-center gap-2"><Gift className="w-5 h-5 text-amber-500" strokeWidth={1.5} /> متجر المكافآت</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             {rewards.map(r => (
-                                <div key={r.id} className="bg-white border border-[#E5E7EB] p-5 rounded-2xl shadow-soft hover:shadow-soft-md transition-all duration-200 relative overflow-hidden group">
+                                <div key={r.id} className="bg-white border border-[#E5E7EB] p-5 rounded-2xl shadow-soft hover:shadow-soft-md transition-colors duration-200 relative overflow-hidden group">
                                     <div className="absolute top-0 right-0 w-16 h-16 bg-amber-50 rounded-bl-[100px] z-0 transition-transform duration-300 group-hover:scale-150" />
                                     <div className="relative z-10 flex flex-col h-full">
                                         <div className="flex justify-between items-start mb-6">

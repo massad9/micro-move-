@@ -142,7 +142,7 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                                     type="text"
                                                     value={companyName}
                                                     onChange={e => setCompanyName(e.target.value)}
-                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-medium text-white placeholder:text-slate-500 text-right"
+                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors focus-visible:outline-none font-medium text-white placeholder:text-slate-500 text-right"
                                                     placeholder="مثال: شركة أكمي"
                                                 />
                                             </div>
@@ -158,7 +158,7 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                                         key={size.value}
                                                         type="button"
                                                         onClick={() => setCompanySize(size.value)}
-                                                        className={`px-4 py-3 rounded-xl text-sm font-medium transition-all border ${
+                                                        className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors border ${
                                                             companySize === size.value
                                                                 ? 'bg-primary/15 border-primary/40 text-primary'
                                                                 : 'bg-[#1A1A1A] border-white/10 text-slate-400 hover:bg-white/5 hover:text-white'
@@ -175,7 +175,7 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                                 type="button"
                                                 onClick={handleNext}
                                                 disabled={!canProceedStep1}
-                                                className="w-full bg-white text-black py-3.5 rounded-xl font-bold transition-all duration-200 active:scale-[0.98] shadow-lg disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2"
+                                                className="w-full bg-white text-black py-3.5 rounded-xl font-bold transition-[color,background-color,box-shadow,transform] duration-200 active:scale-[0.98] shadow-lg disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2"
                                             >
                                                 <span>التالي</span>
                                                 <ChevronLeft className="w-4 h-4" />
@@ -218,7 +218,7 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                                     required
                                                     value={email}
                                                     onChange={e => setEmail(e.target.value)}
-                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-medium text-white placeholder:text-slate-500 text-right"
+                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors focus-visible:outline-none font-medium text-white placeholder:text-slate-500 text-right"
                                                     placeholder="admin@company.com"
                                                 />
                                             </div>
@@ -236,7 +236,7 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                                     required
                                                     value={password}
                                                     onChange={e => setPassword(e.target.value)}
-                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-medium text-white placeholder:text-slate-500 text-right"
+                                                    className="w-full pr-12 pl-4 py-3.5 bg-[#1A1A1A] border border-white/10 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors focus-visible:outline-none font-medium text-white placeholder:text-slate-500 text-right"
                                                     placeholder="٦ أحرف على الأقل"
                                                     minLength={6}
                                                 />
@@ -257,7 +257,7 @@ export const WorkspaceSetup: React.FC<WorkspaceSetupProps> = ({ onComplete, onBa
                                             <button
                                                 type="submit"
                                                 disabled={!canProceedStep2 || isLoading}
-                                                className="flex-1 bg-primary text-white py-3.5 rounded-xl font-bold transition-all duration-200 active:scale-[0.98] shadow-lg disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary/90 flex items-center justify-center gap-2"
+                                                className="flex-1 bg-primary text-white py-3.5 rounded-xl font-bold transition-[color,background-color,box-shadow,transform] duration-200 active:scale-[0.98] shadow-lg disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary/90 flex items-center justify-center gap-2"
                                             >
                                                 {isLoading ? (
                                                     <>

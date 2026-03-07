@@ -32,7 +32,7 @@ export const ActivityFeed: React.FC = () => {
                         <button
                             key={tab.id}
                             onClick={() => setFilter(tab.id)}
-                            className={`px-5 py-2.5 text-sm font-bold rounded-xl whitespace-nowrap transition-all ${filter === tab.id
+                            className={`px-5 py-2.5 text-sm font-bold rounded-xl whitespace-nowrap transition-colors ${filter === tab.id
                                 ? 'bg-slate-900 text-white shadow-md'
                                 : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
                                 }`}

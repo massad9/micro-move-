@@ -34,9 +34,10 @@ export const ContextNudgeModal: React.FC<ContextNudgeModalProps> = ({ isOpen, on
 
                         <button
                             onClick={onClose}
+                            aria-label="إغلاق"
                             className="absolute top-4 left-4 p-2 text-slate-400 hover:text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-full transition-colors z-10"
                         >
-                            <X className="w-5 h-5" />
+                            <X className="w-5 h-5" aria-hidden="true" />
                         </button>
 
                         <div className="relative z-10">
@@ -58,14 +59,14 @@ export const ContextNudgeModal: React.FC<ContextNudgeModalProps> = ({ isOpen, on
                             <div className="flex flex-col gap-3">
                                 <Button
                                     onClick={onAccept}
-                                    className="w-full h-14 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_25px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 transition-all outline-none"
+                                    className="w-full h-14 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_25px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 transition-[color,background-color,box-shadow,transform] focus-visible:outline-none"
                                 >
                                     حسناً، فلنفعل ذلك (١٠ نقاط)
                                 </Button>
                                 <Button
                                     variant="ghost"
                                     onClick={onClose}
-                                    className="w-full h-12 text-slate-500 hover:text-slate-700 hover:bg-slate-100 font-bold rounded-xl transition-colors outline-none"
+                                    className="w-full h-12 text-slate-500 hover:text-slate-700 hover:bg-slate-100 font-bold rounded-xl transition-colors focus-visible:outline-none"
                                 >
                                     تأجيل لمدة ساعة
                                 </Button>

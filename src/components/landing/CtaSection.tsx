@@ -54,7 +54,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onSetupWorkspace }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => onSetupWorkspace?.()}
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-shadow hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white to-slate-200 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <Building2 className="w-5 h-5 relative z-10" />

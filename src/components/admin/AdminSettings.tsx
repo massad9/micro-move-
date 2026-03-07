@@ -25,7 +25,7 @@ export const AdminSettings: React.FC = () => {
                             <button
                                 key={s.id}
                                 onClick={() => setActiveSection(s.id)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-semibold text-sm ${isActive ? 'bg-[#FFF7ED] text-primary border-r-0 shadow-soft' : 'text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] border border-transparent'
+                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-200 font-semibold text-sm ${isActive ? 'bg-[#FFF7ED] text-primary border-r-0 shadow-soft' : 'text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] border border-transparent'
                                     }`}
                             >
                                 <Icon className="w-4 h-4" strokeWidth={1.5} />
@@ -46,17 +46,17 @@ export const AdminSettings: React.FC = () => {
                             <div className="p-6 space-y-4 text-right">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider">اسم الشركة</label>
-                                        <input type="text" defaultValue={companyAdmin?.companyName} className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm font-medium text-right text-[#111827] focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft outline-none transition-all duration-200" />
+                                        <label htmlFor="settings-company-name" className="text-xs font-semibold text-[#374151] uppercase tracking-wider">اسم الشركة</label>
+                                        <input id="settings-company-name" type="text" defaultValue={companyAdmin?.companyName} className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm font-medium text-right text-[#111827] focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft focus-visible:outline-none transition-colors duration-200" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider">نطاق البريد الإلكتروني</label>
-                                        <input type="text" defaultValue="micromove.sa" disabled className="w-full px-4 py-2.5 bg-[#F3F4F6] border border-[#E5E7EB] rounded-xl text-sm text-[#9CA3AF] font-medium opacity-70 text-right cursor-not-allowed" />
+                                        <label htmlFor="settings-email-domain" className="text-xs font-semibold text-[#374151] uppercase tracking-wider">نطاق البريد الإلكتروني</label>
+                                        <input id="settings-email-domain" type="text" defaultValue="micromove.sa" disabled className="w-full px-4 py-2.5 bg-[#F3F4F6] border border-[#E5E7EB] rounded-xl text-sm text-[#9CA3AF] font-medium opacity-70 text-right cursor-not-allowed" />
                                     </div>
                                 </div>
                                 <div className="space-y-2 pt-2">
-                                    <label className="text-xs font-semibold text-[#374151] uppercase tracking-wider">المنطقة الزمنية</label>
-                                    <select className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm font-medium text-right text-[#111827] focus:border-primary/40 focus:ring-2 focus:ring-primary/10 outline-none transition-all duration-200">
+                                    <label htmlFor="settings-timezone" className="text-xs font-semibold text-[#374151] uppercase tracking-wider">المنطقة الزمنية</label>
+                                    <select id="settings-timezone" className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm font-medium text-right text-[#111827] focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus-visible:outline-none transition-colors duration-200">
                                         <option>توقيت السعودية (AST)</option>
                                         <option>توقيت الخليج القياسي (GST)</option>
                                     </select>
@@ -74,7 +74,7 @@ export const AdminSettings: React.FC = () => {
                                         <h4 className="font-semibold text-[#111827]">مسح بيانات القياس المؤقتة</h4>
                                         <p className="text-xs text-[#6B7280] mt-0.5 leading-relaxed">يؤدي هذا إلى مسح الخرائط الحرارية التاريخية أقدم من ٩٠ يوماً.</p>
                                     </div>
-                                    <button className="px-4 py-2 bg-white border border-red-200 text-red-500 text-sm font-semibold rounded-xl hover:bg-red-50 transition-all duration-200">مسح البيانات</button>
+                                    <button className="px-4 py-2 bg-white border border-red-200 text-red-500 text-sm font-semibold rounded-xl hover:bg-red-50 transition-colors duration-200">مسح البيانات</button>
                                 </div>
                             </div>
                         </div>

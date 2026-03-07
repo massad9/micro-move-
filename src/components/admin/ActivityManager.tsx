@@ -50,7 +50,7 @@ export const ActivityManager: React.FC = () => {
                         variant="outline"
                         onClick={handleAIGenerate}
                         disabled={isGenerating}
-                        className="relative overflow-hidden border-primary/20 text-primary hover:text-primary font-semibold shadow-soft transition-all duration-200"
+                        className="relative overflow-hidden border-primary/20 text-primary hover:text-primary font-semibold shadow-soft transition-colors duration-200"
                         style={{
                             background: `
                                 radial-gradient(ellipse at 20% 50%, rgba(249,115,22,0.10) 0%, transparent 50%),
@@ -66,7 +66,7 @@ export const ActivityManager: React.FC = () => {
                             <span className="flex items-center gap-2"><Sparkles className="w-4 h-4" strokeWidth={1.5} /> توليد بالذكاء الاصطناعي</span>
                         )}
                     </Button>
-                    <Button className="bg-[#111827] text-white hover:bg-[#1F2937] font-semibold shadow-soft transition-all duration-200">
+                    <Button className="bg-[#111827] text-white hover:bg-[#1F2937] font-semibold shadow-soft transition-colors duration-200">
                         <Plus className="w-4 h-4 mr-2" strokeWidth={1.5} /> نشاط جديد
                     </Button>
                 </div>
@@ -79,20 +79,22 @@ export const ActivityManager: React.FC = () => {
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveTab(cat.id)}
-                                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 whitespace-nowrap ${activeTab === cat.id ? 'bg-[#111827] text-white shadow-soft' : 'text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB]'}`}
+                                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap ${activeTab === cat.id ? 'bg-[#111827] text-white shadow-soft' : 'text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB]'}`}
                             >
                                 {cat.label}
                             </button>
                         ))}
                     </div>
                     <div className="relative group">
-                        <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] group-focus-within:text-primary transition-colors" strokeWidth={1.5} />
+                        <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] group-focus-within:text-primary transition-colors" strokeWidth={1.5} aria-hidden="true" />
                         <input
                             type="text"
+                            name="activity-search"
+                            autoComplete="off"
                             placeholder="ابحث في الأنشطة..."
                             value={searchTerm}
                             onChange={e => setSearchTerm(e.target.value)}
-                            className="pl-4 pr-10 py-2.5 w-full sm:w-64 bg-white border border-[#E5E7EB] rounded-xl focus:ring-2 focus:ring-primary/10 focus:border-primary/40 focus:shadow-inner-soft outline-none transition-all duration-200 text-sm font-medium text-right text-[#111827] placeholder-[#9CA3AF]"
+                            className="pl-4 pr-10 py-2.5 w-full sm:w-64 bg-white border border-[#E5E7EB] rounded-xl focus:ring-2 focus:ring-primary/10 focus:border-primary/40 focus:shadow-inner-soft focus-visible:outline-none transition-colors duration-200 text-sm font-medium text-right text-[#111827] placeholder-[#9CA3AF]"
                         />
                     </div>
                 </div>
@@ -156,9 +158,9 @@ export const ActivityManager: React.FC = () => {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-left">
                                                 <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                                    <button className="p-2 text-[#9CA3AF] hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-200"><Edit2 className="w-4 h-4" strokeWidth={1.5} /></button>
-                                                    <button className="p-2 text-[#9CA3AF] hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200"><Trash2 className="w-4 h-4" strokeWidth={1.5} /></button>
-                                                    <button className="p-2 text-[#9CA3AF] hover:text-[#111827] hover:bg-[#F3F4F6] rounded-lg transition-all duration-200"><MoreVertical className="w-4 h-4" strokeWidth={1.5} /></button>
+                                                    <button aria-label="تعديل النشاط" className="p-2 text-[#9CA3AF] hover:text-primary hover:bg-primary/5 rounded-lg transition-colors duration-200"><Edit2 className="w-4 h-4" strokeWidth={1.5} aria-hidden="true" /></button>
+                                                    <button aria-label="حذف النشاط" className="p-2 text-[#9CA3AF] hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors duration-200"><Trash2 className="w-4 h-4" strokeWidth={1.5} aria-hidden="true" /></button>
+                                                    <button aria-label="خيارات إضافية" className="p-2 text-[#9CA3AF] hover:text-[#111827] hover:bg-[#F3F4F6] rounded-lg transition-colors duration-200"><MoreVertical className="w-4 h-4" strokeWidth={1.5} aria-hidden="true" /></button>
                                                 </div>
                                             </td>
                                         </motion.tr>

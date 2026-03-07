@@ -56,9 +56,9 @@ export const StatCards: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
                     >
-                        <div className="bg-white border border-[#E5E7EB] rounded-2xl shadow-soft hover:shadow-soft-md transition-all duration-300 overflow-hidden group p-6">
+                        <div className="bg-white border border-[#E5E7EB] rounded-2xl shadow-soft hover:shadow-soft-md transition-shadow duration-300 overflow-hidden group p-6">
                             <div className="flex justify-between items-start mb-4">
-                                <div className={`p-2.5 rounded-xl ${stat.bg} ${stat.color} transition-all duration-300`}>
+                                <div className={`p-2.5 rounded-xl ${stat.bg} ${stat.color} transition-colors duration-300`}>
                                     <Icon className="w-[18px] h-[18px] transition-transform group-hover:scale-110" strokeWidth={1.5} />
                                 </div>
                                 <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-lg ${isBadChange ? 'text-red-600 bg-red-50 border border-red-100' : stat.change.startsWith('-') ? 'text-green-600 bg-emerald-50 border border-emerald-100' : 'text-emerald-600 bg-emerald-50 border border-emerald-100'

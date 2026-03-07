@@ -91,9 +91,9 @@ export const Rewards: React.FC = () => {
                         >
                             <Card
                                 className={cn(
-                                    "bg-white border text-right transition-all duration-300 h-full flex flex-col group relative overflow-hidden",
+                                    "bg-white border text-right duration-300 h-full flex flex-col group relative overflow-hidden",
                                     canAfford
-                                        ? "border-amber-200/60 shadow-lg shadow-amber-900/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-900/10 cursor-pointer"
+                                        ? "border-amber-200/60 shadow-lg shadow-amber-900/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-900/10 cursor-pointer transition-[box-shadow,transform]"
                                         : "border-slate-200/60 shadow-sm opacity-90"
                                 )}
                                 onClick={() => canAfford && setSelectedReward(reward)}
@@ -218,7 +218,7 @@ export const Rewards: React.FC = () => {
                                     <Button
                                         onClick={() => handleRedeem(selectedReward)}
                                         disabled={isRedeeming}
-                                        className="flex-[2] h-14 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-black px-0 shadow-[0_8px_20px_rgba(245,158,11,0.3)] transition-all hover:shadow-[0_12px_25px_rgba(245,158,11,0.4)] hover:-translate-y-0.5 border-0"
+                                        className="flex-[2] h-14 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-black px-0 shadow-[0_8px_20px_rgba(245,158,11,0.3)] transition-[color,background-color,box-shadow,transform] hover:shadow-[0_12px_25px_rgba(245,158,11,0.4)] hover:-translate-y-0.5 border-0"
                                     >
                                         {isRedeeming ? (
                                             <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, ease: "linear", duration: 1 }} className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />

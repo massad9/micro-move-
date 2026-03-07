@@ -58,6 +58,15 @@ src/
 - **Heatmap cells**: `rounded` corners with `gap-1` spacing
 - **Empty states**: `PackageOpen` icon illustration with descriptive text
 
+## Accessibility & Performance
+
+- **prefers-reduced-motion**: Global CSS media query disables animations/transitions for users who prefer reduced motion
+- **Transitions**: All `transition-all` replaced with specific properties (`transition-colors`, `transition-shadow`, `transition-[width]`, etc.) for better performance
+- **Focus management**: `outline-none` replaced with `focus-visible:outline-none` across all inputs, preserving keyboard focus indicators
+- **Icon buttons**: All icon-only buttons have `aria-label` attributes; decorative icons use `aria-hidden="true"`
+- **Form labels**: All form labels connected to inputs via `htmlFor`/`id` pairs (RewardsManager, AdminSettings, HrOnboarding, LoginForm, WorkspaceSetup)
+- **Search inputs**: Include `name` and `autocomplete="off"` attributes
+
 ## Development
 
 ```bash

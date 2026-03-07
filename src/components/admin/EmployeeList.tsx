@@ -36,8 +36,8 @@ export const EmployeeList: React.FC = () => {
                     <p className="text-sm text-[#6B7280] mt-1 leading-relaxed">الموظفون الأكثر نشاطاً هذا الأسبوع</p>
                 </div>
                 <div className="flex gap-1 bg-[#F3F4F6] p-1 rounded-xl">
-                    <button onClick={() => setSort('points')} className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all duration-200 ${sort === 'points' ? 'bg-white shadow-soft text-[#111827]' : 'text-[#6B7280]'}`}>النقاط</button>
-                    <button onClick={() => setSort('name')} className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all duration-200 ${sort === 'name' ? 'bg-white shadow-soft text-[#111827]' : 'text-[#6B7280]'}`}>الاسم</button>
+                    <button onClick={() => setSort('points')} className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-200 ${sort === 'points' ? 'bg-white shadow-soft text-[#111827]' : 'text-[#6B7280]'}`}>النقاط</button>
+                    <button onClick={() => setSort('name')} className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-200 ${sort === 'name' ? 'bg-white shadow-soft text-[#111827]' : 'text-[#6B7280]'}`}>الاسم</button>
                 </div>
             </div>
 

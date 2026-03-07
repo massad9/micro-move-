@@ -104,7 +104,7 @@ export const Greeting: React.FC<GreetingProps> = ({ onNavigateStore }) => {
                 </div>
 
                 <div className="relative z-10 mt-8">
-                    <button onClick={onNavigateStore} className="inline-flex items-center gap-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                    <button onClick={onNavigateStore} className="inline-flex items-center gap-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-[color,background-color,box-shadow,transform]">
                         عرض المتجر <ChevronLeft className="w-4 h-4" />
                     </button>
                     <div className="h-1 w-full bg-slate-100 mt-3 rounded-full overflow-hidden">

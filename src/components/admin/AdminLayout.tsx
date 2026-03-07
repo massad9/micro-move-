@@ -36,7 +36,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                             <button
                                 key={item.id}
                                 onClick={() => setActiveAdminTab(item.id)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-semibold ${isActive
+                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-200 text-sm font-semibold ${isActive
                                     ? 'bg-[#FFF7ED] text-primary border-r-[3px] border-primary'
                                     : 'text-[#6B7280] hover:bg-[#F9FAFB] hover:text-[#111827] border-r-[3px] border-transparent'
                                     }`}
@@ -51,7 +51,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                 <div className="mt-auto pt-6 space-y-4 border-t border-[#E5E7EB]">
                     <button
                         onClick={onLogout}
-                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B7280] hover:bg-red-50 hover:text-red-500 transition-all duration-200 group"
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#6B7280] hover:bg-red-50 hover:text-red-500 transition-colors duration-200 group"
                     >
                         <LogOut className="w-[18px] h-[18px] group-hover:text-red-500 transition-colors" strokeWidth={1.5} />
                         <span className="font-semibold text-sm">تسجيل الخروج</span>
@@ -74,23 +74,25 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
             <div className="flex-1 flex flex-col min-w-0 overflow-hidden font-sans">
                 <header className="h-16 bg-white border-b border-[#E5E7EB] flex items-center justify-between px-8 shrink-0 relative z-20">
                     <div className="flex items-center gap-4 flex-1">
-                        <button className="lg:hidden p-2 text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-all duration-200">
-                            <Menu className="w-5 h-5" strokeWidth={1.5} />
+                        <button aria-label="فتح القائمة" className="lg:hidden p-2 text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] rounded-lg transition-colors duration-200">
+                            <Menu className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" />
                         </button>
                         <div className="relative max-w-md w-full hidden md:block group">
-                            <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] group-focus-within:text-primary transition-colors" strokeWidth={1.5} />
+                            <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] group-focus-within:text-primary transition-colors" strokeWidth={1.5} aria-hidden="true" />
                             <input
                                 type="text"
+                                name="admin-search"
+                                autoComplete="off"
                                 placeholder="ابحث عن موظفين، أنشطة..."
-                                className="w-full pr-10 pl-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm text-[#111827] placeholder-[#9CA3AF] focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft focus:outline-none transition-all duration-200 text-right"
+                                className="w-full pr-10 pl-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl text-sm text-[#111827] placeholder-[#9CA3AF] focus:bg-white focus:border-primary/40 focus:ring-2 focus:ring-primary/10 focus:shadow-inner-soft focus-visible:outline-none transition-colors duration-200 text-right"
                             />
                         </div>
                     </div>
 
                     <div className="flex items-center gap-6">
-                        <Button variant="ghost" size="icon" className="relative text-[#6B7280] rounded-full hover:bg-[#F9FAFB] transition-all duration-200 h-9 w-9">
-                            <Bell className="w-5 h-5" strokeWidth={1.5} />
-                            <span className="absolute top-1.5 left-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
+                        <Button variant="ghost" size="icon" aria-label="الإشعارات" className="relative text-[#6B7280] rounded-full hover:bg-[#F9FAFB] transition-colors duration-200 h-9 w-9">
+                            <Bell className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" />
+                            <span className="absolute top-1.5 left-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white" aria-hidden="true" />
                         </Button>
                         <div className="h-6 w-[1px] bg-[#E5E7EB] mx-2 hidden sm:block" />
                         <div className="flex items-center gap-3">
