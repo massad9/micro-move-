@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useMicroMoveStore } from '@/store/microMoveStore'
+import { ActivityFullScreen } from './ActivityFullScreen'
 
 export const HeroBanner: React.FC = () => {
+    const activities = useMicroMoveStore(state => state.activities)
+    const [showWalkingChallenge, setShowWalkingChallenge] = useState(false)
+
+    // Find the walking activity (تأمل المشي بعد الغداء)
+    const walkingActivity = activities.find(a => a.id === '6') || activities.find(a => a.category === 'physical' && a.title.includes('المشي'))
+
     return (
+        <>
         <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -43,11 +52,12 @@ export const HeroBanner: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <Button className="h-14 px-8 bg-orange-500 hover:bg-orange-600 text-white font-bold text-base rounded-2xl shadow-[0_8px_20px_-6px_rgba(249,115,22,0.5)] active:scale-[0.98] transition-all w-full sm:w-auto">
-                        ابدأ بتحدي "المشي اليومي"
-                    </Button>
-                    <Button variant="outline" className="h-14 px-8 border-slate-200 bg-white hover:bg-slate-50 text-slate-900 font-bold text-base rounded-2xl transition-all shadow-sm w-full sm:w-auto group">
-                        <Plus className="w-5 h-5 ml-2 text-slate-400 group-hover:rotate-90 transition-transform" /> أضف نشاطاً مخصصاً
+                    <Button
+                        onClick={() => setShowWalkingChallenge(true)}
+                        disabled={!walkingActivity || walkingActivity.isDone}
+                        className="h-14 px-8 bg-orange-500 hover:bg-orange-600 text-white font-bold text-base rounded-2xl shadow-[0_8px_20px_-6px_rgba(249,115,22,0.5)] active:scale-[0.98] transition-all w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        {walkingActivity?.isDone ? 'تم إكمال تحدي المشي اليومي ✓' : 'ابدأ بتحدي "المشي اليومي"'}
                     </Button>
                 </div>
             </div>
@@ -76,5 +86,15 @@ export const HeroBanner: React.FC = () => {
                  </div>
             </div>
         </motion.div>
+
+        {/* Walking Challenge Fullscreen Timer */}
+        {walkingActivity && (
+            <ActivityFullScreen
+                activity={walkingActivity}
+                isOpen={showWalkingChallenge}
+                onClose={() => setShowWalkingChallenge(false)}
+            />
+        )}
+        </>
     )
 }

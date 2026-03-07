@@ -1,7 +1,8 @@
 import React from 'react'
-import { LayoutDashboard, Users, Zap, Gift, Sliders, LogOut, Menu, Search, Bell } from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { LayoutDashboard, Users, Zap, Gift, Sliders, LogOut, Menu, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { NotificationDropdown } from '@/components/shared/NotificationDropdown'
+import { UserAvatarDropdown } from '@/components/shared/UserAvatarDropdown'
 
 interface AdminLayoutProps {
     children: React.ReactNode
@@ -58,10 +59,10 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                     </button>
                     <div className="p-3 bg-[#F9FAFB] rounded-xl border border-[#E5E7EB]">
                         <div className="flex items-center gap-3">
-                            <Avatar className="w-10 h-10 border border-[#E5E7EB] rounded-lg">
-                                <AvatarImage src="https://i.pravatar.cc/150?u=admin" />
-                                <AvatarFallback className="bg-primary/10 text-primary">مد</AvatarFallback>
-                            </Avatar>
+                            <div className="flex items-center justify-center shrink-0">
+                                <NotificationDropdown />
+                            </div>
+                            <UserAvatarDropdown />
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-bold text-[#111827] leading-none">سارة الفهد</p>
                                 <p className="text-xs text-[#6B7280] mt-1">مدير النظام</p>
@@ -87,23 +88,15 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeAdminT
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-6">
-                        <Button variant="ghost" size="icon" className="relative text-[#6B7280] rounded-full hover:bg-[#F9FAFB] transition-all duration-200 h-9 w-9">
-                            <Bell className="w-5 h-5" strokeWidth={1.5} />
-                            <span className="absolute top-1.5 left-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
-                        </Button>
-                        <div className="h-6 w-[1px] bg-[#E5E7EB] mx-2 hidden sm:block" />
                         <div className="flex items-center gap-3">
+                            <NotificationDropdown />
+                            <div className="h-8 w-px bg-slate-200/60 mx-1"></div>
                             <div className="text-right hidden sm:block">
                                 <p className="text-sm font-bold text-[#111827] leading-none">سارة الفهد</p>
                                 <p className="text-xs text-[#6B7280] mt-1">مدير النظام</p>
                             </div>
-                            <Avatar className="w-9 h-9 cursor-pointer hover:opacity-80 transition-opacity">
-                                <AvatarImage src="https://i.pravatar.cc/150?u=sara-admin" />
-                                <AvatarFallback className="bg-primary/10 text-primary font-medium text-sm">سف</AvatarFallback>
-                            </Avatar>
+                            <UserAvatarDropdown onLogout={onLogout} />
                         </div>
-                    </div>
                 </header>
 
                 <main className="flex-1 overflow-y-auto p-8 no-scrollbar bg-[#F9FAFB] relative">

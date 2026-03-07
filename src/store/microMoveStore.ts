@@ -37,6 +37,7 @@ export interface User {
     department: string
     completedToday: number
     dailyGoal: number
+    avatar?: string
 }
 
 interface MicroMoveState {
@@ -53,7 +54,11 @@ interface MicroMoveState {
     } | null
 
     setUser: (user: User | null) => void
+    updateUser: (updates: Partial<User>) => void
     markActivityDone: (id: string) => void
+    addActivity: (activity: Activity) => void
+    removeActivity: (id: string) => void
+    updateActivity: (id: string, updates: Partial<Activity>) => void
     addReward: (reward: Reward) => void
     addChallenge: (challenge: Challenge) => void
     setCompanyAdmin: (data: any) => void
@@ -207,6 +212,10 @@ export const useMicroMoveStore = create<MicroMoveState>((set) => ({
 
     setUser: (user) => set({ user }),
 
+    updateUser: (updates) => set((state) => ({
+        user: state.user ? { ...state.user, ...updates } : null
+    })),
+
     markActivityDone: (id) => set((state) => ({
         activities: state.activities.map(a => a.id === id ? { ...a, isDone: true } : a),
         user: state.user ? {
@@ -214,6 +223,18 @@ export const useMicroMoveStore = create<MicroMoveState>((set) => ({
             points: state.user.points + (state.activities.find(a => a.id === id)?.points || 0),
             completedToday: state.user.completedToday + 1
         } : null
+    })),
+
+    addActivity: (activity) => set((state) => ({
+        activities: [activity, ...state.activities]
+    })),
+
+    removeActivity: (id) => set((state) => ({
+        activities: state.activities.filter(a => a.id !== id)
+    })),
+
+    updateActivity: (id, updates) => set((state) => ({
+        activities: state.activities.map(a => a.id === id ? { ...a, ...updates } : a)
     })),
 
     addReward: (reward) => set((state) => ({
